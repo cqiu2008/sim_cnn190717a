@@ -1,0 +1,8 @@
+sccom -gnuversion 
+Start time: 10:47:14 on Apr 29,2019
+
+QuestaSim SE-64 sccom 10.4c compiler 2015.07 Jul 19 2015
+** Warning: (sccom-6148) Unrecognized Linux operating system.
+** Error: (sccom-95) Your installation directory does not contain the appropriate GNU C++ compiler. Download and install the tarball from the ftp site (questa_sim-gcc-4.7.4-linux_x86_64.mis for Questa Core/Prime or questasim-gcc-4.7.4-linux_x86_64.mis for Questa SV/AFV).
+End time: 10:47:14 on Apr 29,2019, Elapsed time: 0:00:00
+Errors: 1, Warnings: 1
