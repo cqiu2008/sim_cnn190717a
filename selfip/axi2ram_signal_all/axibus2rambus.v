@@ -56,11 +56,22 @@ output reg  [C_RAM_ADDR_WIDTH-1  :0]O_waddr         ,
 output reg  [C_RAM_DATA_WIDTH-1  :0]O_wdata         ,
 output reg                          O_wr            ,
 // master read address channel
+output      [C_M_AXI_USER_WIDTH-1:0]O_maxi_aruser   ,   
+output      [C_M_AXI_ID_WIDTH-1  :0]O_maxi_arid     ,
+output      [                   1:0]O_maxi_arburst  ,
+output      [                   1:0]O_maxi_arlock   ,
+output      [                   3:0]O_maxi_arcache  ,
+output      [                   2:0]O_maxi_arprot   ,
+output      [                   3:0]O_maxi_arqos    ,
+output      [                   3:0]O_maxi_arregion ,
+output      [C_M_AXI_SIZE_WIDTH-1:0]O_maxi_arsize   ,
 output reg  [C_M_AXI_LEN_WIDTH-1 :0]O_maxi_arlen    ,
 input                               I_maxi_arready  ,   
 output                              O_maxi_arvalid  ,
 output reg  [C_M_AXI_ADDR_WIDTH-1:0]O_maxi_araddr   ,
 // master read data channel
+input       [C_M_AXI_ID_WIDTH-1  :0]I_maxi_rid      ,
+input       [C_M_AXI_USER_WIDTH-1:0]I_maxi_ruser    ,   
 input       [                   1:0]I_maxi_rresp    ,
 input       [                   1:0]I_maxi_rlast    ,   
 output reg                          O_maxi_rready   ,
@@ -82,6 +93,8 @@ wire                         S_wr               ;
 
 //// write ram process 
 // master axi araddr channel 
+assign O_maxi_aruser    = {C_M_AXI_USER_WIDTH{1'b0}}; 
+assign O_maxi_arid      = {C_M_AXI_SIZE_WIDTH{1'b0}};
 assign O_maxi_arburst   = {2{1'b0}};
 assign O_maxi_arlock    = {2{1'b0}};
 assign O_maxi_arcache   = {4{1'b0}};

@@ -33,7 +33,7 @@
 module sdpram #(
 parameter   
     MEM_STYLE  = "block",
-    DSIZE = 32      ,
+    DSIZE = 32          ,
     ASIZE = 10      
 )(
 input                               I_rst           ,   
