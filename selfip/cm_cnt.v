@@ -37,13 +37,20 @@ input                                   I_clk       ,
 input                                   I_cnt_en    ,
 input                                   I_cnt_valid ,
 input       [               C_WIDTH-1:0]I_cnt_upper ,
+output reg                              O_over_flag ,
+////wirte here
 output reg  [               C_WIDTH-1:0]O_cnt         
 );
 
 always @(posedge I_clk)begin
+    O_over_flag <= O_cnt == (I_cnt_upper-{(C_WIDTH-1){1'b0},1'b1});
+end
+
+always @(posedge I_clk)begin
     if(I_cnt_en)begin
         if(I_cnt_valid)begin
-            if(O_cnt == I_cnt_upper)begin
+            //if(O_cnt == (I_cnt_upper-{(C_WIDTH-1){1'b0},1'b1}))begin
+            if(O_over_flag)begin
                 O_cnt <= {(C_WIDTH){1'b0}};
             end
             else begin

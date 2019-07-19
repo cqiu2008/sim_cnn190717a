@@ -41,7 +41,6 @@ input								I_rst			,
 input								I_clk			,
 input		[ASIZE-1		 	 :0]I_addr			,
 input		[DSIZE-1		 	 :0]I_data			,
-input								I_ce			,
 input								I_wr			,
 output reg	[DSIZE-1		     :0]O_data			
 );
@@ -51,24 +50,17 @@ initial begin
 end
 
 localparam DEPTH = 1 << ASIZE;
+
 (* ram_style=MEM_STYLE *)reg [DSIZE-1:0] mem [0:DEPTH-1];
 
 always @(posedge I_clk)begin
-	if(I_wr && I_ce)begin
+	if(I_wr)begin
 		mem[I_addr] <= I_data;
 	end
 end
 
 always @(posedge I_clk)begin
-	if(I_rst)begin
-		O_data <= {DSIZE{1'b0}}	; 
-	end
-	else begin
-		O_data <= mem[I_addr]	;
-	end
-	else begin
-		O_data <= O_data		; 
-	end
+    O_data <= mem[I_addr]	;
 end
 
 endmodule
