@@ -1477,39 +1477,39 @@ endtask
 `endif
 
 
-initial begin
-    //__CNNFILE__
-    integer fp;
-    fp = $fopen("cnna.log", "w");
-    while(1)begin
-        @(negedge AESL_clock);
-        #1ns;
-        if(FOUT_DDR_WREADY && FOUT_DDR_WVALID)begin
-            $fdisplay(fp, "%4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d"
-            ,FOUT_DDR_WDATA[  7:  0]
-            ,FOUT_DDR_WDATA[ 15:  8]
-            ,FOUT_DDR_WDATA[ 23: 16]
-            ,FOUT_DDR_WDATA[ 31: 24]
-            ,FOUT_DDR_WDATA[ 39: 32]
-            ,FOUT_DDR_WDATA[ 47: 40]
-            ,FOUT_DDR_WDATA[ 55: 48]
-            ,FOUT_DDR_WDATA[ 63: 56]
-            ,FOUT_DDR_WDATA[ 71: 64]
-            ,FOUT_DDR_WDATA[ 79: 72]
-            ,FOUT_DDR_WDATA[ 87: 80]
-            ,FOUT_DDR_WDATA[ 95: 88]
-            ,FOUT_DDR_WDATA[103: 96]
-            ,FOUT_DDR_WDATA[111:104]
-            ,FOUT_DDR_WDATA[119:112]
-            ,FOUT_DDR_WDATA[127:120]);
-        end
-    end
-    $fclose(fp);
-end
+// initial begin
+//     //__CNNFILE__
+//     integer fp;
+//     fp = $fopen("cnna.log", "w");
+//     while(1)begin
+//         @(negedge AESL_clock);
+//         #1ns;
+//         if(FOUT_DDR_WREADY && FOUT_DDR_WVALID)begin
+//             $fdisplay(fp, "%4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d %4d"
+//             ,FOUT_DDR_WDATA[  7:  0]
+//             ,FOUT_DDR_WDATA[ 15:  8]
+//             ,FOUT_DDR_WDATA[ 23: 16]
+//             ,FOUT_DDR_WDATA[ 31: 24]
+//             ,FOUT_DDR_WDATA[ 39: 32]
+//             ,FOUT_DDR_WDATA[ 47: 40]
+//             ,FOUT_DDR_WDATA[ 55: 48]
+//             ,FOUT_DDR_WDATA[ 63: 56]
+//             ,FOUT_DDR_WDATA[ 71: 64]
+//             ,FOUT_DDR_WDATA[ 79: 72]
+//             ,FOUT_DDR_WDATA[ 87: 80]
+//             ,FOUT_DDR_WDATA[ 95: 88]
+//             ,FOUT_DDR_WDATA[103: 96]
+//             ,FOUT_DDR_WDATA[111:104]
+//             ,FOUT_DDR_WDATA[119:112]
+//             ,FOUT_DDR_WDATA[127:120]);
+//         end
+//     end
+//     $fclose(fp);
+// end
 
 initial begin
-	$helloword;
-	$fsdbDumpvars("+fsdbfile+tb_dut_top.fsdb");
-	$fsdbDumpSVA;
+    $helloword;
+    $fsdbDumpvars("+fsdbfile+tb_dut_top.fsdb");
+    $fsdbDumpSVA;
 end
 endmodule

@@ -367,7 +367,7 @@ input   s_axi_axilite_BREADY;
 output  [1:0] s_axi_axilite_BRESP;
 output   interrupt;
 
- reg    ap_rst_n_inv;
+reg    ap_rst_n_inv;
 wire    ap_start;
 reg    ap_done;
 reg    ap_idle;
@@ -569,26 +569,26 @@ wire    layer_poolPara_pool_type;
 
 wire    WEIGHTS_DDR_AWREADY;
 wire    WEIGHTS_DDR_WREADY;
-reg    WEIGHTS_DDR_ARVALID;
-wire    WEIGHTS_DDR_ARREADY;
-reg   [31:0] WEIGHTS_DDR_ARADDR;
-reg   [0:0] WEIGHTS_DDR_ARID;
-reg   [31:0] WEIGHTS_DDR_ARLEN;
-reg   [2:0] WEIGHTS_DDR_ARSIZE;
-reg   [1:0] WEIGHTS_DDR_ARBURST;
-reg   [1:0] WEIGHTS_DDR_ARLOCK;
-reg   [3:0] WEIGHTS_DDR_ARCACHE;
-reg   [2:0] WEIGHTS_DDR_ARPROT;
-reg   [3:0] WEIGHTS_DDR_ARQOS;
-reg   [3:0] WEIGHTS_DDR_ARREGION;
-reg   [0:0] WEIGHTS_DDR_ARUSER;
-wire    WEIGHTS_DDR_RVALID;
-reg    WEIGHTS_DDR_RREADY;
-wire   [127:0] WEIGHTS_DDR_RDATA;
-wire    WEIGHTS_DDR_RLAST;
-wire   [0:0] WEIGHTS_DDR_RID;
-wire   [0:0] WEIGHTS_DDR_RUSER;
-wire   [1:0] WEIGHTS_DDR_RRESP;
+wire        WEIGHTS_DDR_ARVALID;
+wire        WEIGHTS_DDR_ARREADY;
+wire [31:0] WEIGHTS_DDR_ARADDR ;
+//reg   [0:0] WEIGHTS_DDR_ARID;
+wire [31:0] WEIGHTS_DDR_ARLEN  ;
+//reg   [2:0] WEIGHTS_DDR_ARSIZE;
+//reg   [1:0] WEIGHTS_DDR_ARBURST;
+//reg   [1:0] WEIGHTS_DDR_ARLOCK;
+//reg   [3:0] WEIGHTS_DDR_ARCACHE;
+//reg   [2:0] WEIGHTS_DDR_ARPROT;
+//reg   [3:0] WEIGHTS_DDR_ARQOS;
+//reg   [3:0] WEIGHTS_DDR_ARREGION;
+//reg   [0:0] WEIGHTS_DDR_ARUSER;
+wire        WEIGHTS_DDR_RVALID  ;
+wire        WEIGHTS_DDR_RREADY  ;
+wire [127:0]WEIGHTS_DDR_RDATA   ;
+wire        WEIGHTS_DDR_RLAST   ;
+wire [0:0]  WEIGHTS_DDR_RID     ;
+wire [0:0]  WEIGHTS_DDR_RUSER   ;
+wire [1:0]  WEIGHTS_DDR_RRESP   ;
 wire    WEIGHTS_DDR_BVALID;
 wire   [1:0] WEIGHTS_DDR_BRESP;
 wire   [0:0] WEIGHTS_DDR_BID;
@@ -624,78 +624,6 @@ reg    FOUT_DDR_BREADY;
 wire   [1:0] FOUT_DDR_BRESP;
 wire   [0:0] FOUT_DDR_BID;
 wire   [0:0] FOUT_DDR_BUSER;
-
-// power-on initialization
-initial begin
-#0 layer_enPara_cnvEn_0_data_reg = 1'b0;
-#0 layer_enPara_cnvEn_0_vld_reg = 1'b0;
-#0 layer_enPara_poolEn_0_data_reg = 1'b0;
-#0 layer_enPara_poolEn_0_vld_reg = 1'b0;
-#0 layer_wParaNext_memAddrWeights_V_0_data_reg = 32'd0;
-#0 layer_wParaNext_memAddrWeights_V_0_vld_reg = 1'b0;
-#0 layer_wParaNext_memAddrBias_V_0_data_reg = 32'd0;
-#0 layer_wParaNext_memAddrBias_V_0_vld_reg = 1'b0;
-#0 layer_iPara_width_0_data_reg = 16'd0;
-#0 layer_iPara_width_0_vld_reg = 1'b0;
-#0 layer_iPara_height_0_data_reg = 16'd0;
-#0 layer_iPara_height_0_vld_reg = 1'b0;
-#0 layer_iPara_ciAlign_V_0_data_reg = 13'd0;
-#0 layer_iPara_ciAlign_V_0_vld_reg = 1'b0;
-#0 layer_iPara_ciGroup_V_0_data_reg = 13'd0;
-#0 layer_iPara_ciGroup_V_0_vld_reg = 1'b0;
-#0 layer_iPara_memAddrImgIn_V_0_data_reg = 32'd0;
-#0 layer_iPara_memAddrImgIn_V_0_vld_reg = 1'b0;
-#0 layer_iParaNext_ci_V_0_data_reg = 13'd0;
-#0 layer_iParaNext_ci_V_0_vld_reg = 1'b0;
-#0 layer_oPara_width_0_data_reg = 16'd0;
-#0 layer_oPara_width_0_vld_reg = 1'b0;
-#0 layer_oPara_height_0_data_reg = 16'd0;
-#0 layer_oPara_height_0_vld_reg = 1'b0;
-#0 layer_oPara_co_V_0_data_reg = 13'd0;
-#0 layer_oPara_co_V_0_vld_reg = 1'b0;
-#0 layer_oPara_coGroup_V_0_data_reg = 13'd0;
-#0 layer_oPara_coGroup_V_0_vld_reg = 1'b0;
-#0 layer_oPara_memAddrImgOut_V_0_data_reg = 32'd0;
-#0 layer_oPara_memAddrImgOut_V_0_vld_reg = 1'b0;
-#0 layer_oParaNext_co_V_0_data_reg = 13'd0;
-#0 layer_oParaNext_co_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_relu_0_data_reg = 1'b0;
-#0 layer_cnvPara_relu_0_vld_reg = 1'b0;
-#0 layer_cnvPara_pad_h_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_pad_h_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_pad_w_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_pad_w_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_kernel_h_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_kernel_h_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_kernel_w_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_kernel_w_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_stride_h_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_stride_h_V_0_vld_reg = 1'b0;
-#0 layer_cnvPara_stride_w_V_0_data_reg = 5'd0;
-#0 layer_cnvPara_stride_w_V_0_vld_reg = 1'b0;
-#0 layer_cnvParaNext_kernel_h_V_0_data_reg = 5'd0;
-#0 layer_cnvParaNext_kernel_h_V_0_vld_reg = 1'b0;
-#0 layer_qPara_qM0_0_data_reg = 16'd0;
-#0 layer_qPara_qM0_0_vld_reg = 1'b0;
-#0 layer_qPara_qN_0_data_reg = 32'd0;
-#0 layer_qPara_qN_0_vld_reg = 1'b0;
-#0 layer_qPara_qZ2_0_data_reg = 16'd0;
-#0 layer_qPara_qZ2_0_vld_reg = 1'b0;
-#0 layer_qPara_qZ3_0_data_reg = 32'd0;
-#0 layer_qPara_qZ3_0_vld_reg = 1'b0;
-#0 layer_poolPara_pad_h_V_0_data_reg = 5'd0;
-#0 layer_poolPara_pad_h_V_0_vld_reg = 1'b0;
-#0 layer_poolPara_pad_w_V_0_data_reg = 5'd0;
-#0 layer_poolPara_pad_w_V_0_vld_reg = 1'b0;
-#0 layer_poolPara_kernel_h_V_0_data_reg = 5'd0;
-#0 layer_poolPara_kernel_h_V_0_vld_reg = 1'b0;
-#0 layer_poolPara_kernel_w_V_0_data_reg = 5'd0;
-#0 layer_poolPara_kernel_w_V_0_vld_reg = 1'b0;
-#0 layer_poolPara_stride_h_V_0_data_reg = 5'd0;
-#0 layer_poolPara_stride_h_V_0_vld_reg = 1'b0;
-#0 layer_poolPara_stride_w_V_0_data_reg = 5'd0;
-#0 layer_poolPara_stride_w_V_0_vld_reg = 1'b0;
-end
 
 cnna_axilite_s_axi #(
     .C_S_AXI_ADDR_WIDTH( C_S_AXI_AXILITE_ADDR_WIDTH ),
@@ -883,16 +811,25 @@ cnna_WEIGHTS_DDR_m_axi_U(
     .I_ARVALID(WEIGHTS_DDR_ARVALID),
     .I_ARREADY(WEIGHTS_DDR_ARREADY),
     .I_ARADDR(WEIGHTS_DDR_ARADDR),
-    .I_ARID(WEIGHTS_DDR_ARID),
+//    .I_ARID(WEIGHTS_DDR_ARID),
+    .I_ARID(1'b0),
     .I_ARLEN(WEIGHTS_DDR_ARLEN),
-    .I_ARSIZE(WEIGHTS_DDR_ARSIZE),
-    .I_ARLOCK(WEIGHTS_DDR_ARLOCK),
-    .I_ARCACHE(WEIGHTS_DDR_ARCACHE),
-    .I_ARQOS(WEIGHTS_DDR_ARQOS),
-    .I_ARPROT(WEIGHTS_DDR_ARPROT),
-    .I_ARUSER(WEIGHTS_DDR_ARUSER),
-    .I_ARBURST(WEIGHTS_DDR_ARBURST),
-    .I_ARREGION(WEIGHTS_DDR_ARREGION),
+    //.I_ARSIZE(WEIGHTS_DDR_ARSIZE),
+    .I_ARSIZE(3'b0),
+    //.I_ARLOCK(WEIGHTS_DDR_ARLOCK),
+    .I_ARLOCK(2'b0),
+    //.I_ARCACHE(WEIGHTS_DDR_ARCACHE),
+    .I_ARCACHE(4'b0),
+    //.I_ARQOS(WEIGHTS_DDR_ARQOS),
+    .I_ARQOS(4'b0),
+    //.I_ARPROT(WEIGHTS_DDR_ARPROT),
+    .I_ARPROT(3'b0),
+    //.I_ARUSER(WEIGHTS_DDR_ARUSER),
+    .I_ARUSER(1'b0),
+    //.I_ARBURST(WEIGHTS_DDR_ARBURST),
+    .I_ARBURST(2'b0),
+    //.I_ARREGION(WEIGHTS_DDR_ARREGION),
+    .I_ARREGION(4'b0),
     .I_RVALID(WEIGHTS_DDR_RVALID),
     .I_RREADY(WEIGHTS_DDR_RREADY),
     .I_RDATA(WEIGHTS_DDR_RDATA),
@@ -927,237 +864,292 @@ cnna_WEIGHTS_DDR_m_axi_U(
     .I_BUSER(WEIGHTS_DDR_BUSER)
 );
 
-cnna_FIN_DDR_m_axi #(
-    .CONSERVATIVE( 0 ),
-    .USER_DW( 128 ),
-    .USER_AW( 32 ),
-    .USER_MAXREQS( 5 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_FIN_DDR_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_FIN_DDR_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_FIN_DDR_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_FIN_DDR_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_FIN_DDR_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_FIN_DDR_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_FIN_DDR_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_FIN_DDR_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_FIN_DDR_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_FIN_DDR_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_FIN_DDR_CACHE_VALUE ))
-cnna_FIN_DDR_m_axi_U(
-    .AWVALID(m_axi_FIN_DDR_AWVALID),
-    .AWREADY(m_axi_FIN_DDR_AWREADY),
-    .AWADDR(m_axi_FIN_DDR_AWADDR),
-    .AWID(m_axi_FIN_DDR_AWID),
-    .AWLEN(m_axi_FIN_DDR_AWLEN),
-    .AWSIZE(m_axi_FIN_DDR_AWSIZE),
-    .AWBURST(m_axi_FIN_DDR_AWBURST),
-    .AWLOCK(m_axi_FIN_DDR_AWLOCK),
-    .AWCACHE(m_axi_FIN_DDR_AWCACHE),
-    .AWPROT(m_axi_FIN_DDR_AWPROT),
-    .AWQOS(m_axi_FIN_DDR_AWQOS),
-    .AWREGION(m_axi_FIN_DDR_AWREGION),
-    .AWUSER(m_axi_FIN_DDR_AWUSER),
-    .WVALID(m_axi_FIN_DDR_WVALID),
-    .WREADY(m_axi_FIN_DDR_WREADY),
-    .WDATA(m_axi_FIN_DDR_WDATA),
-    .WSTRB(m_axi_FIN_DDR_WSTRB),
-    .WLAST(m_axi_FIN_DDR_WLAST),
-    .WID(m_axi_FIN_DDR_WID),
-    .WUSER(m_axi_FIN_DDR_WUSER),
-    .ARVALID(m_axi_FIN_DDR_ARVALID),
-    .ARREADY(m_axi_FIN_DDR_ARREADY),
-    .ARADDR(m_axi_FIN_DDR_ARADDR),
-    .ARID(m_axi_FIN_DDR_ARID),
-    .ARLEN(m_axi_FIN_DDR_ARLEN),
-    .ARSIZE(m_axi_FIN_DDR_ARSIZE),
-    .ARBURST(m_axi_FIN_DDR_ARBURST),
-    .ARLOCK(m_axi_FIN_DDR_ARLOCK),
-    .ARCACHE(m_axi_FIN_DDR_ARCACHE),
-    .ARPROT(m_axi_FIN_DDR_ARPROT),
-    .ARQOS(m_axi_FIN_DDR_ARQOS),
-    .ARREGION(m_axi_FIN_DDR_ARREGION),
-    .ARUSER(m_axi_FIN_DDR_ARUSER),
-    .RVALID(m_axi_FIN_DDR_RVALID),
-    .RREADY(m_axi_FIN_DDR_RREADY),
-    .RDATA(m_axi_FIN_DDR_RDATA),
-    .RLAST(m_axi_FIN_DDR_RLAST),
-    .RID(m_axi_FIN_DDR_RID),
-    .RUSER(m_axi_FIN_DDR_RUSER),
-    .RRESP(m_axi_FIN_DDR_RRESP),
-    .BVALID(m_axi_FIN_DDR_BVALID),
-    .BREADY(m_axi_FIN_DDR_BREADY),
-    .BRESP(m_axi_FIN_DDR_BRESP),
-    .BID(m_axi_FIN_DDR_BID),
-    .BUSER(m_axi_FIN_DDR_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(FIN_DDR_ARVALID),
-    .I_ARREADY(FIN_DDR_ARREADY),
-    .I_ARADDR(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARADDR),
-    .I_ARID(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARID),
-    .I_ARLEN(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARLEN),
-    .I_ARSIZE(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARSIZE),
-    .I_ARLOCK(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARLOCK),
-    .I_ARCACHE(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARCACHE),
-    .I_ARQOS(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARQOS),
-    .I_ARPROT(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARPROT),
-    .I_ARUSER(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARUSER),
-    .I_ARBURST(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARBURST),
-    .I_ARREGION(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARREGION),
-    .I_RVALID(FIN_DDR_RVALID),
-    .I_RREADY(FIN_DDR_RREADY),
-    .I_RDATA(FIN_DDR_RDATA),
-    .I_RID(FIN_DDR_RID),
-    .I_RUSER(FIN_DDR_RUSER),
-    .I_RRESP(FIN_DDR_RRESP),
-    .I_RLAST(FIN_DDR_RLAST),
-    .I_AWVALID(1'b0),
-    .I_AWREADY(FIN_DDR_AWREADY),
-    .I_AWADDR(32'd0),
-    .I_AWID(1'd0),
-    .I_AWLEN(32'd0),
-    .I_AWSIZE(3'd0),
-    .I_AWLOCK(2'd0),
-    .I_AWCACHE(4'd0),
-    .I_AWQOS(4'd0),
-    .I_AWPROT(3'd0),
-    .I_AWUSER(1'd0),
-    .I_AWBURST(2'd0),
-    .I_AWREGION(4'd0),
-    .I_WVALID(1'b0),
-    .I_WREADY(FIN_DDR_WREADY),
-    .I_WDATA(128'd0),
-    .I_WID(1'd0),
-    .I_WUSER(1'd0),
-    .I_WLAST(1'b0),
-    .I_WSTRB(16'd0),
-    .I_BVALID(FIN_DDR_BVALID),
-    .I_BREADY(1'b0),
-    .I_BRESP(FIN_DDR_BRESP),
-    .I_BID(FIN_DDR_BID),
-    .I_BUSER(FIN_DDR_BUSER)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Naming specification                                                                         
+// (1) self code  
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+loadweights #(
+    .MEM_STYLE          ( "block"   ),
+    .C_POWER_OF_1ADOTS  ( 4         ),
+    .C_POWER_OF_PECI    ( 4         ),
+    .C_POWER_OF_PECO    ( 5         ),
+    .C_POWER_OF_PECODIV ( 1         ),
+    .C_CNV_K_WIDTH      ( 5         ),
+    .C_CNV_CH_WIDTH     ( 8         ),
+    .C_M_AXI_LEN_WIDTH  ( 32        ), 
+    .C_M_AXI_ADDR_WIDTH ( 32        ),
+    .C_M_AXI_DATA_WIDTH ( 128       ),
+    .C_RAM_ADDR_WIDTH   ( 9         ),
+    .C_RAM_DATA_WIDTH   ( 128       ))
+u0_loadweights(
+    .I_clk           (ap_clk                            ),
+    .I_rst           (ap_rst_n_inv                      ),
+    .I_ap_start      (ap_start                          ),
+    .O_ap_done       (ap_done                           ),
+    .I_next_kernel   (layer_cnvParaNext_kernel_h_V      ),
+    .I_next_ci       (layer_iParaNext_ci_V              ),
+    .I_next_co       (layer_oParaNext_co_V              ),
+    .I_next_mem_addr (layer_wParaNext_memAddrWeights_V  ),
+    .I_base_addr     (wddr_V                            ),
+    .O_maxi_arlen    (WEIGHTS_DDR_ARLEN                 ),
+    .I_maxi_arready  (WEIGHTS_DDR_ARREADY               ),   
+    .O_maxi_arvalid  (WEIGHTS_DDR_ARVALID               ),
+    .O_maxi_araddr   (WEIGHTS_DDR_ARADDR                ),
+    .O_maxi_rready   (WEIGHTS_DDR_RREADY                ),
+    .I_maxi_rvalid   (WEIGHTS_DDR_RVALID                ),
+    .I_maxi_rdata    (WEIGHTS_DDR_RDATA                 )
 );
 
-cnna_FOUT_DDR_m_axi #(
-    .CONSERVATIVE( 0 ),
-    .USER_DW( 128 ),
-    .USER_AW( 32 ),
-    .USER_MAXREQS( 5 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_FOUT_DDR_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_FOUT_DDR_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_FOUT_DDR_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_FOUT_DDR_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_FOUT_DDR_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_FOUT_DDR_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_FOUT_DDR_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_FOUT_DDR_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_FOUT_DDR_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_FOUT_DDR_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_FOUT_DDR_CACHE_VALUE ))
-cnna_FOUT_DDR_m_axi_U(
-    .AWVALID(m_axi_FOUT_DDR_AWVALID),
-    .AWREADY(m_axi_FOUT_DDR_AWREADY),
-    .AWADDR(m_axi_FOUT_DDR_AWADDR),
-    .AWID(m_axi_FOUT_DDR_AWID),
-    .AWLEN(m_axi_FOUT_DDR_AWLEN),
-    .AWSIZE(m_axi_FOUT_DDR_AWSIZE),
-    .AWBURST(m_axi_FOUT_DDR_AWBURST),
-    .AWLOCK(m_axi_FOUT_DDR_AWLOCK),
-    .AWCACHE(m_axi_FOUT_DDR_AWCACHE),
-    .AWPROT(m_axi_FOUT_DDR_AWPROT),
-    .AWQOS(m_axi_FOUT_DDR_AWQOS),
-    .AWREGION(m_axi_FOUT_DDR_AWREGION),
-    .AWUSER(m_axi_FOUT_DDR_AWUSER),
-    .WVALID(m_axi_FOUT_DDR_WVALID),
-    .WREADY(m_axi_FOUT_DDR_WREADY),
-    .WDATA(m_axi_FOUT_DDR_WDATA),
-    .WSTRB(m_axi_FOUT_DDR_WSTRB),
-    .WLAST(m_axi_FOUT_DDR_WLAST),
-    .WID(m_axi_FOUT_DDR_WID),
-    .WUSER(m_axi_FOUT_DDR_WUSER),
-    .ARVALID(m_axi_FOUT_DDR_ARVALID),
-    .ARREADY(m_axi_FOUT_DDR_ARREADY),
-    .ARADDR(m_axi_FOUT_DDR_ARADDR),
-    .ARID(m_axi_FOUT_DDR_ARID),
-    .ARLEN(m_axi_FOUT_DDR_ARLEN),
-    .ARSIZE(m_axi_FOUT_DDR_ARSIZE),
-    .ARBURST(m_axi_FOUT_DDR_ARBURST),
-    .ARLOCK(m_axi_FOUT_DDR_ARLOCK),
-    .ARCACHE(m_axi_FOUT_DDR_ARCACHE),
-    .ARPROT(m_axi_FOUT_DDR_ARPROT),
-    .ARQOS(m_axi_FOUT_DDR_ARQOS),
-    .ARREGION(m_axi_FOUT_DDR_ARREGION),
-    .ARUSER(m_axi_FOUT_DDR_ARUSER),
-    .RVALID(m_axi_FOUT_DDR_RVALID),
-    .RREADY(m_axi_FOUT_DDR_RREADY),
-    .RDATA(m_axi_FOUT_DDR_RDATA),
-    .RLAST(m_axi_FOUT_DDR_RLAST),
-    .RID(m_axi_FOUT_DDR_RID),
-    .RUSER(m_axi_FOUT_DDR_RUSER),
-    .RRESP(m_axi_FOUT_DDR_RRESP),
-    .BVALID(m_axi_FOUT_DDR_BVALID),
-    .BREADY(m_axi_FOUT_DDR_BREADY),
-    .BRESP(m_axi_FOUT_DDR_BRESP),
-    .BID(m_axi_FOUT_DDR_BID),
-    .BUSER(m_axi_FOUT_DDR_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(1'b0),
-    .I_ARREADY(FOUT_DDR_ARREADY),
-    .I_ARADDR(32'd0),
-    .I_ARID(1'd0),
-    .I_ARLEN(32'd0),
-    .I_ARSIZE(3'd0),
-    .I_ARLOCK(2'd0),
-    .I_ARCACHE(4'd0),
-    .I_ARQOS(4'd0),
-    .I_ARPROT(3'd0),
-    .I_ARUSER(1'd0),
-    .I_ARBURST(2'd0),
-    .I_ARREGION(4'd0),
-    .I_RVALID(FOUT_DDR_RVALID),
-    .I_RREADY(1'b0),
-    .I_RDATA(FOUT_DDR_RDATA),
-    .I_RID(FOUT_DDR_RID),
-    .I_RUSER(FOUT_DDR_RUSER),
-    .I_RRESP(FOUT_DDR_RRESP),
-    .I_RLAST(FOUT_DDR_RLAST),
-    .I_AWVALID(FOUT_DDR_AWVALID),
-    .I_AWREADY(FOUT_DDR_AWREADY),
-    .I_AWADDR(grp_mainProcess_fu_1748_m_axi_foddr_V_AWADDR),
-    .I_AWID(grp_mainProcess_fu_1748_m_axi_foddr_V_AWID),
-    .I_AWLEN(grp_mainProcess_fu_1748_m_axi_foddr_V_AWLEN),
-    .I_AWSIZE(grp_mainProcess_fu_1748_m_axi_foddr_V_AWSIZE),
-    .I_AWLOCK(grp_mainProcess_fu_1748_m_axi_foddr_V_AWLOCK),
-    .I_AWCACHE(grp_mainProcess_fu_1748_m_axi_foddr_V_AWCACHE),
-    .I_AWQOS(grp_mainProcess_fu_1748_m_axi_foddr_V_AWQOS),
-    .I_AWPROT(grp_mainProcess_fu_1748_m_axi_foddr_V_AWPROT),
-    .I_AWUSER(grp_mainProcess_fu_1748_m_axi_foddr_V_AWUSER),
-    .I_AWBURST(grp_mainProcess_fu_1748_m_axi_foddr_V_AWBURST),
-    .I_AWREGION(grp_mainProcess_fu_1748_m_axi_foddr_V_AWREGION),
-    .I_WVALID(FOUT_DDR_WVALID),
-    .I_WREADY(FOUT_DDR_WREADY),
-    .I_WDATA(grp_mainProcess_fu_1748_m_axi_foddr_V_WDATA),
-    .I_WID(grp_mainProcess_fu_1748_m_axi_foddr_V_WID),
-    .I_WUSER(grp_mainProcess_fu_1748_m_axi_foddr_V_WUSER),
-    .I_WLAST(grp_mainProcess_fu_1748_m_axi_foddr_V_WLAST),
-    .I_WSTRB(grp_mainProcess_fu_1748_m_axi_foddr_V_WSTRB),
-    .I_BVALID(FOUT_DDR_BVALID),
-    .I_BREADY(FOUT_DDR_BREADY),
-    .I_BRESP(FOUT_DDR_BRESP),
-    .I_BID(FOUT_DDR_BID),
-    .I_BUSER(FOUT_DDR_BUSER)
-);
-
+always @(posedge ap_clk)begin
+    ap_rst_n_inv <= ~ap_rst_n;
+end
 
 endmodule //cnna
+
+
+// cnna_FIN_DDR_m_axi #(
+//     .CONSERVATIVE( 0 ),
+//     .USER_DW( 128 ),
+//     .USER_AW( 32 ),
+//     .USER_MAXREQS( 5 ),
+//     .NUM_READ_OUTSTANDING( 16 ),
+//     .NUM_WRITE_OUTSTANDING( 16 ),
+//     .MAX_READ_BURST_LENGTH( 16 ),
+//     .MAX_WRITE_BURST_LENGTH( 16 ),
+//     .C_M_AXI_ID_WIDTH( C_M_AXI_FIN_DDR_ID_WIDTH ),
+//     .C_M_AXI_ADDR_WIDTH( C_M_AXI_FIN_DDR_ADDR_WIDTH ),
+//     .C_M_AXI_DATA_WIDTH( C_M_AXI_FIN_DDR_DATA_WIDTH ),
+//     .C_M_AXI_AWUSER_WIDTH( C_M_AXI_FIN_DDR_AWUSER_WIDTH ),
+//     .C_M_AXI_ARUSER_WIDTH( C_M_AXI_FIN_DDR_ARUSER_WIDTH ),
+//     .C_M_AXI_WUSER_WIDTH( C_M_AXI_FIN_DDR_WUSER_WIDTH ),
+//     .C_M_AXI_RUSER_WIDTH( C_M_AXI_FIN_DDR_RUSER_WIDTH ),
+//     .C_M_AXI_BUSER_WIDTH( C_M_AXI_FIN_DDR_BUSER_WIDTH ),
+//     .C_USER_VALUE( C_M_AXI_FIN_DDR_USER_VALUE ),
+//     .C_PROT_VALUE( C_M_AXI_FIN_DDR_PROT_VALUE ),
+//     .C_CACHE_VALUE( C_M_AXI_FIN_DDR_CACHE_VALUE ))
+// cnna_FIN_DDR_m_axi_U(
+//     .AWVALID(m_axi_FIN_DDR_AWVALID),
+//     .AWREADY(m_axi_FIN_DDR_AWREADY),
+//     .AWADDR(m_axi_FIN_DDR_AWADDR),
+//     .AWID(m_axi_FIN_DDR_AWID),
+//     .AWLEN(m_axi_FIN_DDR_AWLEN),
+//     .AWSIZE(m_axi_FIN_DDR_AWSIZE),
+//     .AWBURST(m_axi_FIN_DDR_AWBURST),
+//     .AWLOCK(m_axi_FIN_DDR_AWLOCK),
+//     .AWCACHE(m_axi_FIN_DDR_AWCACHE),
+//     .AWPROT(m_axi_FIN_DDR_AWPROT),
+//     .AWQOS(m_axi_FIN_DDR_AWQOS),
+//     .AWREGION(m_axi_FIN_DDR_AWREGION),
+//     .AWUSER(m_axi_FIN_DDR_AWUSER),
+//     .WVALID(m_axi_FIN_DDR_WVALID),
+//     .WREADY(m_axi_FIN_DDR_WREADY),
+//     .WDATA(m_axi_FIN_DDR_WDATA),
+//     .WSTRB(m_axi_FIN_DDR_WSTRB),
+//     .WLAST(m_axi_FIN_DDR_WLAST),
+//     .WID(m_axi_FIN_DDR_WID),
+//     .WUSER(m_axi_FIN_DDR_WUSER),
+//     .ARVALID(m_axi_FIN_DDR_ARVALID),
+//     .ARREADY(m_axi_FIN_DDR_ARREADY),
+//     .ARADDR(m_axi_FIN_DDR_ARADDR),
+//     .ARID(m_axi_FIN_DDR_ARID),
+//     .ARLEN(m_axi_FIN_DDR_ARLEN),
+//     .ARSIZE(m_axi_FIN_DDR_ARSIZE),
+//     .ARBURST(m_axi_FIN_DDR_ARBURST),
+//     .ARLOCK(m_axi_FIN_DDR_ARLOCK),
+//     .ARCACHE(m_axi_FIN_DDR_ARCACHE),
+//     .ARPROT(m_axi_FIN_DDR_ARPROT),
+//     .ARQOS(m_axi_FIN_DDR_ARQOS),
+//     .ARREGION(m_axi_FIN_DDR_ARREGION),
+//     .ARUSER(m_axi_FIN_DDR_ARUSER),
+//     .RVALID(m_axi_FIN_DDR_RVALID),
+//     .RREADY(m_axi_FIN_DDR_RREADY),
+//     .RDATA(m_axi_FIN_DDR_RDATA),
+//     .RLAST(m_axi_FIN_DDR_RLAST),
+//     .RID(m_axi_FIN_DDR_RID),
+//     .RUSER(m_axi_FIN_DDR_RUSER),
+//     .RRESP(m_axi_FIN_DDR_RRESP),
+//     .BVALID(m_axi_FIN_DDR_BVALID),
+//     .BREADY(m_axi_FIN_DDR_BREADY),
+//     .BRESP(m_axi_FIN_DDR_BRESP),
+//     .BID(m_axi_FIN_DDR_BID),
+//     .BUSER(m_axi_FIN_DDR_BUSER),
+//     .ACLK(ap_clk),
+//     .ARESET(ap_rst_n_inv),
+//     .ACLK_EN(1'b1),
+//     .I_ARVALID(FIN_DDR_ARVALID),
+//     .I_ARREADY(FIN_DDR_ARREADY),
+//     .I_ARADDR(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARADDR),
+//     .I_ARID(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARID),
+//     .I_ARLEN(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARLEN),
+//     .I_ARSIZE(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARSIZE),
+//     .I_ARLOCK(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARLOCK),
+//     .I_ARCACHE(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARCACHE),
+//     .I_ARQOS(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARQOS),
+//     .I_ARPROT(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARPROT),
+//     .I_ARUSER(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARUSER),
+//     .I_ARBURST(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARBURST),
+//     .I_ARREGION(grp_mainProcess_fu_1748_m_axi_fiddr_V_ARREGION),
+//     .I_RVALID(FIN_DDR_RVALID),
+//     .I_RREADY(FIN_DDR_RREADY),
+//     .I_RDATA(FIN_DDR_RDATA),
+//     .I_RID(FIN_DDR_RID),
+//     .I_RUSER(FIN_DDR_RUSER),
+//     .I_RRESP(FIN_DDR_RRESP),
+//     .I_RLAST(FIN_DDR_RLAST),
+//     .I_AWVALID(1'b0),
+// //    .I_AWREADY(FIN_DDR_AWREADY),
+//     .I_AWREADY(1'b0),
+//     .I_AWADDR(32'd0),
+//     .I_AWID(1'd0),
+//     .I_AWLEN(32'd0),
+//     .I_AWSIZE(3'd0),
+//     .I_AWLOCK(2'd0),
+//     .I_AWCACHE(4'd0),
+//     .I_AWQOS(4'd0),
+//     .I_AWPROT(3'd0),
+//     .I_AWUSER(1'd0),
+//     .I_AWBURST(2'd0),
+//     .I_AWREGION(4'd0),
+//     .I_WVALID(1'b0),
+// //    .I_WREADY(FIN_DDR_WREADY),
+//     .I_WREADY(1'b0),
+//     .I_WDATA(128'd0),
+//     .I_WID(1'd0),
+//     .I_WUSER(1'd0),
+//     .I_WLAST(1'b0),
+//     .I_WSTRB(16'd0),
+// //    .I_BVALID(FIN_DDR_BVALID),
+//     .I_BVALID(1'b0),
+//     .I_BREADY(1'b0),
+//     //.I_BRESP(FIN_DDR_BRESP),
+//     //.I_BID(FIN_DDR_BID),
+//     //.I_BUSER(FIN_DDR_BUSER)
+//     .I_BRESP(2'b0),
+//     .I_BID(1'b0),
+//     .I_BUSER(1'b0)
+// );
+// 
+// cnna_FOUT_DDR_m_axi #(
+//     .CONSERVATIVE( 0 ),
+//     .USER_DW( 128 ),
+//     .USER_AW( 32 ),
+//     .USER_MAXREQS( 5 ),
+//     .NUM_READ_OUTSTANDING( 16 ),
+//     .NUM_WRITE_OUTSTANDING( 16 ),
+//     .MAX_READ_BURST_LENGTH( 16 ),
+//     .MAX_WRITE_BURST_LENGTH( 16 ),
+//     .C_M_AXI_ID_WIDTH( C_M_AXI_FOUT_DDR_ID_WIDTH ),
+//     .C_M_AXI_ADDR_WIDTH( C_M_AXI_FOUT_DDR_ADDR_WIDTH ),
+//     .C_M_AXI_DATA_WIDTH( C_M_AXI_FOUT_DDR_DATA_WIDTH ),
+//     .C_M_AXI_AWUSER_WIDTH( C_M_AXI_FOUT_DDR_AWUSER_WIDTH ),
+//     .C_M_AXI_ARUSER_WIDTH( C_M_AXI_FOUT_DDR_ARUSER_WIDTH ),
+//     .C_M_AXI_WUSER_WIDTH( C_M_AXI_FOUT_DDR_WUSER_WIDTH ),
+//     .C_M_AXI_RUSER_WIDTH( C_M_AXI_FOUT_DDR_RUSER_WIDTH ),
+//     .C_M_AXI_BUSER_WIDTH( C_M_AXI_FOUT_DDR_BUSER_WIDTH ),
+//     .C_USER_VALUE( C_M_AXI_FOUT_DDR_USER_VALUE ),
+//     .C_PROT_VALUE( C_M_AXI_FOUT_DDR_PROT_VALUE ),
+//     .C_CACHE_VALUE( C_M_AXI_FOUT_DDR_CACHE_VALUE ))
+// cnna_FOUT_DDR_m_axi_U(
+//     .AWVALID(m_axi_FOUT_DDR_AWVALID),
+//     .AWREADY(m_axi_FOUT_DDR_AWREADY),
+//     .AWADDR(m_axi_FOUT_DDR_AWADDR),
+//     .AWID(m_axi_FOUT_DDR_AWID),
+//     .AWLEN(m_axi_FOUT_DDR_AWLEN),
+//     .AWSIZE(m_axi_FOUT_DDR_AWSIZE),
+//     .AWBURST(m_axi_FOUT_DDR_AWBURST),
+//     .AWLOCK(m_axi_FOUT_DDR_AWLOCK),
+//     .AWCACHE(m_axi_FOUT_DDR_AWCACHE),
+//     .AWPROT(m_axi_FOUT_DDR_AWPROT),
+//     .AWQOS(m_axi_FOUT_DDR_AWQOS),
+//     .AWREGION(m_axi_FOUT_DDR_AWREGION),
+//     .AWUSER(m_axi_FOUT_DDR_AWUSER),
+//     .WVALID(m_axi_FOUT_DDR_WVALID),
+//     .WREADY(m_axi_FOUT_DDR_WREADY),
+//     .WDATA(m_axi_FOUT_DDR_WDATA),
+//     .WSTRB(m_axi_FOUT_DDR_WSTRB),
+//     .WLAST(m_axi_FOUT_DDR_WLAST),
+//     .WID(m_axi_FOUT_DDR_WID),
+//     .WUSER(m_axi_FOUT_DDR_WUSER),
+//     .ARVALID(m_axi_FOUT_DDR_ARVALID),
+//     .ARREADY(m_axi_FOUT_DDR_ARREADY),
+//     .ARADDR(m_axi_FOUT_DDR_ARADDR),
+//     .ARID(m_axi_FOUT_DDR_ARID),
+//     .ARLEN(m_axi_FOUT_DDR_ARLEN),
+//     .ARSIZE(m_axi_FOUT_DDR_ARSIZE),
+//     .ARBURST(m_axi_FOUT_DDR_ARBURST),
+//     .ARLOCK(m_axi_FOUT_DDR_ARLOCK),
+//     .ARCACHE(m_axi_FOUT_DDR_ARCACHE),
+//     .ARPROT(m_axi_FOUT_DDR_ARPROT),
+//     .ARQOS(m_axi_FOUT_DDR_ARQOS),
+//     .ARREGION(m_axi_FOUT_DDR_ARREGION),
+//     .ARUSER(m_axi_FOUT_DDR_ARUSER),
+//     .RVALID(m_axi_FOUT_DDR_RVALID),
+//     .RREADY(m_axi_FOUT_DDR_RREADY),
+//     .RDATA(m_axi_FOUT_DDR_RDATA),
+//     .RLAST(m_axi_FOUT_DDR_RLAST),
+//     .RID(m_axi_FOUT_DDR_RID),
+//     .RUSER(m_axi_FOUT_DDR_RUSER),
+//     .RRESP(m_axi_FOUT_DDR_RRESP),
+//     .BVALID(m_axi_FOUT_DDR_BVALID),
+//     .BREADY(m_axi_FOUT_DDR_BREADY),
+//     .BRESP(m_axi_FOUT_DDR_BRESP),
+//     .BID(m_axi_FOUT_DDR_BID),
+//     .BUSER(m_axi_FOUT_DDR_BUSER),
+//     .ACLK(ap_clk),
+//     .ARESET(ap_rst_n_inv),
+//     .ACLK_EN(1'b1),
+//     .I_ARVALID(1'b0),
+//     //.I_ARREADY(FOUT_DDR_ARREADY),
+//     .I_ARREADY(1'b0),
+//     .I_ARADDR(32'd0),
+//     .I_ARID(1'd0),
+//     .I_ARLEN(32'd0),
+//     .I_ARSIZE(3'd0),
+//     .I_ARLOCK(2'd0),
+//     .I_ARCACHE(4'd0),
+//     .I_ARQOS(4'd0),
+//     .I_ARPROT(3'd0),
+//     .I_ARUSER(1'd0),
+//     .I_ARBURST(2'd0),
+//     .I_ARREGION(4'd0),
+//     //.I_RVALID(FOUT_DDR_RVALID),
+//     //.I_RREADY(1'b0),
+//     //.I_RDATA(FOUT_DDR_RDATA),
+//     //.I_RID(FOUT_DDR_RID),
+//     //.I_RUSER(FOUT_DDR_RUSER),
+//     //.I_RRESP(FOUT_DDR_RRESP),
+//     //.I_RLAST(FOUT_DDR_RLAST),
+//     .I_RVALID(1'b0),
+//     .I_RREADY(1'b0),
+//     .I_RDATA(128'd0),
+//     .I_RID(1'b0),
+//     .I_RUSER(1'b0),
+//     .I_RRESP(2'b0),
+//     .I_RLAST(1'b0),
+//     .I_AWVALID(FOUT_DDR_AWVALID),
+//     .I_AWREADY(FOUT_DDR_AWREADY),
+//     .I_AWADDR(grp_mainProcess_fu_1748_m_axi_foddr_V_AWADDR),
+//     .I_AWID(grp_mainProcess_fu_1748_m_axi_foddr_V_AWID),
+//     .I_AWLEN(grp_mainProcess_fu_1748_m_axi_foddr_V_AWLEN),
+//     .I_AWSIZE(grp_mainProcess_fu_1748_m_axi_foddr_V_AWSIZE),
+//     .I_AWLOCK(grp_mainProcess_fu_1748_m_axi_foddr_V_AWLOCK),
+//     .I_AWCACHE(grp_mainProcess_fu_1748_m_axi_foddr_V_AWCACHE),
+//     .I_AWQOS(grp_mainProcess_fu_1748_m_axi_foddr_V_AWQOS),
+//     .I_AWPROT(grp_mainProcess_fu_1748_m_axi_foddr_V_AWPROT),
+//     .I_AWUSER(grp_mainProcess_fu_1748_m_axi_foddr_V_AWUSER),
+//     .I_AWBURST(grp_mainProcess_fu_1748_m_axi_foddr_V_AWBURST),
+//     .I_AWREGION(grp_mainProcess_fu_1748_m_axi_foddr_V_AWREGION),
+//     .I_WVALID(FOUT_DDR_WVALID),
+//     .I_WREADY(FOUT_DDR_WREADY),
+//     .I_WDATA(grp_mainProcess_fu_1748_m_axi_foddr_V_WDATA),
+//     .I_WID(grp_mainProcess_fu_1748_m_axi_foddr_V_WID),
+//     .I_WUSER(grp_mainProcess_fu_1748_m_axi_foddr_V_WUSER),
+//     .I_WLAST(grp_mainProcess_fu_1748_m_axi_foddr_V_WLAST),
+//     .I_WSTRB(grp_mainProcess_fu_1748_m_axi_foddr_V_WSTRB),
+//     .I_BVALID(FOUT_DDR_BVALID),
+//     .I_BREADY(FOUT_DDR_BREADY),
+//     .I_BRESP(FOUT_DDR_BRESP),
+//     .I_BID(FOUT_DDR_BID),
+//     .I_BUSER(FOUT_DDR_BUSER)
+// );

@@ -38,6 +38,7 @@ parameter
     C_POWER_OF_PECODIV      = 1         ,
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
+    C_M_AXI_LEN_WIDTH       = 32        ,
     C_M_AXI_ADDR_WIDTH      = 32        ,
     C_M_AXI_DATA_WIDTH      = 128       ,
     C_RAM_ADDR_WIDTH        = 9         ,
@@ -66,18 +67,17 @@ input                               I_maxi_rvalid   ,
 input       [C_M_AXI_DATA_WIDTH-1:0]I_maxi_rdata    
 );
 
-defparam     C_NCH_GROUP      = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS + 1  ;
-defparam     C_PECO_GROUP     = C_CNV_CH_WIDTH - C_POWER_OF_PECO + 1    ;
-defparam     C_FILTER_WIDTH   = C_CNV_K_WIDTH * C_CNV_K_WIDTH           ;
-defparam     C_K_BLK_ID_WIDTH = C_NCH_GROUP+C_CNV_CH_WIDTH              ;
-defparam     C_M1_WIDTH       = C_POWER_OF_PECI+C_NCH_GROUP             ;
-defparam     C_M2_WIDTH       = C_FILTER_WIDTH+C_NCH_GROUP              ; 
-defparam     C_M3_WIDTH       = C_M1_WIDTH + C_M2_WIDTH                 ;
-defparam     C_DLY_WIDTH      = C_FILTER_WIDTH+C_CNV_CH_WIDTH*3+C_M_AXI_DATA_WIDTH+1;
+localparam   C_NCH_GROUP      = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS + 1  ;
+localparam   C_PECO_GROUP     = C_CNV_CH_WIDTH - C_POWER_OF_PECO + 1    ;
+localparam   C_FILTER_WIDTH   = C_CNV_K_WIDTH * C_CNV_K_WIDTH           ;
+localparam   C_K_BLK_ID_WIDTH = C_NCH_GROUP+C_CNV_CH_WIDTH              ;
+localparam   C_M1_WIDTH       = C_POWER_OF_PECI+C_NCH_GROUP             ;
+localparam   C_M2_WIDTH       = C_FILTER_WIDTH+C_NCH_GROUP              ; 
+localparam   C_M3_WIDTH       = C_M1_WIDTH + C_M2_WIDTH                 ;
+localparam   C_DLY_WIDTH      = C_FILTER_WIDTH+C_CNV_CH_WIDTH*3+C_M_AXI_DATA_WIDTH+1;
 localparam   C_AP_SHIFT       = 16                                      ;
 localparam   C_PECI_NUM       = 1 << C_POWER_OF_PECI                    ; 
 localparam   C_PECODIV_NUM    = 1 << C_POWER_OF_PECODIV                 ; 
-
 
 wire [       C_DLY_WIDTH-1:0]S_dly                          ;
 reg  [       C_DLY_WIDTH-1:0]S_1dly                         ;
@@ -93,11 +93,8 @@ reg  [        C_M2_WIDTH-1:0]S_m2                           ;
 reg  [        C_M3_WIDTH-1:0]S_m3                           ;
 wire [   C_POWER_OF_PECI  :0]S_peci_const                   ;
 wire [C_POWER_OF_PECODIV  :0]S_pecodiv_const                ;
-
 wire [     C_NCH_GROUP-1  :0]S_next_co_group                ;   
 reg                          S_ap_start_1d                  ;
-
-wire [     C_NCH_GROUP-1  :0]S_next_co_group                ;   
 wire [  C_CNV_CH_WIDTH-1  :0]S_next_co_align                ;   
 wire [    C_PECO_GROUP-1  :0]S_next_co_group_peco           ;   
 wire [  C_CNV_CH_WIDTH-1  :0]S_next_co_align_peco           ;   
@@ -136,13 +133,13 @@ reg  [  C_RAM_ADDR_WIDTH-1:0]S_blk_id_t2                    ;
 reg  [  C_RAM_ADDR_WIDTH-1:0]S_blk_id_t3                    ;
 reg  [  C_RAM_ADDR_WIDTH-1:0]S_blk_id_t4                    ;
 reg  [  C_RAM_ADDR_WIDTH-1:0]S_blk_id_t5                    ;
-
 wire                         S_nd_co_valid                  ;
 wire [C_M_AXI_DATA_WIDTH-1:0]S_nd_maxi_rdata                ;    
 wire [    C_CNV_CH_WIDTH-1:0]S_nd_cnt_cog                   ;
 wire [    C_CNV_CH_WIDTH-1:0]S_nd_cnt_ci                    ;
 wire [    C_CNV_CH_WIDTH-1:0]S_nd_cnt_cig                   ;
 wire [    C_FILTER_WIDTH-1:0]S_nd_cnt_filter                ;
+wire S_wren[C_PECI_NUM-1:0][C_PECODIV_NUM-1:0]              ;
 
 
 
@@ -167,19 +164,19 @@ end
 // Get the variable value 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-assign S_peci_const    = {1'b1,(C_POWER_OF_PECI){1'b0}}; 
-assign S_pecodiv_const = {1'b1,(C_POWER_OF_PECODIV){1'b0}};
+assign S_peci_const    = {1'b1,{(C_POWER_OF_PECI){1'b0}}}; 
+assign S_pecodiv_const = {1'b1,{(C_POWER_OF_PECODIV){1'b0}}};
 assign S_next_filter = I_next_kernel * I_next_kernel ;
 
 ceil_power_of_2 #(
     .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
     .C_POWER2_NUM   (C_POWER_OF_PECO    ))
-U0_next_co_group(
+U0_next_co_group_peco(
     .I_din (I_next_co           ),
     .O_dout(S_next_co_group_peco)   
 );
 
-assign S_next_co_align_peco = {S_next_co_group_peco,(C_POWER_OF_PECO){1'b0}};
+assign S_next_co_align_peco = {S_next_co_group_peco,{(C_POWER_OF_PECO){1'b0}}};
 
 ceil_power_of_2 #(
     .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
@@ -189,7 +186,7 @@ U0_next_co_group(
     .O_dout(S_next_co_group )   
 );
 
-assign S_next_co_align = {S_next_co_group,(C_POWER_OF_1ADOTS){1'b0}};
+assign S_next_co_align = {S_next_co_group,{(C_POWER_OF_1ADOTS){1'b0}}};
 
 ceil_power_of_2 #(
     .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
@@ -199,7 +196,7 @@ U0_next_ci_group(
     .O_dout(S_next_ci_group )   
 );
 
-assign S_next_ci_align = {S_next_ci_group,(C_POWER_OF_1ADOTS){1'b0}};
+assign S_next_ci_align = {S_next_ci_group,{(C_POWER_OF_1ADOTS){1'b0}}};
 
 always @(posedge I_clk)begin
     S_next_kernel_1d              <= I_next_kernel                                  ;
@@ -217,7 +214,7 @@ always @(posedge I_clk)begin
     S_next_ci_group_co_group_peco <= S_next_ci_group_1d * S_next_co_group_peco_1d   ;
     S_m1                          <= S_peci_const * S_next_co_group_1d              ;
     S_m2                          <= S_next_filter_1d * S_next_ci_group_1d          ;
-    S_m3                          <= S_m1 * S_m3                                    ;
+    S_m3                          <= S_m1 * S_m2                                    ;
     O_maxi_arlen                  <= S_m3[C_M_AXI_LEN_WIDTH-1:0]                    ;
     S_ap_start_shift              <= {S_ap_start_shift[C_AP_SHIFT-2:0],I_ap_start}  ;
 end
@@ -258,12 +255,12 @@ assign S_filter_valid   = S_cig_valid && S_cig_over_flag    ;
 cm_cnt #(
     .C_WIDTH(C_CNV_CH_WIDTH))
 U0_loop1_cog_cnt (
-.I_clk       (I_clk                 ),
-.I_cnt_en    (S_ap_start_nd         ),
-.I_cnt_valid (S_cog_valid           ),
-.I_cnt_upper (S_next_co_group_1d    ),
-.I_over_flag (S_cog_over_flag       ),
-.O_cnt       (S_cog_cnt             )
+.I_clk       (I_clk                     ),
+.I_cnt_en    (S_ap_start_nd             ),
+.I_cnt_valid (S_cog_valid               ),
+.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_co_group_1d } ),
+.O_over_flag (S_cog_over_flag           ),
+.O_cnt       (S_cog_cnt                 )
 );
 
 cm_cnt #(
@@ -272,8 +269,8 @@ U0_loop2_ci_cnt (
 .I_clk       (I_clk                 ),
 .I_cnt_en    (S_ap_start_nd         ),
 .I_cnt_valid (S_ci_valid            ),
-.I_cnt_upper (S_peci_const          ),
-.I_over_flag (S_ci_over_flag        ),
+.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_POWER_OF_PECI){1'b0}},S_peci_const}),
+.O_over_flag (S_ci_over_flag        ),
 .O_cnt       (S_ci_cnt              )
 );
 
@@ -283,8 +280,8 @@ U0_loop3_cig_cnt (
 .I_clk       (I_clk                 ),
 .I_cnt_en    (S_ap_start_nd         ),
 .I_cnt_valid (S_cig_valid           ),
-.I_cnt_upper (S_next_ci_group_1d    ),
-.I_over_flag (S_cig_over_flag       ),
+.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_ci_group_1d }     ),
+.O_over_flag (S_cig_over_flag       ),
 .O_cnt       (S_cig_cnt             )
 );
 
@@ -295,11 +292,11 @@ U0_loop4_filter_cnt (
 .I_cnt_en    (S_ap_start_nd         ),
 .I_cnt_valid (S_filter_valid        ),
 .I_cnt_upper (S_next_filter_1d      ),
-.I_over_flag (S_filter_over_flag    ),
+.O_over_flag (S_filter_over_flag    ),
 .O_cnt       (S_filter_cnt          )
 );
 
-assign S_dly[0]                                                                                        = S_co_valid     ;
+assign S_dly[0]                                                                                        = S_cog_valid    ;
 assign S_dly[C_M_AXI_DATA_WIDTH                                :                                    1] = I_maxi_rdata   ; 
 assign S_dly[C_M_AXI_DATA_WIDTH+C_CNV_CH_WIDTH                 :                 C_M_AXI_DATA_WIDTH+1] = S_cog_cnt      ; 
 assign S_dly[C_M_AXI_DATA_WIDTH+2*C_CNV_CH_WIDTH               :  C_M_AXI_DATA_WIDTH+C_CNV_CH_WIDTH+1] = S_ci_cnt       ; 
@@ -327,14 +324,10 @@ assign S_nd_cnt_filter     = S_ndly[C_M_AXI_DATA_WIDTH+3*C_CNV_CH_WIDTH+C_FILTER
 genvar ci_idx;
 genvar co_idx;
 
-wire [       C_DLY_WIDTH-1:0]S_dly                          ;
-wire S_wren[C_PECI_NUM-1:0][C_PECODIV_NUM-1:0]              ;
-
-
 generate
-    for(ci_idx=0;ci_idx<S_peci_const;ci_idx=ci_idx+1'b1)
+    for(ci_idx=0;ci_idx<C_PECI_NUM;ci_idx=ci_idx+1'b1)
     begin:wbuf_ci_ctrl
-        for(co_idx=0;co_idx<S_pecodiv_const;co_idx=co_idx+1'b1)
+        for(co_idx=0;co_idx<C_PECODIV_NUM;co_idx=co_idx+1'b1)
         begin:wbuf_co_ctrl
             assign S_wren[ci_idx][co_idx] =  (co_idx == S_nd_cnt_cog[0]) && (ci_idx == S_nd_cnt_ci );       
             spram #(

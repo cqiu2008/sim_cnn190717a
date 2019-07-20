@@ -754,35 +754,35 @@ end
 //------------------------Task and function--------------
 
 
-	function is_blank_char(input [7:0] in_char);
-	    if (in_char == " " || in_char == "\011" || in_char == "\012" || in_char == "\015") begin
-	        is_blank_char = 1;
-	    end else begin
-	        is_blank_char = 0;
-	    end
-	endfunction
+    function is_blank_char(input [7:0] in_char);
+        if (in_char == " " || in_char == "\011" || in_char == "\012" || in_char == "\015") begin
+            is_blank_char = 1;
+        end else begin
+            is_blank_char = 0;
+        end
+    endfunction
 
-	function [279:0] read_token(input integer fp);
-	    integer ret;
-	    begin
-	        read_token = "";
-	                ret = 0;
-	                ret = $fscanf(fp,"%s",read_token);
-	    end
-	endfunction
+    function [279:0] read_token(input integer fp);
+        integer ret;
+        begin
+            read_token = "";
+                    ret = 0;
+                    ret = $fscanf(fp,"%s",read_token);
+        end
+    endfunction
 
-	function [279:0] rm_0x(input [279:0] token);
-	    reg [279:0] token_tmp;
-	    integer i;
-	    begin
-	        token_tmp = "";
-	        for (i = 0; token[15:0] != "0x"; token = token >> 8) begin
-	            token_tmp = (token[7:0] << (8 * i)) | token_tmp;
-	            i = i + 1;
-	        end
-	        rm_0x = token_tmp;
-	    end
-	endfunction
+    function [279:0] rm_0x(input [279:0] token);
+        reg [279:0] token_tmp;
+        integer i;
+        begin
+            token_tmp = "";
+            for (i = 0; token[15:0] != "0x"; token = token >> 8) begin
+                token_tmp = (token[7:0] << (8 * i)) | token_tmp;
+                i = i + 1;
+            end
+            rm_0x = token_tmp;
+        end
+    endfunction
 
 task count_c_data_byte_num_by_bitwidth;
 input  integer bitwidth;
