@@ -69,7 +69,7 @@ input       [C_M_AXI_DATA_WIDTH-1:0]I_maxi_rdata
 
 localparam   C_NCH_GROUP      = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS + 1  ;
 localparam   C_PECO_GROUP     = C_CNV_CH_WIDTH - C_POWER_OF_PECO + 1    ;
-localparam   C_FILTER_WIDTH   = C_CNV_K_WIDTH * C_CNV_K_WIDTH           ;
+localparam   C_FILTER_WIDTH   = C_CNV_K_WIDTH + C_CNV_K_WIDTH           ;
 localparam   C_K_BLK_ID_WIDTH = C_NCH_GROUP+C_CNV_CH_WIDTH              ;
 localparam   C_M1_WIDTH       = C_POWER_OF_PECI+C_NCH_GROUP             ;
 localparam   C_M2_WIDTH       = C_FILTER_WIDTH+C_NCH_GROUP              ; 
@@ -215,7 +215,7 @@ always @(posedge I_clk)begin
     S_m1                          <= S_peci_const * S_next_co_group_1d              ;
     S_m2                          <= S_next_filter_1d * S_next_ci_group_1d          ;
     S_m3                          <= S_m1 * S_m2                                    ;
-    O_maxi_arlen                  <= S_m3[C_M_AXI_LEN_WIDTH-1:0]                    ;
+    O_maxi_arlen                  <= {{(C_M_AXI_LEN_WIDTH-C_M3_WIDTH){1'b0}},S_m3[C_M3_WIDTH-1:0]};
     S_ap_start_shift              <= {S_ap_start_shift[C_AP_SHIFT-2:0],I_ap_start}  ;
 end
 
@@ -255,45 +255,49 @@ assign S_filter_valid   = S_cig_valid && S_cig_over_flag    ;
 cm_cnt #(
     .C_WIDTH(C_CNV_CH_WIDTH))
 U0_loop1_cog_cnt (
-.I_clk       (I_clk                     ),
-.I_cnt_en    (S_ap_start_nd             ),
-.I_cnt_valid (S_cog_valid               ),
-.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_co_group_1d } ),
-.O_over_flag (S_cog_over_flag           ),
-.O_cnt       (S_cog_cnt                 )
+.I_clk              (I_clk                                                      ),
+.I_cnt_en           (S_ap_start_nd                                              ),
+.I_lowest_cnt_valid (S_cog_valid                                                ),
+.I_cnt_valid        (S_cog_valid                                                ),
+.I_cnt_upper        ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_co_group_1d } ),
+.O_over_flag        (S_cog_over_flag                                            ),
+.O_cnt              (S_cog_cnt                                                  )
 );
 
 cm_cnt #(
     .C_WIDTH(C_CNV_CH_WIDTH))
 U0_loop2_ci_cnt (
-.I_clk       (I_clk                 ),
-.I_cnt_en    (S_ap_start_nd         ),
-.I_cnt_valid (S_ci_valid            ),
-.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_POWER_OF_PECI){1'b0}},S_peci_const}),
-.O_over_flag (S_ci_over_flag        ),
-.O_cnt       (S_ci_cnt              )
+.I_clk              (I_clk                                                  ),
+.I_cnt_en           (S_ap_start_nd                                          ),
+.I_lowest_cnt_valid (S_cog_valid                                            ),
+.I_cnt_valid        (S_ci_valid                                             ),
+.I_cnt_upper        ({{(C_CNV_CH_WIDTH-C_POWER_OF_PECI){1'b0}},S_peci_const}),
+.O_over_flag        (S_ci_over_flag                                         ),
+.O_cnt              (S_ci_cnt                                               )
 );
 
 cm_cnt #(
     .C_WIDTH(C_CNV_CH_WIDTH))
 U0_loop3_cig_cnt (
-.I_clk       (I_clk                 ),
-.I_cnt_en    (S_ap_start_nd         ),
-.I_cnt_valid (S_cig_valid           ),
-.I_cnt_upper ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_ci_group_1d }     ),
-.O_over_flag (S_cig_over_flag       ),
-.O_cnt       (S_cig_cnt             )
+.I_clk              (I_clk                                                      ),
+.I_cnt_en           (S_ap_start_nd                                              ),
+.I_lowest_cnt_valid (S_cog_valid                                                ),
+.I_cnt_valid        (S_cig_valid                                                ),
+.I_cnt_upper        ({{(C_CNV_CH_WIDTH-C_NCH_GROUP){1'b0}},S_next_ci_group_1d } ),
+.O_over_flag        (S_cig_over_flag                                            ),
+.O_cnt              (S_cig_cnt                                                  )
 );
 
 cm_cnt #(
     .C_WIDTH(C_FILTER_WIDTH))
 U0_loop4_filter_cnt (
-.I_clk       (I_clk                 ),
-.I_cnt_en    (S_ap_start_nd         ),
-.I_cnt_valid (S_filter_valid        ),
-.I_cnt_upper (S_next_filter_1d      ),
-.O_over_flag (S_filter_over_flag    ),
-.O_cnt       (S_filter_cnt          )
+.I_clk              (I_clk                 ),
+.I_cnt_en           (S_ap_start_nd         ),
+.I_lowest_cnt_valid (S_cog_valid           ),
+.I_cnt_valid        (S_filter_valid        ),
+.I_cnt_upper        (S_next_filter_1d      ),
+.O_over_flag        (S_filter_over_flag    ),
+.O_cnt              (S_filter_cnt          )
 );
 
 assign S_dly[0]                                                                                        = S_cog_valid    ;
@@ -307,11 +311,12 @@ always @(posedge I_clk)begin
     S_1dly <=  S_dly;
     S_2dly <= S_1dly;
     S_3dly <= S_2dly;
-    S_4dly <= S_3dly;
-    S_5dly <= S_4dly;
-    S_6dly <= S_5dly;
-    S_7dly <= S_6dly;
-    S_ndly <= S_7dly;
+    S_ndly <= S_3dly;
+    //S_4dly <= S_3dly;
+    //S_5dly <= S_4dly;
+    //S_6dly <= S_5dly;
+    //S_7dly <= S_6dly;
+    //S_ndly <= S_7dly;
 end
 
 assign S_nd_co_valid       = S_ndly[0]                                                                                        ;

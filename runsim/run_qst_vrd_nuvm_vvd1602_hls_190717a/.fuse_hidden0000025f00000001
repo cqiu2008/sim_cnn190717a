@@ -1,0 +1,246 @@
+Unpacked struct dumping is enabled.
+ModelSim for Questa-64 10.4c 2015.07
+Linux 4.8.0-36-generic #36~16.04.1-Ubuntu SMP Sun Feb 5 09:39:57 UTC 2017 x86_64
+CPU cores: 4
+Limit information:
+======================================
+cputime			unlimited
+filesize		unlimited
+datasize		unlimited
+stacksize		8192 kbytes
+coredumpsize	0 kbytes
+memoryuse		unlimited
+vmemoryuse		unlimited
+descriptors		1024
+memorylocked	64 kbytes
+maxproc			47606
+======================================
+(Special)Runtime environment variables:
+
+Runtime environment variables:
+AUTOJUMP_ERROR_PATH=/home/cqiu/.local/share/autojump/errors.log
+XDG_VTNR=7
+PAR_UVM_TYPE=nuvm
+PAR_OTHER_TYPE=hls
+ORBIT_SOCKETDIR=/tmp/orbit-cqiu
+LICENSE_HOME=/home/cqiu/sourceTool/all_license_file_lenovo
+XDG_SESSION_ID=c2
+IBUS_DISABLE_SNOOPER=1
+VVD1602_LIBRARY_PATH=/home/logic/verification/library/vivado2016_02
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/cqiu
+CLUTTER_IM_MODULE=xim
+TERMINATOR_UUID=urn:uuid:6f02626b-8d42-4a0c-a6f3-14f16779a573
+UVM_HOME=/opt/tool/mentor/questasim10_4c/questasim/verilog_src/uvm-1.1d
+NOVAS_HOME=/opt/tool/novas/verdi3_201403
+GPG_AGENT_INFO=/home/cqiu/.gnupg/S.gpg-agent:0:1
+AUTOJUMP_SOURCED=1
+LIBPLI_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/libpli
+TERM=xterm
+SHELL=/bin/sh
+MAKEFLAGS=w -- PAR_TC=qst_vrd_nuvm_vvd1602_hls_190717a PAR_SIM_TYPE=qst PAR_WAVE_TYPE=vrd PAR_UVM_TYPE=nuvm PAR_IP_TYPE=vvd1602 PAR_OTHER_TYPE=hls PAR_SUB_MAKEFILE=Makefile.qst.vrd.nuvm.vvd1602.hls
+QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+Verdi=vrd 
+VIVADO_HOME=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3
+VVD1703_LIBRARY_PATH=/home/logic/verification/library/vivado2017_03
+WINDOWID=6291460
+VF_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1311
+GNOME_KEYRING_CONTROL=
+IP_PRJ=ip_prj
+GTK_MODULES=gail:atk-bridge:unity-gtk-module
+SWT_GTK3=0
+ZSH=/home/cqiu/.oh-my-zsh
+USER=cqiu
+MAKEOVERRIDES=${-*-command-variables-*-}
+QT_ACCESSIBILITY=1
+LD_LIBRARY_PATH=:/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64:/opt/tool/novas/verdi3_201403/share/PLI/MODELSIM/LINUXAMD64
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=40;36:ow=40;36:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+PRJ_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a
+MACRO_RTL_FILE=/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/macro_rtl
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+RTL_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl
+MAKE_TERMOUT=/dev/pts/4
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+VVD_DATA=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3/data
+VVD_ROOT=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3
+MAKEFILE_CMPL=Makefile.cmpl.vvd
+MAKELEVEL=4
+DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+BTC_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/tb/btc
+PAGER=less
+VERDI_LICFILE=synopsysLenovo1c394728cd36.dat
+VIVADO_HLS_HOME=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3
+MFLAGS=-w
+VVD_BIN=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3/bin
+LSCOLORS=Gxfxcxdxbxegedabagacad
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
+SCRIPTLIN_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/scriptlin
+NOVAS_RC=/novas.rc
+PATH=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64:/home/cqiu/.autojump/bin:/home/cqiu/bin:/home/cqiu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/lib:/usr/sbin:/sbin:/usr/local/bin:/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64:/opt/tool/novas/verdi3_201403/bin:/opt/tool/novas/verdi3_201403/platform/LINUX/bin:/opt/tool/xilinx/vivado2018_03/Vivado/2018.3/bin:/opt/tool/xilinx/vivado2018_03/Vivado/2018.3/bin:/home/cqiu/.local/share/umake/web/visual-studio-code:/home/cqiu/sourceTool/scriptTool
+DESKTOP_SESSION=ubuntu
+QT_IM_MODULE=fcitx
+QT_QPA_PLATFORMTHEME=appmenu-qt5
+VVD1604_BIN=/opt/tool/xilinx/vivado2016_04/Vivado/2016.4/bin
+SIM_LIBRARY_PATH=/home/logic/verification/library
+XDG_SESSION_TYPE=x11
+SCRIPT_HOME=/home/cqiu/sourceTool/scriptTool
+PWD=/home/cqiu/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a
+JOB=gnome-session
+PAR_WAVE_TYPE=vrd
+MAKEFILE_SCRIPT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/scriptlin/makefile_script
+XMODIFIERS=@im=fcitx
+PAR_TC=qst_vrd_nuvm_vvd1602_hls_190717a
+LANG=zh_CN.UTF-8
+GNOME_KEYRING_PID=
+PAR_SUB_MAKEFILE=Makefile.qst.vrd.nuvm.vvd1602.hls
+MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
+GDM_LANG=zh_CN
+COMPIZ_CONFIG_PROFILE=ubuntu
+IM_CONFIG_PHASE=1
+PLATFORM=LINUXAMD64
+XILINX_VIVADO=/opt/tool/xilinx/vivado2018_03/Vivado/2018.3/
+LM_LICENSE_FILE=/home/cqiu/sourceTool/all_license_file_lenovo/questasim_license/simLenvolicense1C-39-47-28-CD-36.dat:/home/cqiu/sourceTool/all_license_file_lenovo/novas_license/synopsysLenovo1c394728cd36.dat
+PAR_IP_TYPE=vvd1602
+GDMSESSION=ubuntu
+FLIST_SCRIPT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/scriptlin/flist_script
+GTK2_MODULES=overlay-scrollbar
+VVD1604_ROOT=/opt/tool/xilinx/vivado2016_04/Vivado/2016.4
+SESSIONTYPE=gnome-session
+UTC_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/tb/utc
+SHLVL=5
+XDG_SEAT=seat0
+HOME=/home/cqiu
+LANGUAGE=zh_CN:
+NOVAS_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/novas
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+MSIM_LICFILE=simLenvolicense1C-39-47-28-CD-36.dat
+UPSTART_INSTANCE=
+TB_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/tb
+LESS=-R
+UPSTART_EVENTS=started starting
+LOGNAME=cqiu
+XDG_SESSION_DESKTOP=ubuntu
+RUNSIM_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/runsim
+MAKE_TERMERR=/dev/pts/4
+VVD1604_DATA=/opt/tool/xilinx/vivado2016_04/Vivado/2016.4/data
+QT4_IM_MODULE=fcitx
+LC_CTYPE=zh_CN.UTF-8
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-bB8UEBNiFb
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop:/var/lib/snapd/desktop
+SCL_HOME=/opt/tool/synopsys/scl11_9
+INSTANCE=Unity
+UPSTART_JOB=unity-settings-daemon
+DISPLAY=:0
+XDG_RUNTIME_DIR=/run/user/1000
+VSCODE_HOME=/home/cqiu/.local/share/umake/web/visual-studio-code
+PAR_SIM_TYPE=qst
+XDG_CURRENT_DESKTOP=Unity
+GTK_IM_MODULE=fcitx
+WEB_ROOT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/gui/tornadoWeb
+VVD_SCRIPT=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/scriptlin/vivado_script
+QUESTA_HOME=/opt/tool/mentor/questasim10_4c/questasim
+COLORTERM=gnome-terminal
+XAUTHORITY=/home/cqiu/.Xauthority
+_=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/vsim
+MODEL_TECH=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64
+MODEL_TECH_TCL=/mtitcl
+MODEL_TECH_TCL_ARCHIVE=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/../tcl.fs
+TROFS_LIBRARY=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/trofs0.4.6
+TCL_LIBRARY=/mtitcl/tcl8.5
+TK_LIBRARY=/mtitcl/tk8.5
+VSIM_LIBRARY=/mtitcl/vsim
+ITCL_LIBRARY=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/itcl3.4
+ITK_LIBRARY=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/itk3.4
+TK_TABLE_LIBRARY=/opt/tool/mentor/questasim10_4c/questasim/linux_x86_64/Tktable2.10
+MODELSIM=modelsim.ini
+Runtime command line arguments:
+argv[0]=LoadDesign
+argv[1]=-L
+argv[2]=/home/logic/verification/library/vivado2016_02/secureip
+argv[3]=-L
+argv[4]=/home/logic/verification/library/vivado2016_02/simprims_ver
+argv[5]=-L
+argv[6]=/home/logic/verification/library/vivado2016_02/unifast_ver
+argv[7]=-L
+argv[8]=/home/logic/verification/library/vivado2016_02/unimacro_ver
+argv[9]=-L
+argv[10]=/home/logic/verification/library/vivado2016_02/unisims_ver
+argv[11]=-novopt
+argv[12]=-sva
+argv[13]=-assertdebug
+argv[14]=-c
+argv[15]=-pli
+argv[16]=/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/novas/libpli.so
+argv[17]=-coverage
+argv[18]=-printsimstats
+argv[19]=-do
+argv[20]=run -all ;coverage report -detail -cvg -directive -comments -file qst_vrd_nuvm_vvd1602_hls_190717a.txt -r /;coverage save qst_vrd_nuvm_vvd1602_hls_190717a.ucdb;q
+argv[21]=-l
+argv[22]=questa.log
+argv[23]=apatb_cnna_top
+argv[24]=cnna_FIN_DDR_m_axi
+argv[25]=cnna_FOUT_DDR_m_axi
+argv[26]=glbl
+184 profile - 100
+          CPU/Mem usage: 0.080 sys,  0.280 user,  291.86M sys,  0.00M vm
+185 VC callback profile - scalar:0 vector:0
+186 Sat Jul 20 22:11:45 2019
+187 pliAppInit
+188 *Verdi3* : Enable Parallel Dumping.
+189 pliAppMiscSet: New Sim Round
+190 pliEntryInit
+191 LIBSSCORE=found /opt/tool/novas/verdi3_201403/share/PLI/MODELSIM/LINUXAMD64/libsscore_mti10.1.so through $LD_LIBRARY_PATH setting.
+192 argv[0]: +fsdbfile+tb_dut_top.fsdb
+193 FSDB Dumper for ModelSim, Release Verdi3_I-2014.03-SP2, Linux x86_64/64bit, 08/07/2014
+194 (C) 1996 - 2014 by Synopsys, Inc.
+195 ***********************************************************************
+196 *  WARNING -                                                          *
+197 *  The simulator version is newer than the FSDB dumper version which  *
+198 *  may cause abnormal behavior, please contact Synopsys support for   *
+199 *  assistance.                                                        *
+200 ***********************************************************************
+201 sps_call_fsdbDumpvars at 0 : /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1512)
+202 argv[0]: +fsdbfile+tb_dut_top.fsdb
+203 *Verdi3* : Create FSDB file 'tb_dut_top.fsdb'
+204 *Verdi3* : Begin traversing the scopes, layer (0).
+205 *Verdi3* : End of traversing.
+206 fsdbDumpvars traverse var: profile - 
+          CPU/Mem usage: 0.110 sys,  0.440 user,  437.37M sys,  0.00M vm
+                   incr: 0.010 sys,  0.060 user,  3.53M sys,  0.00M vm
+                   accu: 0.010 sys,  0.060 user,  3.53M sys,  0.00M vm
+              accu incr: 0.010 sys,  0.060 user,  3.53M sys,  0.00M vm
+
+          Count usage: 4556 var,  4039 idcode,  4039 callback
+                 incr: 4556 var,  4039 idcode,  4039 callback
+                 accu: 4556 var,  4039 idcode,  4039 callback
+            accu incr: 4556 var,  4039 idcode,  4039 callback
+207 VC callback profile - scalar:0 vector:0
+208 Sat Jul 20 22:11:48 2019
+209 fsdbDumpvars: profile - 
+          CPU/Mem usage: 0.110 sys,  0.440 user,  438.43M sys,  0.00M vm
+                   incr: 0.000 sys,  0.000 user,  1.05M sys,  0.00M vm
+                   accu: 0.010 sys,  0.060 user,  4.59M sys,  0.00M vm
+              accu incr: 0.000 sys,  0.000 user,  1.05M sys,  0.00M vm
+
+          Count usage: 4556 var,  4039 idcode,  4039 callback
+                 incr: 0 var,  0 idcode,  0 callback
+                 accu: 4556 var,  4039 idcode,  4039 callback
+            accu incr: 0 var,  0 idcode,  0 callback
+210 VC callback profile - scalar:1225 vector:2809
+211 Sat Jul 20 22:11:48 2019
+212 sps_call_fsdbDumpSVA at 0 : /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1513)
+213 *Verdi3* : Begin traversing the SVA assertions, layer (0).
+214 *Verdi3* : End of traversing the SVA assertions.
+215 fsdbDumpSVA: profile - 
+          CPU/Mem usage: 0.110 sys,  0.450 user,  438.55M sys,  0.00M vm
+                   incr: 0.000 sys,  0.010 user,  0.12M sys,  0.00M vm
+                   accu: 0.000 sys,  0.010 user,  0.12M sys,  0.00M vm
+              accu incr: 0.000 sys,  0.010 user,  0.12M sys,  0.00M vm
+
+          Count usage: 4556 var,  4039 idcode,  4039 callback
+                 incr: 0 var,  0 idcode,  0 callback
+                 accu: 0 var,  0 idcode,  0 callback
+            accu incr: 0 var,  0 idcode,  0 callback
+216 VC callback profile - scalar:1225 vector:2809
+217 Sat Jul 20 22:11:48 2019

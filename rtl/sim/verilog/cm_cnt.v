@@ -33,19 +33,19 @@ module cm_cnt #(
 parameter 
     C_WIDTH         = 8     
 )(
-input                                   I_clk       ,
-input                                   I_cnt_en    ,
-input                                   I_cnt_valid ,
-input       [               C_WIDTH-1:0]I_cnt_upper ,
-output                                  O_over_flag ,
-////wirte here
+input                                   I_clk               ,
+input                                   I_cnt_en            ,
+input                                   I_lowest_cnt_valid  ,
+input                                   I_cnt_valid         ,
+input       [               C_WIDTH-1:0]I_cnt_upper         ,
+output                                  O_over_flag         ,
 output reg  [               C_WIDTH-1:0]O_cnt         
 );
 
+reg  S_vflag        ;
+reg  S_first_pose   ;
 wire S_cnt_b0       ;
-reg  S_cnt_b0_1d    ; 
-reg  S_cnt_b0_2d    ;
-reg  S_cnt_en_1d    ; 
+reg  S_type_lck     ;
 wire S_upper_case1  ;
 wire S_upper_case2  ;
 wire S_upper_case3  ;
@@ -56,15 +56,61 @@ wire  [C_WIDTH-1:0]S_cnt_upper_sub2;
 wire  [C_WIDTH-1:0]S_cnt_upper_sub1;
 reg   S_over_flag    ;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __
+// __|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  
+//                ___________________________________                                                                                
+//cnt_en ________|                                   |_________________________________
+//                      _________________        ____
+//lowest_cnt_valid_____|                 |______|    |_________________________________
+//        ___________________                               ___________________________
+//vflag                      |_____________________________|
+//                            _____
+//first_pose_________________|     |___________________________________________________
+//                            _____      ____________
+//O_cnt[0] __________________|     |____|            |_________________________________
+//         ____________________________________________________________________________
+//O_cnt    ___0__|__0__|__0__|__1__|_2__|_ 3___3___3_|_ 4__|__0________________________
+//
+//                            _____________________________
+//cnt_turn_every_clk_________|                             |___________________________
+//   
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+always @(posedge I_clk)begin
+    S_first_pose <= I_cnt_en && I_lowest_cnt_valid && S_vflag;
+end
+always @(posedge I_clk)begin
+    if(I_cnt_en)begin
+        if(I_lowest_cnt_valid)begin
+            S_vflag <= 1'b0;
+        end
+        else begin
+            S_vflag <= S_vflag; 
+        end
+    end
+    else begin
+            S_vflag <= 1'b1;
+    end
+end
+
 assign S_cnt_b0 = O_cnt[0];
 
 always @(posedge I_clk)begin
-    S_cnt_b0_1d <= S_cnt_b0     ;
-    S_cnt_b0_2d <= S_cnt_b0_1d  ;
-    S_cnt_en_1d <= I_cnt_en     ;
+    if(I_cnt_en)begin
+        if( O_cnt[0] && S_first_pose)begin
+            S_type_lck <= 1'b1          ;
+        end
+        else begin
+            S_type_lck <= S_type_lck    ;
+        end
+    end
+    else begin
+        S_type_lck  <= 1'b0; 
+    end
 end
 
-assign S_cnt_turn_every_clk = (S_cnt_b0 == S_cnt_b0_2d) && (S_cnt_b0 != S_cnt_b0_1d);///not active in I_cnt_upper==2
+assign S_cnt_turn_every_clk = (O_cnt[0] && S_first_pose) || S_type_lck ;///not active in I_cnt_upper==2
 assign S_upper_equal2   = (I_cnt_upper == {{(C_WIDTH-2){1'b0}},2'b10});
 assign S_upper_more2    = (I_cnt_upper >  {{(C_WIDTH-2){1'b0}},2'b10});
 assign S_cnt_upper_sub2 = (I_cnt_upper -  {{(C_WIDTH-2){1'b0}},2'b10});
@@ -102,7 +148,6 @@ end
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                
 //    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __
 // __|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  
 //                                                                                                
