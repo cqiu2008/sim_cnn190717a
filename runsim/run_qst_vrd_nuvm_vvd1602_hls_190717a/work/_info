@@ -7,7 +7,7 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/cqiu/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a
+Z0 d/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a
 vAESL_axi_master_FIN_DDR
 Z1 !s10a 1563630016
 Z2 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
@@ -17,22 +17,22 @@ r1
 31
 !i10b 1
 !s100 Ckjh[i`IbR=d]ehb<C?2k1
-I]]mLAiEc3AZNU=g>_4MNg0
+I?O[0@<9F9CL4dC]X@BjmE0
 !s105 AESL_axi_master_FIN_DDR_v_unit
 S1
 R0
 Z4 w1563630016
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v
 Z5 L0 11
 Z6 OL;L;10.4c;61
-Z7 !s108 1563632190.000000
-Z8 !s107 /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v|
-Z9 !s90 -sv|+define+x2Gb|+define+sg15E|+define+x16|+incdir+/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl|-writetoplevels|questa.tops|-cover|bces|-incr|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v|/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v|
+Z7 !s108 1563720668.000000
+Z8 !s107 /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axibus2rambus.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v|
+Z9 !s90 -sv|+define+x2Gb|+define+sg15E|+define+x16|+incdir+/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl|-writetoplevels|questa.tops|-cover|bces|-incr|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FIN_DDR.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axibus2rambus.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v|/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v|
 !i113 0
 Z10 !s102 -cover bces
 Z11 o-sv -cover bces -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z12 !s92 -sv +define+x2Gb +define+sg15E +define+x16 +incdir+/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl -cover bces -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 !s92 -sv +define+x2Gb +define+sg15E +define+x16 +incdir+/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl -cover bces -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 n@a@e@s@l_axi_master_@f@i@n_@d@d@r
 vAESL_axi_master_FOUT_DDR
 R1
@@ -43,13 +43,13 @@ r1
 31
 !i10b 1
 !s100 kUoF:;>PohD7cGH5Bo@SL0
-I7gKP1FLVjz=8i4Bo7_3P41
+IZG>_@Da]foaHATdDdI=gm0
 !s105 AESL_axi_master_FOUT_DDR_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_FOUT_DDR.v
 R5
 R6
 R7
@@ -69,13 +69,13 @@ r1
 31
 !i10b 1
 !s100 SHBHj^6eoDLdR=eJhFLfo0
-I2F^YHU?PN;U>V=bUB0:Jf1
+I6Hf72Mmk;E9I9OhMYQan?3
 !s105 AESL_axi_master_WEIGHTS_DDR_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_master_WEIGHTS_DDR.v
 R5
 R6
 R7
@@ -95,13 +95,13 @@ r1
 31
 !i10b 1
 !s100 M2o]i@cd;_PzScCD=C6030
-IjjEIX8GQgm9BWC6>Qfi880
+IazEik4kPMTiO?nbSXO1323
 !s105 AESL_axi_slave_axilite_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/AESL_axi_slave_axilite.v
 R5
 R6
 R7
@@ -121,16 +121,41 @@ r1
 31
 !i10b 1
 !s100 OGVl8@VP`nHJjIANiZbTe0
-I18mmNIL2C:cdR1=hD9QYY0
+IADkk2bh7LOFO`dDJMjo4I1
 !s105 cnna_autotb_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
 L0 187
 R6
 R7
+R8
+R9
+!i113 0
+R10
+R11
+R12
+vaxibus2rambus
+!s10a 1563722078
+R2
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 VDmWLIR=YWZ[ZaJHmOk9d0
+IPA;HT78_c<>;=1[@@h^1>3
+!s105 axibus2rambus_v_unit
+S1
+R0
+w1563722078
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axibus2rambus.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axibus2rambus.v
+Z13 L0 33
+R6
+Z14 !s108 1563722085.000000
 R8
 R9
 !i113 0
@@ -146,14 +171,14 @@ r1
 31
 !i10b 1
 !s100 6PlAEHj[2T58>k26NkEk12
-I8YKZNhg2^O:H3]:Cm38Sm1
+I=oL30RRJGT]@?RIi8nYFN2
 !s105 axvalid_ctrl_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v
-Z13 L0 33
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/axvalid_ctrl.v
+R13
 R6
 R7
 R8
@@ -171,14 +196,14 @@ r1
 31
 !i10b 1
 !s100 F=A<el6`@Qh9jQIiz]oh^3
-IiKE8ch]gPGzejX11Zl5QN3
+ID?C5OOAEEe>QcQj6@[@id2
 !s105 ceil_power_of_2_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v
-Z14 L0 32
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/ceil_power_of_2.v
+Z15 L0 32
 R6
 R7
 R8
@@ -188,24 +213,24 @@ R10
 R11
 R12
 vcm_cnt
-!s10a 1563634347
+!s10a 1563676922
 R2
 R3
 r1
 !s85 0
 31
 !i10b 1
-!s100 lON6FF;@ke2F1@VVcM:693
-I[@CUfd`ehKiN3810^VXD@1
+!s100 QKEW]A0YU??7k4P_I7B@<3
+ImUG>3SULLic3LnFXY6T^^2
 !s105 cm_cnt_v_unit
 S1
 R0
-w1563634347
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v
-R14
+w1563676922
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v
+R15
 R6
-!s108 1563634584.000000
+R7
 R8
 R9
 !i113 0
@@ -213,24 +238,24 @@ R10
 R11
 R12
 vcnna
-R1
+!s10a 1563722186
 R2
 R3
 r1
 !s85 0
 31
 !i10b 1
-!s100 mHIEK5RI0]8T8eC]XmFnd2
-I<Kab@5@3fA]4a8@GWTg>l3
+!s100 63MPZf]9L@3jOj1;i3z;c2
+IERBhkG>ikY>ac`Y=jnIg13
 !s105 cnna_v_unit
 S1
 R0
-R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v
+w1563722186
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v
 L0 12
 R6
-R7
+!s108 1563722216.000000
 R8
 R9
 !i113 0
@@ -246,13 +271,13 @@ r1
 31
 !i10b 1
 !s100 H895G[ODVDa]ZZ::nYm>S0
-IiUPdXAMa0LfN]DYPgbk[H2
-Z15 !s105 cnna_axilite_s_axi_v_unit
+IV2Z]gQ7U6E;Bb];P?eIdd0
+Z16 !s105 cnna_axilite_s_axi_v_unit
 S1
 R0
 R4
-Z16 8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
-Z17 F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
+Z17 8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
+Z18 F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
 L0 9
 R6
 R7
@@ -271,13 +296,13 @@ r1
 31
 !i10b 1
 !s100 =U2^=Q]jjALBzERzg<ic73
-INHCzLbD9B;8Co]5mNn>?<0
-R15
+I`gkTAh4;nh0L86YVb]gb22
+R16
 S1
 R0
 R4
-R16
 R17
+R18
 L0 2219
 R6
 R7
@@ -296,14 +321,14 @@ r1
 31
 !i10b 1
 !s100 PBnHImb][b_izXhoXkb=e1
-IkRGaUY^FoXo`fRF5OL;742
-Z18 !s105 cnna_FIN_DDR_m_axi_v_unit
+I?]MO_=ABiJOUeRjjDTZ>Y1
+Z19 !s105 cnna_FIN_DDR_m_axi_v_unit
 S1
 R0
 R4
-Z19 8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v
-Z20 F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v
-Z21 L0 10
+Z20 8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v
+Z21 F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FIN_DDR_m_axi.v
+Z22 L0 10
 R6
 R7
 R8
@@ -322,14 +347,14 @@ r1
 31
 !i10b 1
 !s100 37?bT;4nYl7aQd6@@2H6S1
-IRD<=U5lJYaQHl?KzRWUJ]3
-R18
+ICW?8WF@Q>gPD5Ym;o3jeM0
+R19
 S1
 R0
 R4
-R19
 R20
-Z22 L0 528
+R21
+Z23 L0 528
 R6
 R7
 R8
@@ -348,14 +373,14 @@ r1
 31
 !i10b 1
 !s100 02DdOVc=m`h2K:=XESHNV1
-I`Qde?TA_?Se6Cek7gOlUI1
-R18
+I3z>=70eLU;jeUbF]6;MS23
+R19
 S1
 R0
 R4
-R19
 R20
-Z23 L0 693
+R21
+Z24 L0 693
 R6
 R7
 R8
@@ -374,14 +399,14 @@ r1
 31
 !i10b 1
 !s100 TXTEoa4WXihbWWVJdMV071
-I@e><ZEiQlVVA17gPhM^zH3
-R18
+ITFOMnHHGK_X;gORgM`Ge[2
+R19
 S1
 R0
 R4
-R19
 R20
-Z24 L0 419
+R21
+Z25 L0 419
 R6
 R7
 R8
@@ -400,14 +425,14 @@ r1
 31
 !i10b 1
 !s100 9CSNzaAG:IhHjh2G:2k5>2
-IoOoVVY77bk^l[8NV;;oI23
-R18
+IVB65`lTKI]AbORm3EQhfz3
+R19
 S1
 R0
 R4
-R19
 R20
-Z25 L0 905
+R21
+Z26 L0 905
 R6
 R7
 R8
@@ -426,14 +451,14 @@ r1
 31
 !i10b 1
 !s100 :2;T]`ZCdXBRC`b1[Nhha3
-If^ie>PzIZimmcA;E]U6MO1
-R18
+I9QXGf0YnP`o67AHk;k@kC1
+R19
 S1
 R0
 R4
-R19
 R20
-Z26 L0 315
+R21
+Z27 L0 315
 R6
 R7
 R8
@@ -452,14 +477,14 @@ r1
 31
 !i10b 1
 !s100 P5^Sad<Mll?^G1AZmLT9D2
-I7ZfhDz@mfznkVbOzWCD3B2
-R18
+IdITZb`T_T;]l7jj5W3lnY2
+R19
 S1
 R0
 R4
-R19
 R20
-Z27 L0 709
+R21
+Z28 L0 709
 R6
 R7
 R8
@@ -478,14 +503,14 @@ r1
 31
 !i10b 1
 !s100 ZY9DD4G6Yc`nle11]zNk82
-I1S3YR^1AY2UNl:oJCA9gm3
-R18
+IFOAXU2gk^TF:D>X:ZoB1b2
+R19
 S1
 R0
 R4
-R19
 R20
-Z28 L0 1702
+R21
+Z29 L0 1702
 R6
 R7
 R8
@@ -504,14 +529,14 @@ r1
 31
 !i10b 1
 !s100 8D1^3Yn4RUD4QO^^81dmJ0
-IkgOR:62FAONmCh=9RnE`R2
-Z29 !s105 cnna_FOUT_DDR_m_axi_v_unit
+IF1EGEiXeLkML90BHmd[3Z1
+Z30 !s105 cnna_FOUT_DDR_m_axi_v_unit
 S1
 R0
 R4
-Z30 8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v
-Z31 F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v
-R21
+Z31 8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v
+Z32 F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_FOUT_DDR_m_axi.v
+R22
 R6
 R7
 R8
@@ -530,14 +555,14 @@ r1
 31
 !i10b 1
 !s100 1>`dX0>8o=jRcnd@`MeJj0
-IWnEMzWe[NM6l3IT76`N653
-R29
+I9T2OodXgnc=b3c[47e4S^2
+R30
 S1
 R0
 R4
-R30
 R31
-R22
+R32
+R23
 R6
 R7
 R8
@@ -556,14 +581,14 @@ r1
 31
 !i10b 1
 !s100 X@6]Tc<OYdO09m[gaO;;e0
-I3ggoJKe>f:T2ad;DO7S=j1
-R29
+IA2WAQXFCh@;6QSGddAWz:2
+R30
 S1
 R0
 R4
-R30
 R31
-R23
+R32
+R24
 R6
 R7
 R8
@@ -582,14 +607,14 @@ r1
 31
 !i10b 1
 !s100 MVbAi?PEF2P[mhoAo=W3P3
-IIAF^_D:f<<AgKH7@;RURP2
-R29
+IJGD_g9mAS09L5IeQ@lKhl2
+R30
 S1
 R0
 R4
-R30
 R31
-R24
+R32
+R25
 R6
 R7
 R8
@@ -608,14 +633,14 @@ r1
 31
 !i10b 1
 !s100 Y[KVcCLiaae3In<02WJgX2
-IgNoVM5LIZ=NlF8^]@8Ahl3
-R29
+INSf;63@;WUN]<a:0C9ImK3
+R30
 S1
 R0
 R4
-R30
 R31
-R25
+R32
+R26
 R6
 R7
 R8
@@ -634,14 +659,14 @@ r1
 31
 !i10b 1
 !s100 8_BDzd8acSEcBL]222=Qn3
-IG50aQTMc<]ja]]lVb=<mT0
-R29
+I02i8GW[Mo_@kD=9F?RRMO1
+R30
 S1
 R0
 R4
-R30
 R31
-R26
+R32
+R27
 R6
 R7
 R8
@@ -660,14 +685,14 @@ r1
 31
 !i10b 1
 !s100 AO^]RPFj:dh56mmZ@]Mz23
-I6ebB0zhf]<>BlMX<El3zI2
-R29
+I06OIVE7nj6SPK1RkQ7fAN3
+R30
 S1
 R0
 R4
-R30
 R31
-R27
+R32
+R28
 R6
 R7
 R8
@@ -686,14 +711,14 @@ r1
 31
 !i10b 1
 !s100 18_F57]gPz91k:;KlUQ4M3
-IXoEd3PSNcVA[TlTObLgif1
-R29
+IO^J@126X6BzOI8G0AbN<`1
+R30
 S1
 R0
 R4
-R30
 R31
-R28
+R32
+R29
 R6
 R7
 R8
@@ -712,14 +737,14 @@ r1
 31
 !i10b 1
 !s100 `Hbk7]9L9XFM89F=b7IVH1
-IZU@o^9ePQ07dJ9@:19g0Y3
-Z32 !s105 cnna_WEIGHTS_DDR_m_axi_v_unit
+Ii9DnAzH=J`T2_TO=R8C=J0
+Z33 !s105 cnna_WEIGHTS_DDR_m_axi_v_unit
 S1
 R0
 R4
-Z33 8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v
-Z34 F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v
-R21
+Z34 8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v
+Z35 F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_WEIGHTS_DDR_m_axi.v
+R22
 R6
 R7
 R8
@@ -738,14 +763,14 @@ r1
 31
 !i10b 1
 !s100 _A45RK2V[AF9TK`]]9F9X0
-IkX;lijFV95c0c>a64=`WR0
-R32
+Il9?dCOE5X1iDa3zX1_im42
+R33
 S1
 R0
 R4
-R33
 R34
-R22
+R35
+R23
 R6
 R7
 R8
@@ -758,18 +783,18 @@ ncnna_@w@e@i@g@h@t@s_@d@d@r_m_axi_buffer
 vcnna_WEIGHTS_DDR_m_axi_decoder
 R1
 R2
-!s110 1563632190
+!s110 1563720669
 !i10b 1
 !s100 2JXXef5JF;6?[i6Fh0UO=3
-I`<AgPi4Ccc7bjbIF?CS`J1
+IDIc_UedQNoc[4EdjiZaCn2
 R3
-R32
+R33
 S1
 R0
 R4
-R33
 R34
-R23
+R35
+R24
 R6
 r1
 !s85 0
@@ -791,14 +816,14 @@ r1
 31
 !i10b 1
 !s100 CiP?4zX`<CdA3cWR=j1VW1
-I4b35j<_3hflVfzZ`XKC7>3
-R32
+IOV[BR8[4m4N`<Dz1a6l[42
+R33
 S1
 R0
 R4
-R33
 R34
-R24
+R35
+R25
 R6
 R7
 R8
@@ -817,14 +842,14 @@ r1
 31
 !i10b 1
 !s100 O8m57d8Jj5[`?lk4<HjUe1
-IzK35cNlS:D=QPb<i71aD60
-R32
+IKd_6WDThL7R]1IY?6io=[3
+R33
 S1
 R0
 R4
-R33
 R34
-R25
+R35
+R26
 R6
 R7
 R8
@@ -843,14 +868,14 @@ r1
 31
 !i10b 1
 !s100 93<h@ZILhaMkO2U;baeB72
-IzlISU@>THJ^hbdW2iJ?YH1
-R32
+I;P8@:MU6YWobI5_I0DIDF0
+R33
 S1
 R0
 R4
-R33
 R34
-R26
+R35
+R27
 R6
 R7
 R8
@@ -869,14 +894,14 @@ r1
 31
 !i10b 1
 !s100 XR9X[Q2gUB_2HRZO3bUaK1
-IAPdX`RW>CRG=Oa_5@XIEo1
-R32
+IAY7W03T@VLlg^XEV:IP7O0
+R33
 S1
 R0
 R4
-R33
 R34
-R27
+R35
+R28
 R6
 R7
 R8
@@ -895,14 +920,14 @@ r1
 31
 !i10b 1
 !s100 `cM>IbeoZB9DI;8<n;JDI2
-IjRII?E<F3XG;7;G;=SAIm3
-R32
+I`lDX5dM>e863Z=XL=Y6Bb1
+R33
 S1
 R0
 R4
-R33
 R34
-R28
+R35
+R29
 R6
 R7
 R8
@@ -921,13 +946,13 @@ r1
 31
 !i10b 1
 !s100 hDgEfEQc?7RG;`7Ja9A:53
-I6CfEz0J3ZFLckWGBoioMi0
+IeH2_J1;mZWRP4[dUC?=k51
 !s105 glbl_v_unit
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/glbl.v
 L0 6
 R6
 R7
@@ -937,24 +962,74 @@ R9
 R10
 R11
 R12
-vloadweights
+vload_all_weights
 R2
 R3
 r1
 !s85 0
 31
 !i10b 1
-!s100 :G>Dme5=nTG1mjl<Ae]7S3
-I8<8`REjT4hlS3UXkS9R:02
-!s105 loadweights_v_unit
+!s100 CFX_BlGX]7eR8CFRH<nWR0
+IP7IAC7`Qd6nYAIiTQf?4j1
+!s105 load_all_weights_v_unit
 S1
 R0
-w1563635446
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v
-R14
+w1563722663
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v
+R15
 R6
-!s108 1563635469.000000
+!s108 1563722669.000000
+R8
+R9
+!i113 0
+R10
+R11
+R12
+vload_bias
+!s10a 1563722058
+R2
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 ZBR1lHL:l@Xm<UZHRhHKh2
+IlXSOYFSIf4nVaF>H`gcV>3
+Z36 !s105 load_bias_v_unit
+S1
+R0
+w1563722058
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v
+R13
+R6
+R14
+R8
+R9
+!i113 0
+R10
+R11
+R12
+vload_weights
+!s10a 1563686534
+R2
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 1caCQY^UhEjHObD6jN^KH3
+I2]T7HkVY<S8ffnVL`LL?z3
+R36
+S1
+R0
+w1563686534
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v
+R15
+R6
+R7
 R8
 R9
 !i113 0
@@ -970,13 +1045,13 @@ r1
 31
 !i10b 1
 !s100 @h@NIC`l6TXK^jFb_IP6L1
-IG`_KcgWg8ZS?TWeeiM6FS1
-!s105 spram_v_unit
+ITk@i]XHeamT6fgz[JOMH52
+R36
 S1
 R0
 R4
-8/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-F/home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+8/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+F/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
 R13
 R6
 R7

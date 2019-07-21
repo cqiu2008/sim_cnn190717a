@@ -50,16 +50,17 @@ wire S_upper_case1  ;
 wire S_upper_case2  ;
 wire S_upper_case3  ;
 wire S_cnt_turn_every_clk   ;
-wire S_upper_equal2 ;
-wire S_upper_more2  ;
-wire  [C_WIDTH-1:0]S_cnt_upper_sub2;
-wire  [C_WIDTH-1:0]S_cnt_upper_sub1;
+reg  S_upper_equal2 ;
+reg  S_upper_more2  ;
+reg  [C_WIDTH-1:0]S_cnt_upper_sub2;
+reg  [C_WIDTH-1:0]S_cnt_upper_sub1;
+
 reg   S_over_flag    ;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __
 // __|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|  
-//                ___________________________________                                                                                
+//                ___________________________________                                
 //cnt_en ________|                                   |_________________________________
 //                      _________________        ____
 //lowest_cnt_valid_____|                 |______|    |_________________________________
@@ -111,10 +112,14 @@ always @(posedge I_clk)begin
 end
 
 assign S_cnt_turn_every_clk = (O_cnt[0] && S_first_pose) || S_type_lck ;///not active in I_cnt_upper==2
-assign S_upper_equal2   = (I_cnt_upper == {{(C_WIDTH-2){1'b0}},2'b10});
-assign S_upper_more2    = (I_cnt_upper >  {{(C_WIDTH-2){1'b0}},2'b10});
-assign S_cnt_upper_sub2 = (I_cnt_upper -  {{(C_WIDTH-2){1'b0}},2'b10});
-assign S_cnt_upper_sub1 = (I_cnt_upper -  {{(C_WIDTH-2){1'b0}},2'b01});
+
+always @(posedge I_clk)begin
+    S_upper_equal2   <= (I_cnt_upper == {{(C_WIDTH-2){1'b0}},2'b10});
+    S_upper_more2    <= (I_cnt_upper >  {{(C_WIDTH-2){1'b0}},2'b10});
+    S_cnt_upper_sub2 <= (I_cnt_upper -  {{(C_WIDTH-2){1'b0}},2'b10});
+    S_cnt_upper_sub1 <= (I_cnt_upper -  {{(C_WIDTH-2){1'b0}},2'b01});
+end
+
 assign S_upper_case1  = (O_cnt == S_cnt_upper_sub1) && (!S_cnt_turn_every_clk); 
 assign S_upper_case2  = (O_cnt == S_cnt_upper_sub2) && (S_upper_equal2 || S_upper_more2) && S_cnt_turn_every_clk; 
 

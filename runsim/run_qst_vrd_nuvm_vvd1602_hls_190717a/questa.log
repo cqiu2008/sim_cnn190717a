@@ -1,5 +1,5 @@
-# vsim -L /home/logic/verification/library/vivado2016_02/secureip -L /home/logic/verification/library/vivado2016_02/simprims_ver -L /home/logic/verification/library/vivado2016_02/unifast_ver -L /home/logic/verification/library/vivado2016_02/unimacro_ver -L /home/logic/verification/library/vivado2016_02/unisims_ver -novopt -sva -assertdebug -c -pli "/home/cqiu/AIPrj/sim/sim_cnna190717a/vf/novas/libpli.so" -coverage -printsimstats -do "run 1ms ;coverage report -detail -cvg -directive -comments -file qst_vrd_nuvm_vvd1602_hls_190717a.txt -r /;coverage save qst_vrd_nuvm_vvd1602_hls_190717a.ucdb;q" -l questa.log -f questa.tops 
-# Start time: 23:11:10 on Jul 20,2019
+# vsim -L /home/logic/verification/library/vivado2016_02/secureip -L /home/logic/verification/library/vivado2016_02/simprims_ver -L /home/logic/verification/library/vivado2016_02/unifast_ver -L /home/logic/verification/library/vivado2016_02/unimacro_ver -L /home/logic/verification/library/vivado2016_02/unisims_ver -novopt -sva -assertdebug -c -pli "/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/vf/novas/libpli.so" -coverage -printsimstats -do "run 1ms ;coverage report -detail -cvg -directive -comments -file qst_vrd_nuvm_vvd1602_hls_190717a.txt -r /;coverage save qst_vrd_nuvm_vvd1602_hls_190717a.ucdb;q" -l questa.log -f questa.tops 
+# Start time: 23:24:31 on Jul 21,2019
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # //  Questa Sim-64
 # //  Version 10.4c linux_x86_64 Jul 19 2015
@@ -28,10 +28,14 @@
 # Loading work.cnna_WEIGHTS_DDR_m_axi_fifo
 # Loading work.cnna_WEIGHTS_DDR_m_axi_buffer
 # Loading work.cnna_WEIGHTS_DDR_m_axi_read
-# Refreshing /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/work.loadweights
-# Loading work.loadweights
+# Refreshing /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/work.load_all_weights
+# Loading work.load_all_weights
 # Loading work.ceil_power_of_2
+# Loading work.load_bias
+# Loading work.axibus2rambus
 # Loading work.axvalid_ctrl
+# Loading work.spram
+# Loading work.load_weights
 # Loading work.cm_cnt
 # Loading work.AESL_axi_master_WEIGHTS_DDR
 # Loading work.AESL_axi_master_FIN_DDR
@@ -52,124 +56,123 @@
 # Loading work.cnna_FOUT_DDR_m_axi_buffer
 # Loading work.cnna_FOUT_DDR_m_axi_read
 # Loading work.glbl
-# Loading work.spram
 # Loading work.cnna_FIN_DDR_m_axi_decoder
 # Loading work.cnna_FOUT_DDR_m_axi_decoder
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Too few port connections. Expected 112, found 108.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/cnna_axilite_s_axi_U File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_address0'.
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_ce0'.
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_we0'.
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_d0'.
-# ** Warning: (vsim-3015) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(885): [PCDPC] - Port size (8) does not match connection size (13) for port 'I_next_ci'. The port definition is at: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(55).
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v
-# ** Warning: (vsim-3015) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(885): [PCDPC] - Port size (8) does not match connection size (13) for port 'I_next_co'. The port definition is at: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(56).
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v
-# ** Warning: (vsim-3015) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(269): [PCDPC] - Port size (8) does not match connection size (9) for port 'I_cnt_upper'. The port definition is at: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v(40).
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/U0_loop2_ci_cnt File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cm_cnt.v
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[0]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[0]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[1]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[1]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[2]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[2]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[3]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[3]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[4]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[4]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[5]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[5]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[6]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[6]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[7]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[7]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[8]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[8]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[9]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[9]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[10]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[10]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[11]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[11]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[12]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[12]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[13]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[13]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[14]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[14]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[15]/wbuf_co_ctrl[0]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# ** Warning: (vsim-3017) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Too few port connections. Expected 6, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/wbuf_ci_ctrl[15]/wbuf_co_ctrl[1]/u_wbuf File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
-# ** Warning: (vsim-3722) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/loadweights.v(342): [TFMPC] - Missing connection for port 'I_rst'.
-# Loading /home/cqiu/AIPrj/sim/sim_cnna190717a/vf/novas/libpli.so
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Too few port connections. Expected 112, found 108.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/cnna_axilite_s_axi_U File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna_axilite_s_axi.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_address0'.
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_ce0'.
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_we0'.
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(631): [TFMPC] - Missing connection for port 'layer_name_d0'.
+# ** Warning: (vsim-3015) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(885): [PCDPC] - Port size (8) does not match connection size (13) for port 'I_next_ci'. The port definition is at: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v(55).
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v
+# ** Warning: (vsim-3015) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.v(885): [PCDPC] - Port size (8) does not match connection size (13) for port 'I_next_co'. The port definition is at: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v(56).
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v
+# ** Warning: (vsim-3015) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_all_weights.v(142): [PCDPC] - Port size (9) does not match connection size (32) for port 'I_len'. The port definition is at: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_bias File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_bias.v
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[0]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[0]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[1]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[1]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[2]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[2]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[3]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[3]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[4]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[4]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[5]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[5]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[6]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[6]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[7]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[7]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[8]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[8]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[9]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[9]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[10]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[10]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[11]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[11]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[12]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[12]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[13]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[13]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[14]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[14]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[15]/wbuf_co_ctrl[0]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# ** Warning: (vsim-3017) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Too few port connections. Expected 6, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/u0_load_weights/wbuf_ci_ctrl[15]/wbuf_co_ctrl[1]/u_wbuf File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/spram.v
+# ** Warning: (vsim-3722) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/load_weights.v(353): [TFMPC] - Missing connection for port 'I_rst'.
+# Loading /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/vf/novas/libpli.so
 # *Novas* Loading libsscore_mti10.1.so
 # *Verdi3* : Enable Parallel Dumping.
-# ** Warning: (vsim-PLI-3003) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1511): [TOFD] - System task or function '$helloword' is not defined.
-#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top File: /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
+# ** Warning: (vsim-PLI-3003) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1511): [TOFD] - System task or function '$helloword' is not defined.
+#    Time: 0 ps  Iteration: 0  Instance: /apatb_cnna_top File: /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v
 # run 1ms 
-# ** Error (suppressible): (vsim-12023) /home/cqiu/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1511): Cannot execute undefined system task/function '$helloword'
+# ** Error (suppressible): (vsim-12023) /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1511): Cannot execute undefined system task/function '$helloword'
 # FSDB Dumper for ModelSim, Release Verdi3_I-2014.03-SP2, Linux x86_64/64bit, 08/07/2014
 # (C) 1996 - 2014 by Synopsys, Inc.
 # ***********************************************************************
@@ -191,29 +194,22 @@
 # // RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
 # ////////////////////////////////////////////////////////////////////////////////////
 # // RTL Simulation : 0 / 1 [0.00%] @ "125000"
-# coverage report -detail -cvg -directive -comments -file qst_vrd_nuvm_vvd1602_hls_190717a.txt -r /
-# *** Warning: No matching item found for '/'.
-# No matches
-# coverage save qst_vrd_nuvm_vvd1602_hls_190717a.ucdb
-# q
+# // RTL Simulation : 1 / 1 [100.00%] @ "7695000"
+# ////////////////////////////////////////////////////////////////////////////////////
+# ** Note: $finish    : /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/rtl/sim/verilog/cnna.autotb.v(1007)
+#    Time: 7735 ns  Iteration: 1  Instance: /apatb_cnna_top
 # Memory Statistics                         
-#     mem: size after elab (VSZ)                 411.06 Mb
-#     mem: size during sim (VSZ)                 546.19 Mb
+#     mem: size after elab (VSZ)                 411.08 Mb
+#     mem: size during sim (VSZ)                 419.71 Mb
 # Elaboration Time                          
-#    elab: wall time                               1.26 s
-#    elab: cpu time                                0.32 s
+#    elab: wall time                               1.24 s
+#    elab: cpu time                                0.33 s
 # Simulation Time                           
-#     sim: wall time                               9.10 s
-#     sim: cpu time                                7.66 s
-# Tcl Command Time                          
-#     cmd: wall time                               1.03 s
-#     cmd: cpu time                                0.10 s
-# Coverage Save Time                        
-#    save: wall time                               0.10 s
-#    save: cpu time                                0.09 s
+#     sim: wall time                               1.85 s
+#     sim: cpu time                                0.19 s
 # Total Time                                
-#   total: wall time                              11.49 s
-#   total: cpu time                                8.17 s
+#   total: wall time                               3.09 s
+#   total: cpu time                                0.52 s
 # 
-# End time: 23:11:22 on Jul 20,2019, Elapsed time: 0:00:12
+# End time: 23:24:34 on Jul 21,2019, Elapsed time: 0:00:03
 # Errors: 1, Warnings: 75

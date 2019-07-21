@@ -869,7 +869,7 @@ cnna_WEIGHTS_DDR_m_axi_U(
 // (1) self code  
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-loadweights #(
+load_all_weights #(
     .MEM_STYLE          ( "block"   ),
     .C_POWER_OF_1ADOTS  ( 4         ),
     .C_POWER_OF_PECI    ( 4         ),
@@ -882,7 +882,7 @@ loadweights #(
     .C_M_AXI_DATA_WIDTH ( 128       ),
     .C_RAM_ADDR_WIDTH   ( 9         ),
     .C_RAM_DATA_WIDTH   ( 128       ))
-u0_loadweights(
+u0_load_all_weights(
     .I_clk           (ap_clk                            ),
     .I_rst           (ap_rst_n_inv                      ),
     .I_ap_start      (ap_start                          ),
@@ -890,7 +890,8 @@ u0_loadweights(
     .I_next_kernel   (layer_cnvParaNext_kernel_h_V      ),
     .I_next_ci       (layer_iParaNext_ci_V              ),
     .I_next_co       (layer_oParaNext_co_V              ),
-    .I_next_mem_addr (layer_wParaNext_memAddrWeights_V  ),
+    .I_next_w_addr   (layer_wParaNext_memAddrWeights_V  ),
+    .I_next_b_addr   (layer_wParaNext_memAddrBias_V  ),
     .I_base_addr     (wddr_V                            ),
     .O_maxi_arlen    (WEIGHTS_DDR_ARLEN                 ),
     .I_maxi_arready  (WEIGHTS_DDR_ARREADY               ),   

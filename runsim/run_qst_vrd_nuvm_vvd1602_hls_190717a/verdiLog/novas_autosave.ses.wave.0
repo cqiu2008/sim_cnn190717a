@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi3_I-2014.03-SP2
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 30 1301 186 321 86
+viewPort 0 30 949 273 321 86
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,16 +16,16 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 1262869.643756 12137580.464991
-cursor 3085000.000000
-marker 0.000000
+zoom 0.000000 7812350.000000
+cursor 7475000.000000
+marker 3475000.000000
 
 ; user define markers
 ; userMarker time_pos marker_name color linestyle
 ; visible top row signal index
-top 0
+top 2
 ; marker line index
-markerPos 10
+markerPos 26
 
 ; event list
 ; addEvent event_name event_expression
@@ -46,18 +46,34 @@ curSTATUS ByChange
 
 
 addGroup "G1"
-activeDirFile "" "/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/tb_dut_top.fsdb"
-addSignal -h 15 -UNSIGNED -HEX /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/S_cog_cnt[7:0]
-addSignal -h 15 -holdScope S_cog_over_flag
-addSignal -h 15 -holdScope I_clk
-addSignal -h 15 -holdScope S_ci_valid
-addSignal -h 15 -holdScope S_ci_over_flag
-addSignal -h 15 -UNSIGNED -HEX -holdScope S_ci_cnt[7:0]
-addSignal -h 15 /apatb_cnna_top/AESL_inst_cnna/u0_loadweights/U0_loop1_cog_cnt/S_first_pose
-addSignal -h 15 -holdScope S_vflag
-addSignal -h 15 -holdScope S_cnt_turn_every_clk
-addSignal -h 15 -holdScope S_type_lck
 addGroup "G2"
+activeDirFile "" "/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/tb_dut_top.fsdb"
+addSignal -h 15 /apatb_cnna_top/AESL_inst_cnna/u0_load_all_weights/I_clk
+addSignal -h 15 -holdScope I_ap_start
+addSignal -h 15 -holdScope O_ap_done
+addSignal -h 15 -UNSIGNED -HEX -holdScope O_maxi_arlen[31:0]
+addSignal -h 15 -holdScope I_maxi_arready
+addSignal -h 15 -holdScope O_maxi_arvalid
+addSignal -h 15 -UNSIGNED -HEX -holdScope O_maxi_araddr[31:0]
+addSignal -h 15 -holdScope I_clk
+addSignal -h 15 -holdScope O_maxi_rready
+addSignal -h 15 -holdScope I_maxi_rvalid
+addSignal -h 15 -UNSIGNED -HEX -holdScope I_maxi_rdata[127:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope S_fsm_cnt[2:0]
+addSignal -h 15 -holdScope S_bap_start
+addSignal -h 15 -holdScope S_wap_start
+addSignal -h 15 -UNSIGNED -HEX -holdScope S_wmaxi_araddr[31:0]
+addSignal -h 15 -holdScope S_bap_start
+addSignal -h 15 -UNSIGNED -HEX -holdScope S_wmaxi_araddr[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope S_bmaxi_araddr[31:0]
+addSignal -h 15 -holdScope S_bap_start
+addSignal -h 15 -holdScope I_clk
+addSignal -h 15 -UNSIGNED -HEX -holdScope O_maxi_araddr[31:0]
+addSignal -h 15 -holdScope O_maxi_arvalid
+addSignal -h 15 -UNSIGNED -HEX -holdScope O_maxi_arlen[31:0]
+addSignal -h 15 -holdScope S_bap_start
+addSignal -h 15 -UNSIGNED -UDEC -holdScope S_wmaxi_arlen[31:0]
+addGroup "G3"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
