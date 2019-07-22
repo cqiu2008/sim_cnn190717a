@@ -165,3 +165,4 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvSelectSignal -win $_nWave2 {( "G1" 3 )} 
 wvSetCursor -win $_nWave2 2817568.852459 -snap {("G1" 3)}
+debExit
