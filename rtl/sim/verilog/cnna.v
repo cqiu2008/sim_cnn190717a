@@ -369,9 +369,9 @@ output   interrupt;
 
 reg    ap_rst_n_inv;
 wire    ap_start;
-reg    ap_done;
-reg    ap_idle;
-reg    ap_ready;
+wire   ap_done;
+wire  ap_idle;
+wire  ap_ready;
 wire   [31:0] wddr_V;
 reg   [31:0] wddr_V_0_data_reg;
 reg    wddr_V_0_vld_reg;
@@ -905,6 +905,8 @@ u0_load_all_weights(
 always @(posedge ap_clk)begin
     ap_rst_n_inv <= ~ap_rst_n;
 end
+
+assign ap_ready = ap_done;
 
 endmodule //cnna
 
