@@ -891,7 +891,7 @@ u0_load_all_weights(
     .I_next_ci       (layer_iParaNext_ci_V              ),
     .I_next_co       (layer_oParaNext_co_V              ),
     .I_next_w_addr   (layer_wParaNext_memAddrWeights_V  ),
-    .I_next_b_addr   (layer_wParaNext_memAddrBias_V  ),
+    .I_next_b_addr   (layer_wParaNext_memAddrBias_V     ),
     .I_base_addr     (wddr_V                            ),
     .O_maxi_arlen    (WEIGHTS_DDR_ARLEN                 ),
     .I_maxi_arready  (WEIGHTS_DDR_ARREADY               ),   
