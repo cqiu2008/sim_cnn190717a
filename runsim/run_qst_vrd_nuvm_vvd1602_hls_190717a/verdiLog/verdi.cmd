@@ -1,19 +1,19 @@
 debImport "-f" \
-          "/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/flist.f"
+          "/home/cqiu/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/flist.f"
 debLoadSimResult \
            /media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/runsim/run_qst_vrd_nuvm_vvd1602_hls_190717a/tb_dut_top.fsdb
 wvCreateWindow
-wvRestoreSignal -win $_nWave2 \
-           "/media/cqiu/e/work/prj/AIPrj/sim/sim_cnna190717a/tb/btc/qst_vrd_nuvm_vvd1602_hls_190717a/rc/cm.rc" \
-           -overWriteAutoAlias on
-wvUnknownSaveResult -win $_nWave2 -clear
 srcHBSelect "apatb_cnna_top.AESL_inst_cnna" -win $_nTrace1
 srcSetScope -win $_nTrace1 "apatb_cnna_top.AESL_inst_cnna" -delim "."
 srcHBSelect "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights" -win $_nTrace1
 srcSetScope -win $_nTrace1 "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights" \
            -delim "."
+verdiWindowResize -win Verdi_1 "260" "62" "1375" "876"
 srcDeselectAll -win $_nTrace1
 srcSelect -signal "I_clk" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "I_rst" -win $_nTrace1
 srcAddSelectedToWave -win $_nTrace1
 srcDeselectAll -win $_nTrace1
 srcSelect -signal "I_ap_start" -win $_nTrace1
@@ -32,280 +32,28 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-verdiWindowResize -win Verdi_1 "223" -4 "1301" "744"
-wvZoomAll -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoom -win $_nWave2 0.000000 140930232.558140
-wvZoom -win $_nWave2 0.000000 11471065.440779
+wvZoom -win $_nWave2 2454700.136612 7769659.562842
+wvZoom -win $_nWave2 7319485.403789 7551833.356848
 verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
 srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_arlen" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
+srcSelect -signal "I_ap_start" -win $_nTrace1
 srcDeselectAll -win $_nTrace1
-srcSelect -signal "I_maxi_arready" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_arvalid" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvZoom -win $_nWave2 2289766.938760 4557303.130542
-wvZoom -win $_nWave2 2869834.336658 3256545.935256
-wvZoom -win $_nWave2 2941031.239500 2995740.438526
-wvSetCursor -win $_nWave2 2954708.539256 -snap {("G2" 6)}
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvZoom -win $_nWave2 2995528.387367 3484094.257743
-wvZoomOut -win $_nWave2
-wvZoom -win $_nWave2 2925462.739289 3014465.049009
-wvScrollDown -win $_nWave2 0
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "I_clk" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 2963754.430680 -snap {("G2" 6)}
-wvSelectSignal -win $_nWave2 {( "G2" 7 )} 
-wvScrollDown -win $_nWave2 1
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_rready" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "I_maxi_rvalid" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "I_maxi_rdata" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
+srcSelect -signal "O_ap_done" -win $_nTrace1
 verdiDockWidgetSetCurTab -dock windowDock_nWave_2
 verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSelectSignal -win $_nWave2 {( "G2" 10 )} 
-wvSetCursor -win $_nWave2 3085873.878899 -snap {("G2" 10)}
-wvZoom -win $_nWave2 2994801.748023 3419805.025445
-wvSetMarker -win $_nWave2 3085000.000000
-wvSetCursor -win $_nWave2 3243543.976281 -snap {("G2" 10)}
-wvScrollDown -win $_nWave2 1
-wvZoomOut -win $_nWave2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_fsm_cnt" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvSetCursor -win $_nWave2 3264958.870104 -snap {("G2" 12)}
-wvSetCursor -win $_nWave2 3345676.546824 -snap {("G2" 9)}
-wvScrollUp -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvSetCursor -win $_nWave2 3261664.271055 -snap {("G2" 12)}
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSelectSignal -win $_nWave2 {( "G2" 7 )} 
-wvZoom -win $_nWave2 3115054.613340 3859633.998590
-wvZoomOut -win $_nWave2
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcTraceLoad "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.S_fsm_cnt\[2:0\]" \
-           -win $_nTrace1
+srcTraceLoad "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.O_ap_done" -win \
+           $_nTrace1
 nsMsgSwitchTab -tab trace
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wap_start" -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
+srcHBSelect "apatb_cnna_top.AESL_inst_cnna" -win $_nTrace1
+srcSetScope -win $_nTrace1 "apatb_cnna_top.AESL_inst_cnna" -delim "."
 verdiDockWidgetSetCurTab -dock windowDock_nWave_2
+srcSearchString "O_ap_done" -win $_nTrace1 -next -case
 verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
 srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wap_start" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_araddr" -win $_nTrace1
-srcTraceDriver \
-           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.O_maxi_araddr\[31:0\]" \
-           -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wmaxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoom -win $_nWave2 3008273.848787 3579695.237468
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wmaxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bmaxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoom -win $_nWave2 3125658.862741 3692650.628253
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "I_clk" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoom -win $_nWave2 3092694.225210 3409154.745496
-wvSelectSignal -win $_nWave2 {( "G2" 16 )} 
-wvSetPosition -win $_nWave2 {("G2" 16)}
-wvSetPosition -win $_nWave2 {("G2" 17)}
-wvSetPosition -win $_nWave2 {("G2" 18)}
-wvSetPosition -win $_nWave2 {("G2" 19)}
-wvSetPosition -win $_nWave2 {("G2" 20)}
-wvSetPosition -win $_nWave2 {("G2" 21)}
-wvMoveSelected -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 21)}
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_araddr" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvSelectSignal -win $_nWave2 {( "G2" 22 )} 
-wvSelectSignal -win $_nWave2 {( "G2" 21 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G3" 0)}
-wvSetPosition -win $_nWave2 {("G2" 21)}
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wmaxi_araddr" -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_arvalid" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoom -win $_nWave2 3069388.993096 3493789.535804
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "O_maxi_arlen" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 3324358.311389 -snap {("G2" 21)}
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 3789995.544191 -snap {("G2" 20)}
-wvZoom -win $_nWave2 2645101.056883 4066349.385955
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wmaxi_arlen" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_wmaxi_arlen" -win $_nTrace1
-srcAddSelectedToWave -win $_nTrace1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G3" 0)}
-wvSetPosition -win $_nWave2 {("G2" 25)}
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
-wvSelectSignal -win $_nWave2 {( "G2" 25 )} 
-wvSetRadix -win $_nWave2 -format UDec {("G2" 25)}
-verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
-srcDeselectAll -win $_nTrace1
-srcSelect -signal "S_bap_start" -win $_nTrace1
+srcSelect -signal "ap_done" -win $_nTrace1
+srcSearchString "ap_done" -win $_nTrace1 -next -case
+srcSearchString "ap_done" -win $_nTrace1 -next -case
+srcSearchString "ap_done" -win $_nTrace1 -next -case
 debReload
 verdiDockWidgetSetCurTab -dock windowDock_nWave_2
 wvZoomOut -win $_nWave2
@@ -315,29 +63,9 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvSetCursor -win $_nWave2 7479265.310078 -snap {("G2" 14)}
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvZoom -win $_nWave2 3300566.472868 4118137.984496
-wvZoom -win $_nWave2 3435243.950559 3601610.246529
+wvZoom -win $_nWave2 7214683.879781 7769659.562842
+wvZoom -win $_nWave2 7473975.797276 7542210.512407
+wvSetCursor -win $_nWave2 7514245.465222 -snap {("G1" 4)}
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
@@ -345,11 +73,73 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 3482249.031008 -snap {("G2" 10)}
-wvSetMarker -win $_nWave2 3475000.000000
-wvSetCursor -win $_nWave2 7585246.802326 -snap {("G2" 10)}
-wvZoom -win $_nWave2 3285426.259690 3981876.065891
-wvZoom -win $_nWave2 3443342.204118 3517576.195090
+wvZoomOut -win $_nWave2
+srcHBSelect "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights" -win $_nTrace1
+srcSetScope -win $_nTrace1 "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights" \
+           -delim "."
+srcHBSelect "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights" \
+           -win $_nTrace1
+srcSetScope -win $_nTrace1 \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights" \
+           -delim "."
+srcHBSelect \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\]" \
+           -win $_nTrace1
+srcSetScope -win $_nTrace1 \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\]" \
+           -delim "."
+srcHBSelect \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\].wbuf_co_ctrl\[0\]" \
+           -win $_nTrace1
+srcHBSelect \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\].wbuf_co_ctrl\[0\]" \
+           -win $_nTrace1
+srcSetScope -win $_nTrace1 \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\].wbuf_co_ctrl\[0\]" \
+           -delim "."
+srcHBSelect \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\].wbuf_co_ctrl\[0\].u_wbuf" \
+           -win $_nTrace1
+srcSetScope -win $_nTrace1 \
+           "apatb_cnna_top.AESL_inst_cnna.u0_load_all_weights.u0_load_weights.wbuf_ci_ctrl\[0\].wbuf_co_ctrl\[0\].u_wbuf" \
+           -delim "."
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "I_clk" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "I_addr" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "I_data" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "I_wr" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "O_data" -win $_nTrace1
+srcAddSelectedToWave -win $_nTrace1
+verdiDockWidgetSetCurTab -dock windowDock_nWave_2
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("G2" 0)}
+wvSetPosition -win $_nWave2 {("G1" 8)}
+wvZoom -win $_nWave2 3052366.256831 4781328.961749
+wvZoom -win $_nWave2 3628687.158469 3827092.714771
+wvZoom -win $_nWave2 3674764.951599 3741442.228717
+wvSetCursor -win $_nWave2 3693893.678641 -snap {("G1" 8)}
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoom -win $_nWave2 3329172.616373 3789719.492204
+wvZoom -win $_nWave2 3544346.156719 3595937.473411
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoom -win $_nWave2 3502481.071863 3691931.152828
+wvZoom -win $_nWave2 3522150.752399 3548031.911001
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
@@ -357,27 +147,21 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 6843376.356589 -snap {("G2" 10)}
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomAll -win $_nWave2
-wvZoom -win $_nWave2 7055339.341085 7782069.573643
-wvSelectSignal -win $_nWave2 {( "G2" 3 )} 
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-debExit
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G1" 3 )} 
+wvSetCursor -win $_nWave2 2817568.852459 -snap {("G1" 3)}
