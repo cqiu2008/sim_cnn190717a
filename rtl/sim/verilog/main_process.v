@@ -35,9 +35,11 @@ parameter
     C_POWER_OF_1ADOTS       = 4         ,
     C_POWER_OF_PECI         = 4         ,
     C_POWER_OF_PECO         = 5         ,
+    C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
+    C_DIM_WIDTH             = 16        ,
     C_M_AXI_LEN_WIDTH       = 32        ,
     C_M_AXI_ADDR_WIDTH      = 32        ,
     C_M_AXI_DATA_WIDTH      = 128       ,
@@ -49,9 +51,17 @@ parameter
 // clk
 input                               I_clk               ,
 input                               I_rst               ,
-
-
-
+// reg
+input       [    C_CNV_CH_WIDTH-1:0]I_kernel_h          ,
+input       [    C_CNV_CH_WIDTH-1:0]I_stride_h          ,
+input       [    C_CNV_CH_WIDTH-1:0]I_pad_h             ,
+input       [       C_DIM_WIDTH-1:0]I_opara_width       ,
+input       [    C_CNV_CH_WIDTH-1:0]I_opara_co          ,
+input       [    C_CNV_CH_WIDTH-1:0]I_ipara_ci          ,
+input       [       C_DIM_WIDTH-1:0]I_opara_width       ,
+input       [       C_DIM_WIDTH-1:0]I_opara_height      ,
+input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
+input       [     C_CNV_K_WIDTH-1:0]I_cnvpara_kh        ,
 // fi master channel
 output reg  [C_M_AXI_LEN_WIDTH-1 :0]O_fimaxi_arlen      ,
 input                               I_fimaxi_arready    ,   
@@ -72,10 +82,83 @@ input                               I_fomaxi_bvalid     ,
 output reg                          O_fomaxi_bready     
 );
 
-localparam   C_NCH_GROUP      = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS + 1  ;
+localparam   C_WO_GROUP       = C_DIM_WIDTH - C_POWER_OF_PEPIX + 1  ;
+localparam   C_CI_GROUP       = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS+1; 
 
-wire [       C_DLY_WIDTH-1:0]S_dly                          ;
-reg  [       C_DLY_WIDTH-1:0]S_1dly                         ;
+reg          [       C_DIM_WIDTH-1:0]S_hcnt                         ;
+wire         [       C_DIM_WIDTH-1:0]S_hfirst[4]                    ;
+wire         [       C_DIM_WIDTH-1:0]S_kh[4]                        ;
+wire         [       C_DIM_WIDTH-1:0]S_hindex[4]                    ;
+reg                                  S_en_wr_obuf0  = 1'b1          ;
+reg                                  S_obuf_init_ok = 1'b0          ;
+reg          [       C_DIM_WIDTH-1:0]S_post_haddr   = -1            ;
+reg          [       C_DIM_WIDTH-1:0]S_ibuf0_index  = -1            ;
+reg          [       C_DIM_WIDTH-1:0]S_ibuf1_index  = -1            ;
+reg          [       C_DIM_WIDTH-1:0]S_sbuf0_index  = -1            ;
+reg          [       C_DIM_WIDTH-1:0]S_sbuf1_index  = -1            ;
+wire         [        C_CI_GROUP-1:0]S_ipara_ci_group               ;
+wire         [        C_CI_GROUP-1:0]S_ipara_ci_group_1d            ;
+reg          [C_M_AXI_ADDR_WIDTH-1:0]S_line_width_div16             ;
+reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_1t                ; 
+reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_2t                ; 
+reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_3t                ; 
+reg          [       C_DIM_WIDTH-1:0]S_hcnt_total                   ; 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// initial variable
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+genvar idx;
+generate
+    for(idx=0;idx<4;idx=idx+1)begin:hcntInst
+        transform_hcnt #(
+            .C_DSIZE            (C_DIM_WIDTH    ), 
+            .C_CNV_CH_WIDTH     (C_CNV_CH_WIDTH ))
+        u_transform_hcnt(
+            .I_clk           (I_clk             ),
+            .I_kernel_h      (I_kernel_h        ),
+            .I_stride_h      (I_stride_h        ),
+            .I_pad_h         (I_pad_h           ),
+            .I_hcnt          (S_hcnt            ),
+            .O_hfirst        (S_hfirst[idx]     ),
+            .O_kh            (S_kh[idx]         ),
+            .O_hindex        (S_hindex[idx]     )
+        );
+    end
+endgenerate
+
+ceil_power_of_2 #(
+    .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
+    .C_POWER2_NUM   (C_POWER_OF_1ADOTS  ))
+U0_next_co_group_peco(
+    .I_din (I_ipara_ci          ),
+    .O_dout(S_ipara_ci_group    )   
+);
+
+always @(posedge I_clk)begin
+    S_ipara_ci_group_1d <= S_ipara_ci_group                     ;
+    S_line_width_div16  <= S_ipara_ci_group_1d * I_ipara_width  ; 
+    S_hcnt_total_1t     <= I_opara_height * I_kernel_h          ;
+    S_hcnt_total_2t     <= 2 + I_kernel_h                       ; 
+    S_hcnt_total_3t     <= S_hcnt_total_1t + S_hcnt_total_2t    ; 
+    S_hcnt_total        <= S_hcnt_total_3t                      ;
+end
+
+// ceil_power_of_2 #(
+//     .C_DIN_WIDTH    (C_DIM_WIDTH        ),
+//     .C_POWER2_NUM   (C_POWER_OF_PEPIX   ))
+// U0_next_co_group_peco(
+//     .I_din (I_opara_width   ),
+//     .O_dout(S_wo_group      )   
+// );
+// 
+// ceil_power_of_2 #(
+//     .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
+//     .C_POWER2_NUM   (C_POWER_OF_1ADOTS  ))
+// U0_next_co_group(
+//     .I_din (I_next_co       ),
+//     .O_dout(S_next_co_group )   
+// );
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Naming specification                                                                         
