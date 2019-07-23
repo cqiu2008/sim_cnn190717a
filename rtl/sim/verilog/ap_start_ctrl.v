@@ -3,13 +3,13 @@
 //ZTE Company Confidential
 //--------------------------------------------------------------------------------------------------
 //Project Name : cnna
-//FILE NAME    : ap_done_lck.v
+//FILE NAME    : ap_start_ctrl.v
 //AUTHOR       : qiu.chao 
 //Department   : Technical Planning Department/System Products/ZTE
 //Email        : qiu.chao@zte.com.cn
 //--------------------------------------------------------------------------------------------------
 //Module Hiberarchy :
-//        |--U01_ap_done_lck
+//        |--U01_ap_start_ctrl
 //        |--U02_axim_wddr
 // cnna --|--U03_axis_reg
 //        |--U04_main_process
@@ -29,24 +29,28 @@
 //Critical Timing: none 
 //Asynchronous Interface: none 
 //END_HEADER----------------------------------------------------------------------------------------
-module ap_done_lck (
+module ap_start_ctrl (
 input                               I_clk           ,
-input                               I_ap_start      ,
+input                               I_ap_start_en   ,
+input                               I_ap_start_pose ,
 input                               I_ap_done       ,
-output reg                          O_ap_done_lck   
+output reg                          O_ap_start      
 );
 
 always @(posedge I_clk)begin
-    if(I_ap_start)begin
-        if(I_ap_done)begin
-            O_ap_done_lck <= 1'b1           ;
+    if(I_ap_start_en)begin
+        if (I_ap_start_pose)begin
+            O_ap_start  <= 1'b1     ;
+        end
+        else if(I_ap_done)begin
+            O_ap_start  <= 1'b0     ;
         end
         else begin
-            O_ap_done_lck <= O_ap_done_lck ;
+            O_ap_start <= O_ap_start ;
         end
     end
     else begin
-        O_ap_done_lck <= 1'b0;
+       O_ap_start <= 1'b0               ; 
     end
 end
 
