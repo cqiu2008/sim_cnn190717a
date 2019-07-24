@@ -59,8 +59,10 @@ input       [       C_DIM_WIDTH-1:0]I_hindex            ,
 input                               I_hcnt_odd          ,//1,3,5,...active
 input       [C_M_AXI_ADDR_WIDTH-1:0]I_line_width_div16  ,
 // mem
-input       [C_RAM_ADDR_WIDTH-1  :0]I_raddr             , 
-output reg  [C_RAM_DATA_WIDTH-1  :0]O_rdata             , 
+input       [C_RAM_ADDR_WIDTH-1  :0]I_raddr0            , 
+input       [C_RAM_ADDR_WIDTH-1  :0]I_raddr1            , 
+output reg  [C_RAM_DATA_WIDTH-1  :0]O_rdata0            , 
+output reg  [C_RAM_DATA_WIDTH-1  :0]O_rdata1            , 
 // fi master channel
 output      [C_M_AXI_LEN_WIDTH-1 :0]O_fimaxi_arlen      ,
 input                               I_fimaxi_arready    ,   
@@ -76,14 +78,26 @@ localparam   C_AP_START       = 16  ;
 wire [C_RAM_ADDR_WIDTH-1  :0]S_waddr            ;
 wire [C_RAM_DATA_WIDTH-1  :0]S_wdata            ;
 wire                         S_wr               ;
-reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr0            ;
-reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata0           ;
-wire [C_RAM_DATA_WIDTH-1  :0]S_rdata0           ;
-reg                          S_wr0              ;
-reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr1            ;
-reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata1           ;
-reg                          S_wr1              ;
-wire [C_RAM_DATA_WIDTH-1  :0]S_rdata1           ;
+reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr0a           ;
+reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata0a          ;
+wire [C_RAM_DATA_WIDTH-1  :0]S_rdata0a          ;
+reg                          S_wr0a             ;
+
+reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr0b           ;
+reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata0b          ;
+wire [C_RAM_DATA_WIDTH-1  :0]S_rdata0b          ;
+reg                          S_wr0b             ;
+
+reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr1a           ;
+reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata1a          ;
+reg                          S_wr1a             ;
+wire [C_RAM_DATA_WIDTH-1  :0]S_rdata1a          ;
+
+reg  [C_RAM_ADDR_WIDTH-1  :0]S_addr1b           ;
+reg  [C_RAM_DATA_WIDTH-1  :0]S_wdata1b          ;
+reg                          S_wr1b             ;
+wire [C_RAM_DATA_WIDTH-1  :0]S_rdata1b          ;
+
 wire [       C_DIM_WIDTH-1:0]S_ibuf0_index      ; 
 wire [       C_DIM_WIDTH-1:0]S_ibuf1_index      ; 
 reg                          S_hindex_less0     ;
@@ -200,41 +214,93 @@ u_fiddr_to_ibuf(
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // write to spram  
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-spram #(
+dpram #(
     .MEM_STYLE  (MEM_STYLE          ),//"distributed"
     .ASIZE      (C_RAM_ADDR_WIDTH   ),   
     .DSIZE      (C_RAM_DATA_WIDTH   ))
 u_ibuf0(
-    .I_rst      (I_rst              ),   
-    .I_clk      (I_clk              ),
-    .I_addr     (S_addr0            ),
-    .I_data     (S_wdata0           ),
-    .I_wr       (S_wr0              ),
-    .O_data     (S_rdata0           )
+    .I_rst		(I_rst              ),	
+    .I_clk0		(I_clk              ),
+    .I_addr0	(S_addr0a           ),
+    .I_wdata0	(S_wdata0a          ),
+    .I_ce0		(1'b1               ),
+    .I_wr0		(S_wr0a             ),
+    .O_rdata0	(S_rdata0a          ),
+    .I_clk1		(I_clk              ),
+    .I_addr1	(S_addr0b           ),
+    .I_wdata1	(S_wdata0b          ),
+    .I_ce1		(1'b1               ),
+    .I_wr1		(S_wr0b             ),
+    .O_rdata1	(S_rdata0b          ) 
 );
 
-spram #(
-    .MEM_STYLE   (MEM_STYLE         ),//"distributed"
-    .ASIZE       (C_RAM_ADDR_WIDTH  ),   
-    .DSIZE       (C_RAM_DATA_WIDTH  ))
+dpram #(
+    .MEM_STYLE  (MEM_STYLE          ),//"distributed"
+    .ASIZE      (C_RAM_ADDR_WIDTH   ),   
+    .DSIZE      (C_RAM_DATA_WIDTH   ))
 u_ibuf1(
-    .I_rst       (I_rst         ),   
-    .I_clk       (I_clk         ),
-    .I_addr      (S_addr1       ),
-    .I_data      (S_wdata1      ),
-    .I_wr        (S_wr1         ),
-    .O_data      (S_rdata1      )
+    .I_rst		(I_rst              ),	
+    .I_clk0		(I_clk              ),
+    .I_addr0	(S_addr1a           ),
+    .I_wdata0	(S_wdata1a          ),
+    .I_ce0		(1'b1               ),
+    .I_wr0		(S_wr1a             ),
+    .O_rdata0	(S_rdata1a          ),
+    .I_clk1		(I_clk              ),
+    .I_addr1	(S_addr1b           ),
+    .I_wdata1	(S_wdata1b          ),
+    .I_ce1		(1'b1               ),
+    .I_wr1		(S_wr1b             ),
+    .O_rdata1	(S_rdata1b          ) 
 );
+
+// spram #(
+//     .MEM_STYLE  (MEM_STYLE          ),//"distributed"
+//     .ASIZE      (C_RAM_ADDR_WIDTH   ),   
+//     .DSIZE      (C_RAM_DATA_WIDTH   ))
+// u_ibuf0(
+//     .I_rst      (I_rst              ),   
+//     .I_clk      (I_clk              ),
+//     .I_addr     (S_addr0            ),
+//     .I_data     (S_wdata0           ),
+//     .I_wr       (S_wr0              ),
+//     .O_data     (S_rdata0           )
+// );
+// 
+// spram #(
+//     .MEM_STYLE   (MEM_STYLE         ),//"distributed"
+//     .ASIZE       (C_RAM_ADDR_WIDTH  ),   
+//     .DSIZE       (C_RAM_DATA_WIDTH  ))
+// u_ibuf1(
+//     .I_rst       (I_rst         ),   
+//     .I_clk       (I_clk         ),
+//     .I_addr      (S_addr1       ),
+//     .I_data      (S_wdata1      ),
+//     .I_wr        (S_wr1         ),
+//     .O_data      (S_rdata1      )
+// );
 
 always @(posedge I_clk)begin
-    S_addr0     <= S_ibuf0_en ? S_waddr : I_raddr       ;
-    S_wdata0    <= S_wdata                              ;
-    S_wr0       <= S_wr && S_ibuf0_en                   ;        
-    S_addr1     <= S_ibuf1_en ? S_waddr : I_raddr       ;
-    S_wdata1    <= S_wdata                              ;
-    S_wr1       <= S_wr && S_ibuf1_en                   ;        
-    O_rdata     <= (~I_hcnt_odd)? S_rdata1 : S_rdata0   ;
+
+    S_addr0a    <= S_ibuf0_en ? S_waddr : I_raddr0      ;
+    S_wdata0a   <= S_wdata                              ;
+    S_wr0a      <= S_wr && S_ibuf0_en                   ;        
+
+    S_addr0b    <= I_raddr1                             ;
+    S_wdata0b   <= {C_RAM_DATA_WIDTH{1'b0}}             ; 
+    S_wr0b      <= 1'b0                                 ; 
+
+    S_addr1a    <= S_ibuf1_en ? S_waddr : I_raddr0      ;
+    S_wdata1a   <= S_wdata                              ;
+    S_wr1a      <= S_wr && S_ibuf1_en                   ;        
+
+    S_addr1b    <= I_raddr1                             ;
+    S_wdata1b   <= {C_RAM_DATA_WIDTH{1'b0}}             ; 
+    S_wr1b      <= 1'b0                                 ; 
+
+    O_rdata0    <= (~I_hcnt_odd)? S_rdata1a : S_rdata0a ;
+    O_rdata1    <= (~I_hcnt_odd)? S_rdata1b : S_rdata0b ;
+
 end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
