@@ -42,20 +42,19 @@ output                                  O_over_flag         ,
 output reg  [               C_WIDTH-1:0]O_cnt         
 );
 
-reg  S_vflag        ;
-reg  S_first_pose   ;
-wire S_cnt_b0       ;
-reg  S_type_lck     ;
-wire S_upper_case1  ;
-wire S_upper_case2  ;
-wire S_upper_case3  ;
-wire S_cnt_turn_every_clk   ;
-reg  S_upper_equal2 ;
-reg  S_upper_more2  ;
-reg  [C_WIDTH-1:0]S_cnt_upper_sub2;
-reg  [C_WIDTH-1:0]S_cnt_upper_sub1;
-
-reg   S_over_flag    ;
+reg                 S_vflag                     ;
+reg                 S_first_pose                ;
+wire                S_cnt_b0                    ;
+reg                 S_type_lck                  ;
+wire                S_upper_case1               ;
+wire                S_upper_case2               ;
+wire                S_upper_case3               ;
+wire                S_cnt_turn_every_clk        ;
+reg                 S_upper_equal2              ;
+reg                 S_upper_more2               ;
+reg  [C_WIDTH-1:0]  S_cnt_upper_sub2            ;
+reg  [C_WIDTH-1:0]  S_cnt_upper_sub1            ;
+reg                 S_over_flag                 ;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __    __

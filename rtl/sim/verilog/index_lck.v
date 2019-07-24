@@ -3,13 +3,13 @@
 //ZTE Company Confidential
 //--------------------------------------------------------------------------------------------------
 //Project Name : cnna
-//FILE NAME    : transform_hcnt.v
+//FILE NAME    : index_lck.v
 //AUTHOR       : qiu.chao 
 //Department   : Technical Planning Department/System Products/ZTE
 //Email        : qiu.chao@zte.com.cn
 //--------------------------------------------------------------------------------------------------
 //Module Hiberarchy :
-//        |--U01_transform_hcnt
+//        |--U01_index_lck
 //        |--U02_axim_wddr
 // cnna --|--U03_axis_reg
 //        |--U04_main_process
@@ -29,64 +29,29 @@
 //Critical Timing: none 
 //Asynchronous Interface: none 
 //END_HEADER----------------------------------------------------------------------------------------
-module transform_hcnt #(
+module index_lck #(
 parameter 
-    C_DSIZE                 = 16    ,
-    C_CNV_CH_WIDTH          = 8     , 
-    C_CNV_K_WIDTH           = 5     
-)(
-input                              I_clk           ,
-input       [    C_CNV_K_WIDTH-1:0]I_kernel_h      ,
-input       [    C_CNV_K_WIDTH-1:0]I_stride_h      ,
-input       [    C_CNV_K_WIDTH-1:0]I_pad_h         ,
-input       [           C_DSIZE-1:0]I_hcnt         ,
-output reg  [           C_DSIZE-1:0]O_hfirst       ,
-output reg  [           C_DSIZE-1:0]O_kh           ,
-output reg  [           C_DSIZE-1:0]O_hindex        
+    C_DIM_WIDTH =  16
+    )(
+input                               I_clk           ,
+input                               I_ap_start      ,
+input                               I_index_en      ,
+input       [       C_DIM_WIDTH-1:0]I_index         ,
+output reg  [       C_DIM_WIDTH-1:0]O_index_lck       
 );
 
-reg                         S_lessthan0                     ; 
-reg [           C_DSIZE-1:0]S_hcnt_div_kh                   ;
-reg [           C_DSIZE-1:0]S_hcnt_rem_kh                   ;
-reg [           C_DSIZE-1:0]S_hfirst                        ; 
-reg [           C_DSIZE-1:0]S_kh                            ;
-reg [           C_DSIZE-1:0]S_hindex                        ; 
-reg [           C_DSIZE-1:0]S_2d_hfirst                     ; 
-reg [           C_DSIZE-1:0]S_2d_kh                         ;
-reg [           C_DSIZE-1:0]S_2d_hindex                     ; 
-reg [           C_DSIZE-1:0]S_3d_hfirst_kh                  ; 
-reg [           C_DSIZE-1:0]S_4d_hindex                     ; 
-
 always @(posedge I_clk)begin
-    S_hcnt_div_kh   <= $signed(I_hcnt) / $signed(I_kernel_h)        ;
-    S_hcnt_rem_kh   <= $signed(I_hcnt) % $signed(I_kernel_h)        ;
-    S_2d_hfirst     <= $signed(S_hcnt_div_kh) * $signed(I_stride_h) ;
-    S_2d_kh         <= $signed(S_hcnt_rem_kh)                       ; 
-    S_3d_hfirst_kh  <= $signed(S_2d_hfirst) + $signed(S_2d_kh)      ;
-    S_4d_hindex     <= $signed(S_3d_hfirst_kh) - $signed(I_pad_h)   ;
-end
-
-always @(posedge I_clk)begin
-    S_lessthan0 <=  $signed(I_hcnt) < $signed(0) ;
-end
-
-always @(posedge I_clk)begin
-    if(S_lessthan0)begin
-        S_hfirst    <= $signed(-1); 
-        S_kh        <= $signed(-1);
-        S_hindex    <= $signed(-1); 
+    if(I_ap_start)begin
+        if( I_index_en)begin 
+            O_index_lck <= I_index      ;
+        end
+        else begin
+            O_index_lck <= O_index_lck  ; 
+        end
     end
     else begin
-        S_hfirst    <= $signed(S_2d_hfirst  );
-        S_kh        <= $signed(S_2d_kh      );
-        S_hindex    <= $signed(S_4d_hindex  );
+        O_index_lck <= {C_DIM_WIDTH{1'b1}};
     end
-end
-
-always @(posedge I_clk)begin
-    O_hfirst    <= S_hfirst   ; 
-    O_kh        <= S_kh       ;
-    O_hindex    <= S_hindex   ; 
 end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +59,6 @@ end
 // (1) w+"xxx" name type , means write clock domain                                             
 //        such as wrst,wclk,winc,wdata, wptr, waddr,wfull, and so on                            
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                
@@ -104,5 +68,8 @@ end
 //                                                                                                
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-endmodule
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//        u0_wptr_full                                                                           
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
+endmodule

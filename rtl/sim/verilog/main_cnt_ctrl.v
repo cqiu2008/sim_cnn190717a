@@ -64,7 +64,7 @@ input                               I_mpap_done
 localparam   C_WO_GROUP       = C_DIM_WIDTH - C_POWER_OF_PEPIX + 1  ;
 localparam   C_CI_GROUP       = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS+1; 
 
-wire                                 S_ap_start_1d       ;
+reg                                  S_ap_start_1d       ;
 wire                                 S_ldap_done_lck     ;
 wire                                 S_swap_done_lck     ;
 wire                                 S_peap_done_lck     ;
@@ -77,31 +77,33 @@ reg                                  S_hcnt_valid        ;
 wire                                 S_hcnt_overflag     ; 
 reg                                  S_ap_done_1d        ;
 reg                                  S_ap_done_2d        ;
+reg                                  S_ap_start_pose     ;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// initial variable
+// instance  
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ap_start_ctrl u_ldap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_ldap_done   ),
-    .O_ap_start      (O_ldap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_ldap_done       ),
+    .O_ap_start      (O_ldap_start      )
 );
 
 ap_done_lck u_ldap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_ldap_start    ),
-    .I_ap_done     (I_ldap_done     ),
-    .O_ap_done_lck (S_ldap_done_lck )  
+    .I_clk          (I_clk           ),
+    .I_ap_start     (O_ldap_start    ),
+    .I_ap_done      (I_ldap_done     ),
+    .O_ap_done_lck  (S_ldap_done_lck )  
 );
 
 ap_start_ctrl u_swap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_swap_done   ),
-    .O_ap_start      (O_swap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_swap_done       ),
+    .O_ap_start      (O_swap_start      )
 );
 
 ap_done_lck u_swap_done_lck(
@@ -112,11 +114,11 @@ ap_done_lck u_swap_done_lck(
 );
 
 ap_start_ctrl u_peap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_peap_done   ),
-    .O_ap_start      (O_peap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_peap_done       ),
+    .O_ap_start      (O_peap_start      )
 );
 
 ap_done_lck u_peap_done_lck(
@@ -127,11 +129,11 @@ ap_done_lck u_peap_done_lck(
 );
 
 ap_start_ctrl u_pqap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_pqap_done   ),
-    .O_ap_start      (O_pqap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_pqap_done       ),
+    .O_ap_start      (O_pqap_start      )
 );
 
 ap_done_lck u_pqap_done_lck(
@@ -142,11 +144,11 @@ ap_done_lck u_pqap_done_lck(
 );
 
 ap_start_ctrl u_ppap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_ppap_done   ),
-    .O_ap_start      (O_ppap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_ppap_done       ),
+    .O_ap_start      (O_ppap_start      )
 );
 
 ap_done_lck u_ppap_done_lck(
@@ -157,11 +159,11 @@ ap_done_lck u_ppap_done_lck(
 );
 
 ap_start_ctrl u_mpap_start(
-    .I_clk           (I_clk         ),
-    .I_ap_start_en   (I_ap_start    ),
-    .I_ap_start_pose (S_hcnt_valid  ),
-    .I_ap_done       (I_mpap_done   ),
-    .O_ap_start      (O_mpap_start  )
+    .I_clk           (I_clk             ),
+    .I_ap_start_en   (I_ap_start        ),
+    .I_ap_start_pose (S_ap_start_pose   ),
+    .I_ap_done       (I_mpap_done       ),
+    .O_ap_start      (O_mpap_start      )
 );
 
 ap_done_lck u_mpap_done_lck(
@@ -172,12 +174,14 @@ ap_done_lck u_mpap_done_lck(
 );
 
 always @(posedge I_clk)begin
-    S_all_done_lck  <=  S_ldap_done_lck & 
-                        S_swap_done_lck & 
-                        S_peap_done_lck & 
-                        S_pqap_done_lck & 
-                        S_ppap_done_lck & 
-                        S_mpap_done_lck ;
+    //S_all_done_lck  <=  S_ldap_done_lck & 
+    //                    S_swap_done_lck & 
+    //                    S_peap_done_lck & 
+    //                    S_pqap_done_lck & 
+    //                    S_ppap_done_lck & 
+    //                    S_mpap_done_lck ;
+    S_all_done_lck  <=  S_ldap_done_lck ; 
+
     S_all_done_lck_1d <= S_all_done_lck ;
 end
 
@@ -186,10 +190,14 @@ always @(posedge I_clk)begin
         S_hcnt_valid <= S_all_done_lck &&  (~S_all_done_lck_1d);
     end
     else begin
-        S_hcnt_valid <= 1'b1;
+        S_hcnt_valid <= 1'b0;
     end
 end
 
+always @(posedge I_clk)begin
+    S_ap_start_1d   <= I_ap_start                                       ;
+    S_ap_start_pose <= S_hcnt_valid || (I_ap_start && (!S_ap_start_1d)) ;
+end
 cm_cnt #(
     .C_WIDTH(C_DIM_WIDTH))
 u0_hcnt(

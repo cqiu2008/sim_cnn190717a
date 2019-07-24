@@ -3,7 +3,7 @@
 //ZTE Company Confidential
 //--------------------------------------------------------------------------------------------------
 //Project Name : cnna
-//FILE NAME    : main_process.v.v
+//FILE NAME    : main_process.v
 //AUTHOR       : qiu.chao 
 //Department   : Technical Planning Department/System Products/ZTE
 //Email        : qiu.chao@zte.com.cn
@@ -29,7 +29,7 @@
 //Critical Timing: none 
 //Asynchronous Interface: none 
 //END_HEADER----------------------------------------------------------------------------------------
-module main_process.v #(
+module main_process #(
 parameter 
     MEM_STYLE               = "block"   ,
     C_POWER_OF_1ADOTS       = 4         ,
@@ -45,29 +45,30 @@ parameter
     C_M_AXI_DATA_WIDTH      = 128       ,
     C_RAM_ADDR_WIDTH        = 9         ,
     C_RAM_DATA_WIDTH        = 128       
-
-
 )(
 // clk
 input                               I_clk               ,
 input                               I_rst               ,
+input                               I_ap_start          ,
+output                              O_ap_done           ,
 // reg
-input       [    C_CNV_CH_WIDTH-1:0]I_kernel_h          ,
-input       [    C_CNV_CH_WIDTH-1:0]I_stride_h          ,
-input       [    C_CNV_CH_WIDTH-1:0]I_pad_h             ,
-input       [       C_DIM_WIDTH-1:0]I_opara_width       ,
-input       [    C_CNV_CH_WIDTH-1:0]I_opara_co          ,
-input       [    C_CNV_CH_WIDTH-1:0]I_ipara_ci          ,
+input       [C_M_AXI_ADDR_WIDTH-1:0]I_base_addr         ,
+input       [C_M_AXI_ADDR_WIDTH-1:0]I_ipara_addr_img_in ,
+input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
 input       [       C_DIM_WIDTH-1:0]I_opara_width       ,
 input       [       C_DIM_WIDTH-1:0]I_opara_height      ,
+input       [    C_CNV_CH_WIDTH-1:0]I_opara_co          ,
+input       [    C_CNV_CH_WIDTH-1:0]I_ipara_ci          ,
 input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
-input       [     C_CNV_K_WIDTH-1:0]I_cnvpara_kh        ,
+input       [       C_DIM_WIDTH-1:0]I_ipara_height      ,
 // fi master channel
-output reg  [C_M_AXI_LEN_WIDTH-1 :0]O_fimaxi_arlen      ,
+output      [C_M_AXI_LEN_WIDTH-1 :0]O_fimaxi_arlen      ,
 input                               I_fimaxi_arready    ,   
 output                              O_fimaxi_arvalid    ,
-output reg  [C_M_AXI_ADDR_WIDTH-1:0]O_fimaxi_araddr     ,
-output reg                          O_fimaxi_rready     ,
+output      [C_M_AXI_ADDR_WIDTH-1:0]O_fimaxi_araddr     ,
+output                              O_fimaxi_rready     ,
 input                               I_fimaxi_rvalid     ,
 input       [C_M_AXI_DATA_WIDTH-1:0]I_fimaxi_rdata      , 
 // fo master channel
@@ -85,24 +86,38 @@ output reg                          O_fomaxi_bready
 localparam   C_WO_GROUP       = C_DIM_WIDTH - C_POWER_OF_PEPIX + 1  ;
 localparam   C_CI_GROUP       = C_CNV_CH_WIDTH - C_POWER_OF_1ADOTS+1; 
 
-reg          [       C_DIM_WIDTH-1:0]S_hcnt                         ;
+wire         [       C_DIM_WIDTH-1:0]S_hcnt                         ;
 wire         [       C_DIM_WIDTH-1:0]S_hfirst[4]                    ;
 wire         [       C_DIM_WIDTH-1:0]S_kh[4]                        ;
 wire         [       C_DIM_WIDTH-1:0]S_hindex[4]                    ;
 reg                                  S_en_wr_obuf0  = 1'b1          ;
 reg                                  S_obuf_init_ok = 1'b0          ;
-reg          [       C_DIM_WIDTH-1:0]S_post_haddr   = -1            ;
-reg          [       C_DIM_WIDTH-1:0]S_ibuf0_index  = -1            ;
-reg          [       C_DIM_WIDTH-1:0]S_ibuf1_index  = -1            ;
-reg          [       C_DIM_WIDTH-1:0]S_sbuf0_index  = -1            ;
-reg          [       C_DIM_WIDTH-1:0]S_sbuf1_index  = -1            ;
+//reg          [       C_DIM_WIDTH-1:0]S_post_haddr   = -1            ;
+//reg          [       C_DIM_WIDTH-1:0]S_ibuf0_index  = -1            ;
+//reg          [       C_DIM_WIDTH-1:0]S_ibuf1_index  = -1            ;
+//reg          [       C_DIM_WIDTH-1:0]S_sbuf0_index  = -1            ;
+//reg          [       C_DIM_WIDTH-1:0]S_sbuf1_index  = -1            ;
 wire         [        C_CI_GROUP-1:0]S_ipara_ci_group               ;
-wire         [        C_CI_GROUP-1:0]S_ipara_ci_group_1d            ;
+reg          [        C_CI_GROUP-1:0]S_ipara_ci_group_1d            ;
 reg          [C_M_AXI_ADDR_WIDTH-1:0]S_line_width_div16             ;
 reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_1t                ; 
 reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_2t                ; 
 reg          [       C_DIM_WIDTH-1:0]S_hcnt_total_3t                ; 
 reg          [       C_DIM_WIDTH-1:0]S_hcnt_total                   ; 
+wire                                 S_ldap_start                   ;
+wire                                 S_ldap_done                    ;
+wire                                 S_swap_start                   ;
+wire                                 S_swap_done                    ;
+wire                                 S_peap_start                   ;
+wire                                 S_peap_done                    ;
+wire                                 S_pqap_start                   ;
+wire                                 S_pqap_done                    ;
+wire                                 S_ppap_start                   ;
+wire                                 S_ppap_done                    ;
+wire                                 S_mpap_start                   ;
+wire                                 S_mpap_done                    ;   
+reg         [ C_M_AXI_ADDR_WIDTH-1:0]S_fibase_addr                  ; 
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // initial variable
@@ -113,7 +128,8 @@ generate
     for(idx=0;idx<4;idx=idx+1)begin:hcntInst
         transform_hcnt #(
             .C_DSIZE            (C_DIM_WIDTH    ), 
-            .C_CNV_CH_WIDTH     (C_CNV_CH_WIDTH ))
+            .C_CNV_CH_WIDTH     (C_CNV_CH_WIDTH ),
+            .C_CNV_K_WIDTH      (C_CNV_K_WIDTH  ))
         u_transform_hcnt(
             .I_clk           (I_clk             ),
             .I_kernel_h      (I_kernel_h        ),
@@ -143,6 +159,86 @@ always @(posedge I_clk)begin
     S_hcnt_total_3t     <= S_hcnt_total_1t + S_hcnt_total_2t    ; 
     S_hcnt_total        <= S_hcnt_total_3t                      ;
 end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// main cnt ctrl and ap controller 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+main_cnt_ctrl #(
+    .MEM_STYLE          (MEM_STYLE          ),
+    .C_POWER_OF_1ADOTS  (C_POWER_OF_1ADOTS  ),
+    .C_POWER_OF_PECI    (C_POWER_OF_PECI    ),
+    .C_POWER_OF_PECO    (C_POWER_OF_PECO    ),
+    .C_POWER_OF_PEPIX   (C_POWER_OF_PEPIX   ),
+    .C_POWER_OF_PECODIV (C_POWER_OF_PECODIV ),
+    .C_CNV_K_WIDTH      (C_CNV_K_WIDTH      ),
+    .C_CNV_CH_WIDTH     (C_CNV_CH_WIDTH     ),
+    .C_DIM_WIDTH        (C_DIM_WIDTH        ))
+u0_main_cnt_ctrl (
+    .I_clk              (I_clk              ),
+    .I_hcnt_total       (S_hcnt_total       ),
+    .O_hcnt             (S_hcnt             ),
+    .I_ap_start         (I_ap_start         ),
+    .O_ap_done          (O_ap_done          ),
+    .O_ldap_start       (S_ldap_start       ),
+    .I_ldap_done        (S_ldap_done        ),
+    .O_swap_start       (S_swap_start       ),
+    .I_swap_done        (S_swap_done        ),
+    .O_peap_start       (S_peap_start       ),
+    .I_peap_done        (S_peap_done        ),
+    .O_pqap_start       (S_pqap_start       ),
+    .I_pqap_done        (S_pqap_done        ),
+    .O_ppap_start       (S_ppap_start       ),
+    .I_ppap_done        (S_ppap_done        ),
+    .O_mpap_start       (S_mpap_start       ),
+    .I_mpap_done        (S_mpap_done        )    
+);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// load_image  
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+always @(posedge I_clk)begin
+    S_fibase_addr   <= I_base_addr + I_ipara_addr_img_in    ;
+end
+
+load_image #(
+    .MEM_STYLE            (MEM_STYLE             ),
+    .C_POWER_OF_1ADOTS    (C_POWER_OF_1ADOTS     ),
+    .C_POWER_OF_PECI      (C_POWER_OF_PECI       ),
+    .C_POWER_OF_PECO      (C_POWER_OF_PECO       ),
+    .C_POWER_OF_PEPIX     (C_POWER_OF_PEPIX      ),
+    .C_POWER_OF_PECODIV   (C_POWER_OF_PECODIV    ),
+    .C_CNV_K_WIDTH        (C_CNV_K_WIDTH         ),
+    .C_CNV_CH_WIDTH       (C_CNV_CH_WIDTH        ),
+    .C_DIM_WIDTH          (C_DIM_WIDTH           ),
+    .C_M_AXI_LEN_WIDTH    (C_M_AXI_LEN_WIDTH     ),
+    .C_M_AXI_ADDR_WIDTH   (C_M_AXI_ADDR_WIDTH    ),
+    .C_M_AXI_DATA_WIDTH   (C_M_AXI_DATA_WIDTH    ),
+    .C_RAM_ADDR_WIDTH     (C_RAM_ADDR_WIDTH      ),
+    .C_RAM_DATA_WIDTH     (C_RAM_DATA_WIDTH      ))
+u0_load_image(
+    .I_clk                (I_clk                 ),
+    .I_base_addr          (S_fibase_addr         ),
+    .I_allap_start        (I_ap_start            ),
+    .I_ap_start           (S_ldap_start          ),
+    .O_ap_done            (S_ldap_done           ),
+    .I_ipara_height       (I_ipara_height        ),
+    .I_hindex             (S_hindex[0]           ),
+    .I_hcnt_odd           (S_hcnt[0]             ),
+    .I_line_width_div16   (S_line_width_div16    ),
+    .I_raddr              (), 
+    .O_rdata              (), 
+    .O_fimaxi_arlen       (O_fimaxi_arlen        ),
+    .I_fimaxi_arready     (I_fimaxi_arready      ),   
+    .O_fimaxi_arvalid     (O_fimaxi_arvalid      ),
+    .O_fimaxi_araddr      (O_fimaxi_araddr       ),
+    .O_fimaxi_rready      (O_fimaxi_rready       ),
+    .I_fimaxi_rvalid      (I_fimaxi_rvalid       ),
+    .I_fimaxi_rdata       (I_fimaxi_rdata        )
+);
+
+
 
 // ceil_power_of_2 #(
 //     .C_DIN_WIDTH    (C_DIM_WIDTH        ),
