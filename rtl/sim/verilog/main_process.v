@@ -37,6 +37,7 @@ parameter
     C_POWER_OF_PECO         = 5         ,
     C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
+    C_RDB_PIX               = 2         ,//
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
     C_DIM_WIDTH             = 16        ,
@@ -55,9 +56,12 @@ output                              O_ap_done           ,
 input       [C_M_AXI_ADDR_WIDTH-1:0]I_base_addr         ,
 input       [C_M_AXI_ADDR_WIDTH-1:0]I_ipara_addr_img_in ,
 input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_kernel_w          ,//
 input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_stride_w          ,//
 input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
-input       [       C_DIM_WIDTH-1:0]I_opara_width       ,
+input       [     C_CNV_K_WIDTH-1:0]I_pad_w             ,//
+input       [       C_DIM_WIDTH-1:0]I_opara_width       ,//
 input       [       C_DIM_WIDTH-1:0]I_opara_height      ,
 input       [    C_CNV_CH_WIDTH-1:0]I_opara_co          ,
 input       [    C_CNV_CH_WIDTH-1:0]I_ipara_ci          ,

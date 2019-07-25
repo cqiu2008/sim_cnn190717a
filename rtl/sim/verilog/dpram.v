@@ -31,62 +31,62 @@
 //END_HEADER------------------------------------------------------------------
 `timescale 1 ns / 100 ps
 module dpram #(
-parameter 	
-	MEM_STYLE  = "block",
-	DSIZE = 32		,
-	ASIZE = 10		
+parameter   
+    MEM_STYLE  = "block",
+    DSIZE = 32          ,
+    ASIZE = 10      
 )(
-input								I_rst			,	
-input								I_clk0			,
-input		[ASIZE-1		 	 :0]I_addr0			,
-input		[DSIZE-1		 	 :0]I_wdata0		,
-input								I_ce0			,
-input								I_wr0			,
-output reg	[DSIZE-1		     :0]O_rdata0		,
-input								I_clk1			,
-input		[ASIZE-1		 	 :0]I_addr1			,
-input		[DSIZE-1		 	 :0]I_wdata1		,
-input								I_ce1			,
-input								I_wr1			,
-output reg	[DSIZE-1		     :0]O_rdata1		 
+input                               I_rst           ,   
+input                               I_clk0          ,
+input       [ASIZE-1             :0]I_addr0         ,
+input       [DSIZE-1             :0]I_wdata0        ,
+input                               I_ce0           ,
+input                               I_wr0           ,
+output reg  [DSIZE-1             :0]O_rdata0        ,
+input                               I_clk1          ,
+input       [ASIZE-1             :0]I_addr1         ,
+input       [DSIZE-1             :0]I_wdata1        ,
+input                               I_ce1           ,
+input                               I_wr1           ,
+output reg  [DSIZE-1             :0]O_rdata1         
 );
 
 initial begin
-#0	O_rdata0 <= {DSIZE{1'b0}};
-#0	O_rdata1 <= {DSIZE{1'b0}};
+#0  O_rdata0 <= {DSIZE{1'b0}};
+#0  O_rdata1 <= {DSIZE{1'b0}};
 end
 
 localparam DEPTH = 1 << ASIZE;
 (* ram_style=MEM_STYLE *)reg [DSIZE-1:0] mem [0:DEPTH-1];
 
 always @(posedge I_clk0)begin
-	if(I_wr0 && I_ce0)begin
-		mem[I_addr0] <= I_wdata0;
-	end
+    if(I_wr0 && I_ce0)begin
+        mem[I_addr0] <= I_wdata0;
+    end
 end
 
 always @(posedge I_clk0)begin
-	if(I_rst)begin
-		O_rdata0 <= {DSIZE{1'b0}}	; 
-	end
-	else begin 
-		O_rdata0 <= mem[I_addr0]	;
-	end
+    if(I_rst)begin
+        O_rdata0 <= {DSIZE{1'b0}}   ; 
+    end
+    else begin 
+        O_rdata0 <= mem[I_addr0]    ;
+    end
 end
 
 always @(posedge I_clk1)begin
-	if(I_wr1 && I_ce1)begin
-		mem[I_addr1] <= I_wdata1;
-	end
+    if(I_wr1 && I_ce1)begin
+        mem[I_addr1] <= I_wdata1;
+    end
 end
 
 always @(posedge I_clk1)begin
-	if(I_rst)begin
-		O_rdata1 <= {DSIZE{1'b0}}	; 
-	end
-	else begin 
-		O_rdata1 <= mem[I_addr1]	;
-	end
+    if(I_rst)begin
+        O_rdata1 <= {DSIZE{1'b0}}   ; 
+    end
+    else begin 
+        O_rdata1 <= mem[I_addr1]    ;
+    end
 end
 
 endmodule

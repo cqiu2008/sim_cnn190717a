@@ -61,6 +61,10 @@ output reg  [C_RAM_DATA_WIDTH-1  :0]O_ibuf1_rdata       ,
 input       [       C_DIM_WIDTH-1:0]I_ipara_height      ,
 input       [       C_DIM_WIDTH-1:0]I_hindex            ,
 input                               I_hcnt_odd           //1,3,5,...active
+input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
+input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
+input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
 //input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
@@ -72,9 +76,22 @@ input                               I_hcnt_odd           //1,3,5,...active
 //input       [       C_DIM_WIDTH-1:0]I_ipara_height      ,
 );
 
-localparam   C_WO_GROUP       = C_DIM_WIDTH - C_POWER_OF_PEPIX + 1  ;
+wire [       C_DIM_WIDTH-1:0]S_hcnt             ;
+wire                         S_hindex_suite     ;
+wire [       C_DIM_WIDTH-1:0]S_sbuf0_index      ; 
+wire [       C_DIM_WIDTH-1:0]S_sbuf1_index      ; 
+reg                          S_sbuf0_index_neq  ; 
+reg                          S_sbuf1_index_neq  ; 
+reg  [        C_AP_START-1:0]S_ap_start_shift   ; 
+reg                          S_swap_start       ;
+wire                         S_swap_done        ;
+reg                          S_sbuf0_en         ;
+reg                          S_sbuf1_en         ;
+reg                          S_no_suite_done    ;
 
-wire         [       C_DIM_WIDTH-1:0]S_hcnt                         ;
+
+localparam   C_AP_START       = 16                              ; 
+localparam   C_PEPIX          ={1'b1,{C_POWER_OF_PEPIX{1'b0}}}  ;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // initial variable
@@ -99,6 +116,46 @@ u_sbuf1_index(
     .I_index      (I_hindex       ),
     .O_index_lck  (S_sbuf1_index  )     
 );
+
+suite_range #(
+    .C_DIM_WIDTH (C_DIM_WIDTH))
+u_suite_range(
+    .I_clk          (I_clk           ),
+    .I_index        (I_hindex        ),
+    .I_index_upper  (I_ipara_height  ),
+    .O_index_suite  (S_hindex_suite  )
+);
+
+always @(posedge I_clk)begin
+    S_ap_start_shift    <= {S_ap_start_shift[C_AP_START-2:0],I_ap_start}        ;
+    S_sbuf0_index_neq   <= S_sbuf0_index != I_hindex                            ; 
+    S_sbuf1_index_neq   <= S_sbuf1_index != I_hindex                            ; 
+end
+
+always @(posedge I_clk)begin
+    if(I_ap_start)begin
+        if(S_ap_start_shift[7:6] == 2'b01)begin
+            S_sbuf0_en  <= S_hindex_suite && S_sbuf0_index_neq && ( I_hcnt_odd) ;
+            S_sbuf1_en  <= S_hindex_suite && S_sbuf1_index_neq && (~I_hcnt_odd) ;
+        end
+        else begin
+            S_sbuf0_en  <= S_sbuf0_en   ; 
+            S_sbuf1_en  <= S_sbuf1_en   ; 
+        end
+    end
+    else begin
+        S_sbuf0_en <= 1'b0;
+        S_sbuf1_en <= 1'b0;
+    end
+end
+always @(posedge I_clk)begin
+    S_swap_start <= S_sbuf0_en | S_sbuf1_en;
+end
+
+always @(posedge I_clk)begin
+    S_no_suite_done  = (S_ap_start_shift[9:8]==2'b01) && (~S_swap_start); 
+    O_ap_done        = S_no_suite_done || S_swap_done                   ; 
+end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // main cnt ctrl and ap controller 
