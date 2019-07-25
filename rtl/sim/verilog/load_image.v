@@ -100,9 +100,7 @@ wire [C_RAM_DATA_WIDTH-1  :0]S_rdata1b          ;
 
 wire [       C_DIM_WIDTH-1:0]S_ibuf0_index      ; 
 wire [       C_DIM_WIDTH-1:0]S_ibuf1_index      ; 
-reg                          S_hindex_less0     ;
-reg                          S_hindex_lessupper ;
-reg                          S_hindex_suite     ;
+wire                         S_hindex_suite     ;
 reg                          S_ibuf0_index_neq  ; 
 reg                          S_ibuf1_index_neq  ; 
 reg  [C_M_AXI_ADDR_WIDTH-1:0]S_fi_base_addr_t   ; 
@@ -118,10 +116,16 @@ reg                          S_no_suite_done    ;
 // initial variable  
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+suite_range #(
+    .C_DIM_WIDTH (C_DIM_WIDTH))
+u_suite_range(
+    .I_clk          (I_clk           ),
+    .I_index        (I_hindex        ),
+    .I_index_upper  (I_ipara_height  ),
+    .O_index_suite  (S_hindex_suite  )
+);
+
 always @(posedge I_clk)begin
-    S_hindex_less0      <= ($signed(I_hindex) < 0)                              ;
-    S_hindex_lessupper  <= ($signed(I_hindex) < I_ipara_height)                 ; 
-    S_hindex_suite      <= (!S_hindex_less0) && S_hindex_lessupper              ;
     S_ibuf0_index_neq   <= S_ibuf0_index != I_hindex                            ; 
     S_ibuf1_index_neq   <= S_ibuf1_index != I_hindex                            ; 
     S_fi_base_addr_t    <= I_hindex * I_line_width_div16                        ; 
