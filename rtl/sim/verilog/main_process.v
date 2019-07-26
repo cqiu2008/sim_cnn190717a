@@ -37,7 +37,7 @@ parameter
     C_POWER_OF_PECO         = 5         ,
     C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
-    C_RDB_PIX               = 2         ,//
+    C_POWER_OF_RDBPIX       = 1         , 
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
     C_DIM_WIDTH             = 16        ,

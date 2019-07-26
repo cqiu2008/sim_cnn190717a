@@ -37,6 +37,7 @@ parameter
     C_POWER_OF_PECO         = 5         ,
     C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
+    C_POWER_OF_RDBPIX       = 1         , 
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
     C_DIM_WIDTH             = 16        ,
@@ -61,9 +62,9 @@ output reg  [C_RAM_DATA_WIDTH-1  :0]O_ibuf1_rdata       ,
 input       [       C_DIM_WIDTH-1:0]I_ipara_height      ,
 input       [       C_DIM_WIDTH-1:0]I_hindex            ,
 input                               I_hcnt_odd           //1,3,5,...active
-input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
-input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
-input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
+input       [     C_CNV_K_WIDTH-1:0]I_kernel_w          ,
+input       [     C_CNV_K_WIDTH-1:0]I_stride_w          ,
+input       [     C_CNV_K_WIDTH-1:0]I_pad_w             ,
 input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
 //input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
@@ -76,26 +77,105 @@ input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
 //input       [       C_DIM_WIDTH-1:0]I_ipara_height      ,
 );
 
-wire [       C_DIM_WIDTH-1:0]S_hcnt             ;
-wire                         S_hindex_suite     ;
-wire [       C_DIM_WIDTH-1:0]S_sbuf0_index      ; 
-wire [       C_DIM_WIDTH-1:0]S_sbuf1_index      ; 
-reg                          S_sbuf0_index_neq  ; 
-reg                          S_sbuf1_index_neq  ; 
-reg  [        C_AP_START-1:0]S_ap_start_shift   ; 
-reg                          S_swap_start       ;
-wire                         S_swap_done        ;
-reg                          S_sbuf0_en         ;
-reg                          S_sbuf1_en         ;
-reg                          S_no_suite_done    ;
+localparam   C_AP_START       = 16                                      ; 
+localparam   C_RDBPIX         = {1'b1,{C_POWER_OF_RDBPIX{1'b0}}}        ;
+localparam   C_PEPIX          ={1'b1,{C_POWER_OF_PEPIX{1'b0}}}          ;
+localparam   C_WOT_DIV_PEPIX  =C_DIM_WIDTH - C_POWER_OF_PEPIX+1         ;
+localparam   C_WOT_DIV_RDBPIX =C_DIM_WIDTH - C_POWER_OF_RDBPIX+1        ;
+
+wire [       C_DIM_WIDTH-1:0]S_hcnt                                     ;
+wire                         S_hindex_suite                             ;
+wire [       C_DIM_WIDTH-1:0]S_sbuf0_index                              ; 
+wire [       C_DIM_WIDTH-1:0]S_sbuf1_index                              ; 
+reg                          S_sbuf0_index_neq                          ; 
+reg                          S_sbuf1_index_neq                          ; 
+reg  [        C_AP_START-1:0]S_ap_start_shift                           ; 
+reg                          S_swap_start                               ;
+wire                         S_swap_done                                ;
+reg                          S_sbuf0_en                                 ;
+reg                          S_sbuf1_en                                 ;
+reg                          S_no_suite_done                            ;
+reg                          S_split_en                                 ;
+reg  [     C_CNV_K_WIDTH-1:0]S_pepix_stride_w                           ;
+reg  [     C_CNV_K_WIDTH-1:0]S_pesub1pix_stride_w                       ;
+reg  [       C_DIM_WIDTH-1:0]S_pesub1pix_stride_w_addkernel             ;
+wire [  C_WOT_DIV_RDBPIX-1:0]S_pesub1pix_stride_w_addkernel_div_rdb     ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_total1                                ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_total2                                ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_total3                                ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_total                                 ;
+wire [   C_WOT_DIV_PEPIX-1:0]S_wot_div_pepix                            ;
+wire [  C_WOT_DIV_RDBPIX-1:0]S_wot_div_rdbpix                           ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_group                                 ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_consume                               ;
+reg  [       C_DIM_WIDTH-1:0]S_wPart                                    ;
+reg  [       C_DIM_WIDTH-1:0]S_id[C_RDBPIX]                             ;
+reg  [       C_DIM_WIDTH-1:0]S_windex[C_RDBPIX]                         ;
+////write here by cqiu 190726a 
 
 
-localparam   C_AP_START       = 16                              ; 
-localparam   C_PEPIX          ={1'b1,{C_POWER_OF_PEPIX{1'b0}}}  ;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // initial variable
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+always @(posedge I_clk)begin
+    S_pepix_stride_w                <= {I_stride_w[C_CNV_K_WIDTH-C_POWER_OF_PEPIX-1:0],C_POWER_OF_PEPIX{1'b0}}  ;
+    S_pesub1pix_stride_w            <= S_pepix_stride_w - I_stride_w                                            ; 
+    S_pesub1pix_stride_w_addkernel  <= S_pesub1pix_stride_w + I_kernel_w                                        ;
+    S_split_en                      <= ~(I_kernel_w < S_pepix_stride_w)                                         ;
+
+    S_wo_total1                     <= I_ipara_width + {I_pad_w[C_CNV_K_WIDTH-1:0],1'b0}                        ;
+    S_wo_total2                     <= S_wo_total1 - I_kernel_w                                                 ; 
+    S_wo_total3                     <= S_wo_total2 / I_stride_w                                                 ;////divtag
+    S_wo_total                      <= S_wo_total3 + 1                                                          ;
+    S_wPart                         <= {{(C_DIM_WIDTH-C_CNV_K_WIDTH-C_POWER_OF_PEPIX){1'b0}},
+                                        I_stride_w[C_CNV_K_WIDTH-1:0],{C_POWER_OF_PEPIX{1'b0}}}                 ;
+end
+
+ceil_power_of_2 #(
+    .C_DIN_WIDTH    (C_DIM_WIDTH        ),
+    .C_POWER2_NUM   (C_POWER_OF_PEPIX   ))
+U0_wot_div_pepix(
+    .I_din (S_wo_total          ),
+    .O_dout(S_wot_div_pepix     )   
+);
+
+ceil_power_of_2 #(
+    .C_DIN_WIDTH    (C_DIM_WIDTH        ),
+    .C_POWER2_NUM   (C_POWER_OF_RDBPIX  ))
+U0_wot_div_rdbpix(
+    .I_din (S_wo_total1         ),
+    .O_dout(S_wot_div_rdbpix    )   
+);
+
+always @(posedge I_clk)begin
+    if(S_split_en)begin
+        S_wo_group  <=   S_wot_div_pepix    ;
+    end
+    else begin
+        S_wo_group  <=   S_wot_div_rdbpix   ;
+    end
+end
+
+ceil_power_of_2 #(
+    .C_DIN_WIDTH    (C_DIM_WIDTH        ),
+    .C_POWER2_NUM   (C_POWER_OF_RDBPIX  ))
+U0_pesub1pix_div_rdb(
+    .I_din (S_pesub1pix_stride_w_addkernel              ), 
+    .O_dout(S_pesub1pix_stride_w_addkernel_div_rdb      )
+);
+
+always @(posedge I_clk)begin
+    if(S_split_en)begin
+        S_wo_consume <= S_pesub1pix_stride_w_addkernel_div_rdb  ;   
+    end
+    else begin
+        S_wo_consume <= {{(C_DIM_WIDTH-1){1'b0}},1'b1}; 
+    end
+end
+
+//    C_POWER_OF_RDBPIX       = 1         , 
 
 index_lck #(
     .C_DIM_WIDTH (C_DIM_WIDTH ))
