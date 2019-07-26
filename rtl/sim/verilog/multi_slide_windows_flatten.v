@@ -111,6 +111,11 @@ reg  [       C_DIM_WIDTH-1:0]S_wo_consume                               ;
 reg  [       C_DIM_WIDTH-1:0]S_wPart                                    ;
 reg  [       C_DIM_WIDTH-1:0]S_id[C_RDBPIX]                             ;
 reg  [       C_DIM_WIDTH-1:0]S_windex[C_RDBPIX]                         ;
+reg  [       C_DIM_WIDTH-1:0]S_wremainder[C_RDBPIX]                     ;
+reg  [       C_DIM_WIDTH-1:0]S_wthreshold[C_RDBPIX]                     ;
+reg  [       C_DIM_WIDTH-1:0]S_idforpix[C_RDBPIX]                       ;
+reg  [       C_DIM_WIDTH-1:0]S_pfirst[C_RDBPIX]                         ;
+
 ////write here by cqiu 190726a 
 
 
