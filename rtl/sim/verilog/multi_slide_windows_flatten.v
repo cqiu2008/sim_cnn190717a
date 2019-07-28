@@ -38,6 +38,7 @@ parameter
     C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
     C_POWER_OF_RDBPIX       = 1         , 
+    C_QIBUF_WIDTH           = 12        ,
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
     C_DIM_WIDTH             = 16        ,
@@ -66,6 +67,7 @@ input       [     C_CNV_K_WIDTH-1:0]I_kernel_w          ,
 input       [     C_CNV_K_WIDTH-1:0]I_stride_w          ,
 input       [     C_CNV_K_WIDTH-1:0]I_pad_w             ,
 input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
+input       [    C_CNV_CH_WIDTH-1:0]I_ipara_ci          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_kernel_h          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_stride_h          ,
 //input       [     C_CNV_K_WIDTH-1:0]I_pad_h             ,
@@ -79,9 +81,11 @@ input       [       C_DIM_WIDTH-1:0]I_ipara_width       ,
 
 localparam   C_AP_START       = 16                                      ; 
 localparam   C_RDBPIX         = {1'b1,{C_POWER_OF_RDBPIX{1'b0}}}        ;
-localparam   C_PEPIX          ={1'b1,{C_POWER_OF_PEPIX{1'b0}}}          ;
-localparam   C_WOT_DIV_PEPIX  =C_DIM_WIDTH - C_POWER_OF_PEPIX+1         ;
-localparam   C_WOT_DIV_RDBPIX =C_DIM_WIDTH - C_POWER_OF_RDBPIX+1        ;
+localparam   C_PEPIX          = {1'b1,{C_POWER_OF_PEPIX{1'b0}}}         ;
+localparam   C_WOT_DIV_PEPIX  = C_DIM_WIDTH - C_POWER_OF_PEPIX+1        ;
+localparam   C_WOT_DIV_RDBPIX = C_DIM_WIDTH - C_POWER_OF_RDBPIX+1       ;
+localparam   C_NCH_GROUP      = C_CNV_CH_WIDTH - C_POWER_OF_PECI + 1    ;
+localparam   C_PADDING        = 6                                       ;
 
 wire [       C_DIM_WIDTH-1:0]S_hcnt                                     ;
 wire                         S_hindex_suite                             ;
@@ -106,16 +110,31 @@ reg  [       C_DIM_WIDTH-1:0]S_wo_total3                                ;
 reg  [       C_DIM_WIDTH-1:0]S_wo_total                                 ;
 wire [   C_WOT_DIV_PEPIX-1:0]S_wot_div_pepix                            ;
 wire [  C_WOT_DIV_RDBPIX-1:0]S_wot_div_rdbpix                           ;
-reg  [       C_DIM_WIDTH-1:0]S_wo_group                                 ;
-reg  [       C_DIM_WIDTH-1:0]S_wo_consume                               ;
 reg  [       C_DIM_WIDTH-1:0]S_wPart                                    ;
 reg  [       C_DIM_WIDTH-1:0]S_id[C_RDBPIX]                             ;
 reg  [       C_DIM_WIDTH-1:0]S_windex[C_RDBPIX]                         ;
 reg  [       C_DIM_WIDTH-1:0]S_wremainder[C_RDBPIX]                     ;
 reg  [       C_DIM_WIDTH-1:0]S_wthreshold[C_RDBPIX]                     ;
-reg  [       C_DIM_WIDTH-1:0]S_idforpix[C_RDBPIX]                       ;
-reg  [       C_DIM_WIDTH-1:0]S_pfirst[C_RDBPIX]                         ;
-
+reg  [       C_DIM_WIDTH-1:0]S_idforpix[C_RDBPIX][C_PEPIX]              ;
+reg  [       C_DIM_WIDTH-1:0]S_pfirst[C_RDBPIX][C_PEPIX]                ;
+reg  [       C_DIM_WIDTH-1:0]S_k[C_RDBPIX][C_PEPIX]                     ;
+reg  [       C_DIM_WIDTH-1:0]S_depth[C_RDBPIX][C_PEPIX]                 ;
+reg  [       C_DIM_WIDTH-1:0]S_ibufaddr[C_RDBPIX]                       ;
+reg  [     C_QIBUF_WIDTH-1:0]S_sum[C_RDBPIX]                            ;
+wire [       C_NCH_GROUP-1:0]S_cig_cnt                                  ;
+wire [       C_NCH_GROUP-1:0]S_ci_group                                 ;   
+reg  [       C_NCH_GROUP-1:0]S_ci_group_1d                              ;   
+reg                          S_cig_valid                                ;
+wire                         S_cig_over_flag                            ; 
+wire [       C_DIM_WIDTH-1:0]S_woc_cnt                                  ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_consume                               ;
+wire                         S_woc_valid                                ;
+wire                         S_woc_over_flag                            ; 
+wire [       C_DIM_WIDTH-1:0]S_wog_cnt                                  ;
+reg  [       C_DIM_WIDTH-1:0]S_wo_group                                 ;
+wire                         S_wog_valid                                ;
+wire                         S_wog_over_flag                            ; 
+reg  [         C_PADDING-1:0]S_padding_cnt                              ;
 ////write here by cqiu 190726a 
 
 
@@ -178,6 +197,18 @@ always @(posedge I_clk)begin
     else begin
         S_wo_consume <= {{(C_DIM_WIDTH-1){1'b0}},1'b1}; 
     end
+end
+
+ceil_power_of_2 #(
+    .C_DIN_WIDTH    (C_CNV_CH_WIDTH     ),
+    .C_POWER2_NUM   (C_POWER_OF_PECI    ))
+U0_ci_group(
+    .I_din (I_ipara_ci),
+    .O_dout(S_ci_group )   
+);
+
+always @(posedge I_clk)begin
+    S_ci_group_1d <= S_ci_group;
 end
 
 //    C_POWER_OF_RDBPIX       = 1         , 
@@ -243,8 +274,66 @@ always @(posedge I_clk)begin
 end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// main cnt ctrl and ap controller 
+// loop cnt ctrl 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+always @(posedge I_clk)begin
+    if(S_swap_start)begin
+        if(&S_padding_cnt)begin
+            S_padding_cnt <= S_padding_cnt  ;
+        end
+        else begin
+            S_padding_cnt <= S_padding_cnt  + {{(C_PADDING-1){1'b0}},1'b1};
+        end
+    else begin
+        S_padding_cnt <= {C_PADDING{1'b0}}; 
+    end
+end
+
+always @(posedge I_clk)begin
+    if(S_padding_cnt > 8)begin
+        S_cig_valid <= 1'b1;
+    end
+    else begin
+        S_cig_valid <= 1'b0;
+    end
+end
+
+cm_cnt #(
+    .C_WIDTH(C_NCH_GROUP))
+U0_loop1_cig_cnt (
+.I_clk              (I_clk                  ),
+.I_cnt_en           (S_swap_start           ),
+.I_lowest_cnt_valid (S_cig_valid            ),
+.I_cnt_valid        (S_cig_valid            ),
+.I_cnt_upper        (S_cig_group_1d         ),
+.O_over_flag        (S_cig_over_flag        ),
+.O_cnt              (S_cig_cnt              )
+);
+
+cm_cnt #(
+    .C_WIDTH(C_DIM_WIDTH))
+U0_loop2_woc_cnt(
+.I_clk              (I_clk                  ),
+.I_cnt_en           (S_swap_start           ),
+.I_lowest_cnt_valid (S_cig_valid            ),
+.I_cnt_valid        (S_woc_valid            ),
+.I_cnt_upper        (S_wo_consume           ),
+.O_over_flag        (S_woc_over_flag        ),
+.O_cnt              (S_woc_cnt              )
+);
+
+cm_cnt #(
+    .C_WIDTH(C_DIM_WIDTH))
+U0_loop3_wog_cnt(
+.I_clk              (I_clk                  ),
+.I_cnt_en           (S_swap_start           ),
+.I_lowest_cnt_valid (S_cig_valid            ),
+.I_cnt_valid        (S_wog_valid            ),
+.I_cnt_upper        (S_wo_group             ),
+.O_over_flag        (S_wog_over_flag        ),
+.O_cnt              (S_wog_cnt              )
+);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // load_image  
