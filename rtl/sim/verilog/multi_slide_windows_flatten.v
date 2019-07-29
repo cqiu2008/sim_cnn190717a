@@ -301,6 +301,8 @@ always @(posedge I_clk)begin
     S_swap_start <= S_sbuf0_en | S_sbuf1_en;
 end
 
+assign S_swap_done = 1'b0;
+
 always @(posedge I_clk)begin
     S_no_suite_done  <= (S_ap_start_shift[9:8]==2'b01) && (~S_swap_start); 
     O_ap_done        <= S_no_suite_done || S_swap_done                   ; 
@@ -403,10 +405,10 @@ generate
                 suite_range #(
                     .C_DIM_WIDTH (C_DIM_WIDTH))
                 u_windex_suite_range(
-                    .I_clk          (I_clk                          ),
-                    .I_index        (S_windex[ws_idx]               ),
-                    .I_index_upper  (I_kernel_w                     ),
-                    .O_index_suite  (S_windex_suite[ws_idx][p_idx]  )
+                    .I_clk          (I_clk                                              ),
+                    .I_index        (S_windex[ws_idx]                                   ),
+                    .I_index_upper  ({{(C_DIM_WIDTH-C_CNV_K_WIDTH){1'b0}},I_kernel_w}   ),
+                    .O_index_suite  (S_windex_suite[ws_idx][p_idx]                      )
                 );
 
             end //ws_idx

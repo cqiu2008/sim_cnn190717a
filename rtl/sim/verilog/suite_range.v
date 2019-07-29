@@ -39,9 +39,20 @@ input       [       C_DIM_WIDTH-1:0]I_index_upper   ,
 output                              O_index_suite   
 );
 
-reg                          S_index_less0     ;
-reg                          S_index_lessupper ;
-reg                          S_index_suite     ;
+// function clogb2(input [C_DIM_WIDTH-1:0]depth);
+//     begin
+//         for(clogb2=0;depth>0;clogb2=clogb2+1)begin
+//             depth = depth >> 1;
+//         end
+//     end
+// endfunction
+// 
+// localparam C_REAL_WIDTH = clog2(I_index_upper);
+
+reg                          S_index_less0      ;
+reg                          S_index_lessupper  ;
+reg                          S_index_suite      ;
+
 
 always @(posedge I_clk)begin
     S_index_less0      <= ($signed(I_index) < 0)                            ;

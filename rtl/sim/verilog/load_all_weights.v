@@ -140,18 +140,18 @@ load_bias #(
     .C_RAM_ADDR_WIDTH    (C_RAM_ADDR_WIDTH     ),
     .C_RAM_DATA_WIDTH    (C_RAM_DATA_WIDTH     ))
 u0_load_bias (
-    .I_clk          (I_clk           ),
-    .I_ap_start     (S_bap_start     ),
-    .O_ap_done      (S_bap_done      ),
-    .I_base_addr    (S_bbase_addr    ),
-    .I_len          (S_blen          ),
-    .O_maxi_arlen   (S_bmaxi_arlen   ),
-    .I_maxi_arready (I_maxi_arready  ),   
-    .O_maxi_arvalid (S_bmaxi_arvalid ),
-    .O_maxi_araddr  (S_bmaxi_araddr  ),
-    .O_stable_rready(S_bmaxi_rready  ),
-    .I_maxi_rvalid  (S_maxi_rvalid_1d),
-    .I_maxi_rdata   (S_maxi_rdata_1d )
+    .I_clk          (I_clk                          ),
+    .I_ap_start     (S_bap_start                    ),
+    .O_ap_done      (S_bap_done                     ),
+    .I_base_addr    (S_bbase_addr                   ),
+    .I_len          (S_blen[C_RAM_ADDR_WIDTH-1:0]   ),
+    .O_maxi_arlen   (S_bmaxi_arlen                  ),
+    .I_maxi_arready (I_maxi_arready                 ),   
+    .O_maxi_arvalid (S_bmaxi_arvalid                ),
+    .O_maxi_araddr  (S_bmaxi_araddr                 ),
+    .O_stable_rready(S_bmaxi_rready                 ),
+    .I_maxi_rvalid  (S_maxi_rvalid_1d               ),
+    .I_maxi_rdata   (S_maxi_rdata_1d                )
 );
 
 load_weights #(

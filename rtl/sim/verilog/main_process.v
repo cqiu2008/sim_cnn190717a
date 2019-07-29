@@ -139,7 +139,7 @@ generate
             .I_kernel_h      (I_kernel_h        ),
             .I_stride_h      (I_stride_h        ),
             .I_pad_h         (I_pad_h           ),
-            .I_hcnt          (S_hcnt            ),
+            .I_hcnt          ((S_hcnt-idx)      ),
             .O_hfirst        (S_hfirst[idx]     ),
             .O_kh            (S_kh[idx]         ),
             .O_hindex        (S_hindex[idx]     )

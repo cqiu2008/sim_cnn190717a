@@ -91,26 +91,12 @@ ap_start_ctrl u_ldap_start(
     .O_ap_start      (O_ldap_start      )
 );
 
-ap_done_lck u_ldap_done_lck(
-    .I_clk          (I_clk           ),
-    .I_ap_start     (O_ldap_start    ),
-    .I_ap_done      (I_ldap_done     ),
-    .O_ap_done_lck  (S_ldap_done_lck )  
-);
-
 ap_start_ctrl u_swap_start(
     .I_clk           (I_clk             ),
     .I_ap_start_en   (I_ap_start        ),
     .I_ap_start_pose (S_ap_start_pose   ),
     .I_ap_done       (I_swap_done       ),
     .O_ap_start      (O_swap_start      )
-);
-
-ap_done_lck u_swap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_swap_start    ),
-    .I_ap_done     (I_swap_done     ),
-    .O_ap_done_lck (S_swap_done_lck )  
 );
 
 ap_start_ctrl u_peap_start(
@@ -121,26 +107,12 @@ ap_start_ctrl u_peap_start(
     .O_ap_start      (O_peap_start      )
 );
 
-ap_done_lck u_peap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_peap_start    ),
-    .I_ap_done     (I_peap_done     ),
-    .O_ap_done_lck (S_peap_done_lck )  
-);
-
 ap_start_ctrl u_pqap_start(
     .I_clk           (I_clk             ),
     .I_ap_start_en   (I_ap_start        ),
     .I_ap_start_pose (S_ap_start_pose   ),
     .I_ap_done       (I_pqap_done       ),
     .O_ap_start      (O_pqap_start      )
-);
-
-ap_done_lck u_pqap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_pqap_start    ),
-    .I_ap_done     (I_pqap_done     ),
-    .O_ap_done_lck (S_pqap_done_lck )  
 );
 
 ap_start_ctrl u_ppap_start(
@@ -151,13 +123,6 @@ ap_start_ctrl u_ppap_start(
     .O_ap_start      (O_ppap_start      )
 );
 
-ap_done_lck u_ppap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_ppap_start    ),
-    .I_ap_done     (I_ppap_done     ),
-    .O_ap_done_lck (S_ppap_done_lck )  
-);
-
 ap_start_ctrl u_mpap_start(
     .I_clk           (I_clk             ),
     .I_ap_start_en   (I_ap_start        ),
@@ -166,11 +131,54 @@ ap_start_ctrl u_mpap_start(
     .O_ap_start      (O_mpap_start      )
 );
 
+ap_done_lck u_ldap_done_lck(
+    .I_clk          (I_clk               ),
+    .I_ap_start     (I_ap_start          ),
+    .I_ap_done      (I_ldap_done         ),
+    .I_ap_clear     (S_ap_start_pose     ),
+    .O_ap_done_lck  (S_ldap_done_lck     )  
+);
+
+
+ap_done_lck u_swap_done_lck(
+    .I_clk         (I_clk                ),
+    .I_ap_start    (I_ap_start           ),
+    .I_ap_done     (I_swap_done          ),
+    .I_ap_clear    (S_ap_start_pose      ),
+    .O_ap_done_lck (S_swap_done_lck      )  
+);
+
+ap_done_lck u_peap_done_lck(
+    .I_clk         (I_clk                ),
+    .I_ap_start    (I_ap_start           ),
+    .I_ap_done     (I_peap_done          ),
+    .I_ap_clear    (S_ap_start_pose      ),
+    .O_ap_done_lck (S_peap_done_lck      )  
+);
+
+
+ap_done_lck u_pqap_done_lck(
+    .I_clk         (I_clk                ),
+    .I_ap_start    (I_ap_start           ),
+    .I_ap_done     (I_pqap_done          ),
+    .I_ap_clear    (S_ap_start_pose      ),
+    .O_ap_done_lck (S_pqap_done_lck      )  
+);
+
+ap_done_lck u_ppap_done_lck(
+    .I_clk         (I_clk                ),
+    .I_ap_start    (I_ap_start           ),
+    .I_ap_done     (I_ppap_done          ),
+    .I_ap_clear    (S_ap_start_pose      ),
+    .O_ap_done_lck (S_ppap_done_lck      )  
+);
+
 ap_done_lck u_mpap_done_lck(
-    .I_clk         (I_clk           ),
-    .I_ap_start    (O_mpap_start    ),
-    .I_ap_done     (I_mpap_done     ),
-    .O_ap_done_lck (S_mpap_done_lck )  
+    .I_clk         (I_clk                ),
+    .I_ap_start    (I_ap_start           ),
+    .I_ap_done     (I_mpap_done          ),
+    .I_ap_clear    (S_ap_start_pose      ),
+    .O_ap_done_lck (S_mpap_done_lck      )     
 );
 
 always @(posedge I_clk)begin
@@ -180,7 +188,8 @@ always @(posedge I_clk)begin
     //                    S_pqap_done_lck & 
     //                    S_ppap_done_lck & 
     //                    S_mpap_done_lck ;
-    S_all_done_lck  <=  S_ldap_done_lck ; 
+    S_all_done_lck  <=  S_ldap_done_lck & 
+                        S_swap_done_lck ; 
 
     S_all_done_lck_1d <= S_all_done_lck ;
 end

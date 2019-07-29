@@ -33,6 +33,7 @@ module ap_done_lck (
 input                               I_clk           ,
 input                               I_ap_start      ,
 input                               I_ap_done       ,
+input                               I_ap_clear      ,
 output reg                          O_ap_done_lck   
 );
 
@@ -40,6 +41,9 @@ always @(posedge I_clk)begin
     if(I_ap_start)begin
         if(I_ap_done)begin
             O_ap_done_lck <= 1'b1           ;
+        end
+        else if(I_ap_clear)begin
+            O_ap_done_lck <= 1'b0           ;
         end
         else begin
             O_ap_done_lck <= O_ap_done_lck ;

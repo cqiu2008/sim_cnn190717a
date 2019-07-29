@@ -202,7 +202,7 @@ u_fiddr_to_ibuf(
     .I_ap_start      (S_ldap_start      ),
     .O_ap_done       (S_ldap_done       ),
     .I_base_addr     (S_fi_base_addr    ),
-    .I_len           (I_line_width_div16),
+    .I_len           (I_line_width_div16[C_RAM_ADDR_WIDTH-1:0]),
     .O_waddr         (S_waddr           ),
     .O_wdata         (S_wdata           ),
     .O_wr            (S_wr              ),
