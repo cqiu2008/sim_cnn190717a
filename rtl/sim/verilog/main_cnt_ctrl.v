@@ -31,7 +31,7 @@
 //END_HEADER----------------------------------------------------------------------------------------
 module main_cnt_ctrl #(
 parameter 
-    MEM_STYLE               = "block"   ,
+    C_MEM_STYLE             = "block"   ,
     C_POWER_OF_1ADOTS       = 4         ,
     C_POWER_OF_PECI         = 4         ,
     C_POWER_OF_PECO         = 5         ,

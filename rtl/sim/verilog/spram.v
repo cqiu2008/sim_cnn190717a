@@ -37,7 +37,6 @@ parameter
     DSIZE = 32              
 )(
 // clk
-input                               I_rst           ,   
 input                               I_clk           ,
 input       [ASIZE-1             :0]I_addr          ,
 input       [DSIZE-1             :0]I_data          ,

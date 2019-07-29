@@ -1139,15 +1139,17 @@ cnna_axilite_s_axi_U(
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 main_process #(
-    .MEM_STYLE           ( "block"                  ),
+    .C_MEM_STYLE         ( "block"                  ),
     .C_POWER_OF_1ADOTS   ( 4                        ),
     .C_POWER_OF_PECI     ( 4                        ),
     .C_POWER_OF_PECO     ( 5                        ),
     .C_POWER_OF_PEPIX    ( 3                        ),
     .C_POWER_OF_PECODIV  ( 1                        ),
     .C_POWER_OF_RDBPIX   ( 1                        ), 
+    .C_DATA_WIDTH        ( 8                        ), 
+    .C_QIBUF_WIDTH       ( 12                       ), 
     .C_CNV_K_WIDTH       ( 5                        ),
-    .C_CNV_CH_WIDTH      ( 8                        ),
+    .C_CNV_CH_WIDTH      ( 13                       ),
     .C_DIM_WIDTH         ( 16                       ),
     .C_M_AXI_LEN_WIDTH   ( 32                       ),
     .C_M_AXI_ADDR_WIDTH  ( 32                       ),

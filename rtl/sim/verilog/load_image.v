@@ -31,7 +31,7 @@
 //END_HEADER----------------------------------------------------------------------------------------
 module load_image #(
 parameter 
-    MEM_STYLE               = "block"   ,
+    C_MEM_STYLE             = "block"   ,
     C_POWER_OF_1ADOTS       = 4         ,
     C_POWER_OF_PECI         = 4         ,
     C_POWER_OF_PECO         = 5         ,
@@ -219,7 +219,7 @@ u_fiddr_to_ibuf(
 // write to spram  
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 dpram #(
-    .MEM_STYLE  (MEM_STYLE          ),//"distributed"
+    .MEM_STYLE  (C_MEM_STYLE        ),//"distributed"
     .ASIZE      (C_RAM_ADDR_WIDTH   ),   
     .DSIZE      (C_RAM_DATA_WIDTH   ))
 u_ibuf0(
@@ -239,7 +239,7 @@ u_ibuf0(
 );
 
 dpram #(
-    .MEM_STYLE  (MEM_STYLE          ),//"distributed"
+    .MEM_STYLE  (C_MEM_STYLE        ),//"distributed"
     .ASIZE      (C_RAM_ADDR_WIDTH   ),   
     .DSIZE      (C_RAM_DATA_WIDTH   ))
 u_ibuf1(

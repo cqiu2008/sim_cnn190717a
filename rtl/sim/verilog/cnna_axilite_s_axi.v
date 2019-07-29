@@ -41,10 +41,10 @@ module cnna_axilite_s_axi
     output wire [31:0]                   wddr_V,
     output wire [31:0]                   fiddr_V,
     output wire [31:0]                   foddr_V,
-    input  wire [3:0]                    layer_name_address0,
-    input  wire                          layer_name_ce0,
-    input  wire                          layer_name_we0,
-    input  wire [7:0]                    layer_name_d0,
+//    input  wire [3:0]                    layer_name_address0,
+//    input  wire                          layer_name_ce0,
+//    input  wire                          layer_name_we0,
+//    input  wire [7:0]                    layer_name_d0,
     output wire [0:0]                    layer_enPara_cnvEn,
     output wire [0:0]                    layer_enPara_poolEn,
     output wire [15:0]                   layer_wPara_curLayerNum,
@@ -753,43 +753,43 @@ localparam
     reg  [4:0]                    int_layer_poolPara_stride_w_V = 'b0;
     reg  [0:0]                    int_layer_poolPara_pool_type = 'b0;
     // memory signals
-    wire [1:0]                    int_layer_name_address0;
-    wire                          int_layer_name_ce0;
-    wire                          int_layer_name_we0;
-    wire [3:0]                    int_layer_name_be0;
-    wire [31:0]                   int_layer_name_d0;
-    wire [31:0]                   int_layer_name_q0;
-    wire [1:0]                    int_layer_name_address1;
-    wire                          int_layer_name_ce1;
-    wire                          int_layer_name_we1;
-    wire [3:0]                    int_layer_name_be1;
-    wire [31:0]                   int_layer_name_d1;
-    wire [31:0]                   int_layer_name_q1;
-    reg                           int_layer_name_read;
-    reg                           int_layer_name_write;
-    reg  [1:0]                    int_layer_name_shift;
+    // wire [1:0]                    int_layer_name_address0;
+    // wire                          int_layer_name_ce0;
+    // wire                          int_layer_name_we0;
+    // wire [3:0]                    int_layer_name_be0;
+    // wire [31:0]                   int_layer_name_d0;
+    // wire [31:0]                   int_layer_name_q0;
+    // wire [1:0]                    int_layer_name_address1;
+    // wire                          int_layer_name_ce1;
+    // wire                          int_layer_name_we1;
+    // wire [3:0]                    int_layer_name_be1;
+    // wire [31:0]                   int_layer_name_d1;
+    // wire [31:0]                   int_layer_name_q1;
+    // reg                           int_layer_name_read;
+    // reg                           int_layer_name_write;
+    // reg  [1:0]                    int_layer_name_shift;
 
 //------------------------Instantiation------------------
 // int_layer_name
-cnna_axilite_s_axi_ram #(
-    .BYTES    ( 4 ),
-    .DEPTH    ( 3 )
-) int_layer_name (
-    .clk0     ( ACLK ),
-    .address0 ( int_layer_name_address0 ),
-    .ce0      ( int_layer_name_ce0 ),
-    .we0      ( int_layer_name_we0 ),
-    .be0      ( int_layer_name_be0 ),
-    .d0       ( int_layer_name_d0 ),
-    .q0       ( int_layer_name_q0 ),
-    .clk1     ( ACLK ),
-    .address1 ( int_layer_name_address1 ),
-    .ce1      ( int_layer_name_ce1 ),
-    .we1      ( int_layer_name_we1 ),
-    .be1      ( int_layer_name_be1 ),
-    .d1       ( int_layer_name_d1 ),
-    .q1       ( int_layer_name_q1 )
-);
+// cnna_axilite_s_axi_ram #(
+//     .BYTES    ( 4 ),
+//     .DEPTH    ( 3 )
+// ) int_layer_name (
+//     .clk0     ( ACLK ),
+//     .address0 ( int_layer_name_address0 ),
+//     .ce0      ( int_layer_name_ce0 ),
+//     .we0      ( int_layer_name_we0 ),
+//     .be0      ( int_layer_name_be0 ),
+//     .d0       ( int_layer_name_d0 ),
+//     .q0       ( int_layer_name_q0 ),
+//     .clk1     ( ACLK ),
+//     .address1 ( int_layer_name_address1 ),
+//     .ce1      ( int_layer_name_ce1 ),
+//     .we1      ( int_layer_name_we1 ),
+//     .be1      ( int_layer_name_be1 ),
+//     .d1       ( int_layer_name_d1 ),
+//     .q1       ( int_layer_name_q1 )
+// );
 
 //------------------------AXI write fsm------------------
 assign AWREADY = (wstate == WRIDLE);
@@ -843,7 +843,8 @@ end
 assign ARREADY = (rstate == RDIDLE);
 assign RDATA   = rdata;
 assign RRESP   = 2'b00;  // OKAY
-assign RVALID  = (rstate == RDDATA) & !int_layer_name_read;
+//assign RVALID  = (rstate == RDDATA) & !int_layer_name_read;
+assign RVALID  = (rstate == RDDATA) ; 
 assign ar_hs   = ARVALID & ARREADY;
 assign raddr   = ARADDR[ADDR_BITS-1:0];
 
@@ -1146,9 +1147,9 @@ always @(posedge ACLK) begin
                 end
             endcase
         end
-        else if (int_layer_name_read) begin
-            rdata <= int_layer_name_q1;
-        end
+        //else if (int_layer_name_read) begin
+        //    rdata <= int_layer_name_q1;
+        //end
     end
 end
 
@@ -2168,47 +2169,47 @@ end
 
 //------------------------Memory logic-------------------
 // layer_name
-assign int_layer_name_address0 = layer_name_address0 >> 2;
-assign int_layer_name_ce0      = layer_name_ce0;
-assign int_layer_name_we0      = layer_name_we0;
-assign int_layer_name_be0      = 1 << layer_name_address0[1:0];
-assign int_layer_name_d0       = {4{layer_name_d0}};
-assign int_layer_name_address1 = ar_hs? raddr[3:2] : waddr[3:2];
-assign int_layer_name_ce1      = ar_hs | (int_layer_name_write & WVALID);
-assign int_layer_name_we1      = int_layer_name_write & WVALID;
-assign int_layer_name_be1      = WSTRB;
-assign int_layer_name_d1       = WDATA;
-// int_layer_name_read
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_layer_name_read <= 1'b0;
-    else if (ACLK_EN) begin
-        if (ar_hs && raddr >= ADDR_LAYER_NAME_BASE && raddr <= ADDR_LAYER_NAME_HIGH)
-            int_layer_name_read <= 1'b1;
-        else
-            int_layer_name_read <= 1'b0;
-    end
-end
-
-// int_layer_name_write
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_layer_name_write <= 1'b0;
-    else if (ACLK_EN) begin
-        if (aw_hs && AWADDR[ADDR_BITS-1:0] >= ADDR_LAYER_NAME_BASE && AWADDR[ADDR_BITS-1:0] <= ADDR_LAYER_NAME_HIGH)
-            int_layer_name_write <= 1'b1;
-        else if (WVALID)
-            int_layer_name_write <= 1'b0;
-    end
-end
+// assign int_layer_name_address0 = layer_name_address0 >> 2;
+// assign int_layer_name_ce0      = layer_name_ce0;
+// assign int_layer_name_we0      = layer_name_we0;
+// assign int_layer_name_be0      = 1 << layer_name_address0[1:0];
+// assign int_layer_name_d0       = {4{layer_name_d0}};
+// assign int_layer_name_address1 = ar_hs? raddr[3:2] : waddr[3:2];
+// assign int_layer_name_ce1      = ar_hs | (int_layer_name_write & WVALID);
+// assign int_layer_name_we1      = int_layer_name_write & WVALID;
+// assign int_layer_name_be1      = WSTRB;
+// assign int_layer_name_d1       = WDATA;
+// // int_layer_name_read
+// always @(posedge ACLK) begin
+//     if (ARESET)
+//         int_layer_name_read <= 1'b0;
+//     else if (ACLK_EN) begin
+//         if (ar_hs && raddr >= ADDR_LAYER_NAME_BASE && raddr <= ADDR_LAYER_NAME_HIGH)
+//             int_layer_name_read <= 1'b1;
+//         else
+//             int_layer_name_read <= 1'b0;
+//     end
+// end
+// 
+// // int_layer_name_write
+// always @(posedge ACLK) begin
+//     if (ARESET)
+//         int_layer_name_write <= 1'b0;
+//     else if (ACLK_EN) begin
+//         if (aw_hs && AWADDR[ADDR_BITS-1:0] >= ADDR_LAYER_NAME_BASE && AWADDR[ADDR_BITS-1:0] <= ADDR_LAYER_NAME_HIGH)
+//             int_layer_name_write <= 1'b1;
+//         else if (WVALID)
+//             int_layer_name_write <= 1'b0;
+//     end
+// end
 
 // int_layer_name_shift
-always @(posedge ACLK) begin
-    if (ACLK_EN) begin
-        if (layer_name_ce0)
-            int_layer_name_shift <= layer_name_address0[1:0];
-    end
-end
+// always @(posedge ACLK) begin
+//     if (ACLK_EN) begin
+//         if (layer_name_ce0)
+//             int_layer_name_shift <= layer_name_address0[1:0];
+//     end
+// end
 
 
 endmodule

@@ -31,13 +31,15 @@
 //END_HEADER----------------------------------------------------------------------------------------
 module main_process #(
 parameter 
-    MEM_STYLE               = "block"   ,
+    C_MEM_STYLE             = "block"   ,
     C_POWER_OF_1ADOTS       = 4         ,
     C_POWER_OF_PECI         = 4         ,
     C_POWER_OF_PECO         = 5         ,
     C_POWER_OF_PEPIX        = 3         ,
     C_POWER_OF_PECODIV      = 1         ,
     C_POWER_OF_RDBPIX       = 1         , 
+    C_DATA_WIDTH            = 8         , 
+    C_QIBUF_WIDTH           = 12        , 
     C_CNV_K_WIDTH           = 8         ,
     C_CNV_CH_WIDTH          = 8         ,
     C_DIM_WIDTH             = 16        ,
@@ -96,11 +98,6 @@ wire         [       C_DIM_WIDTH-1:0]S_kh[4]                        ;
 wire         [       C_DIM_WIDTH-1:0]S_hindex[4]                    ;
 reg                                  S_en_wr_obuf0  = 1'b1          ;
 reg                                  S_obuf_init_ok = 1'b0          ;
-//reg          [       C_DIM_WIDTH-1:0]S_post_haddr   = -1            ;
-//reg          [       C_DIM_WIDTH-1:0]S_ibuf0_index  = -1            ;
-//reg          [       C_DIM_WIDTH-1:0]S_ibuf1_index  = -1            ;
-//reg          [       C_DIM_WIDTH-1:0]S_sbuf0_index  = -1            ;
-//reg          [       C_DIM_WIDTH-1:0]S_sbuf1_index  = -1            ;
 wire         [        C_CI_GROUP-1:0]S_ipara_ci_group               ;
 reg          [        C_CI_GROUP-1:0]S_ipara_ci_group_1d            ;
 reg          [C_M_AXI_ADDR_WIDTH-1:0]S_line_width_div16             ;
@@ -120,8 +117,11 @@ wire                                 S_ppap_start                   ;
 wire                                 S_ppap_done                    ;
 wire                                 S_mpap_start                   ;
 wire                                 S_mpap_done                    ;   
-reg         [ C_M_AXI_ADDR_WIDTH-1:0]S_fibase_addr                  ; 
-
+reg          [C_M_AXI_ADDR_WIDTH-1:0]S_fibase_addr                  ; 
+wire         [C_RAM_ADDR_WIDTH-1  :0]S_ibuf0_addr                   ; 
+wire         [C_RAM_ADDR_WIDTH-1  :0]S_ibuf1_addr                   ; 
+wire         [C_RAM_DATA_WIDTH-1  :0]S_ibuf0_rdata                  ; 
+wire         [C_RAM_DATA_WIDTH-1  :0]S_ibuf1_rdata                  ; 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // initial variable
@@ -169,7 +169,7 @@ end
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 main_cnt_ctrl #(
-    .MEM_STYLE          (MEM_STYLE          ),
+    .C_MEM_STYLE        (C_MEM_STYLE        ),
     .C_POWER_OF_1ADOTS  (C_POWER_OF_1ADOTS  ),
     .C_POWER_OF_PECI    (C_POWER_OF_PECI    ),
     .C_POWER_OF_PECO    (C_POWER_OF_PECO    ),
@@ -207,7 +207,7 @@ always @(posedge I_clk)begin
 end
 
 load_image #(
-    .MEM_STYLE            (MEM_STYLE             ),
+    .C_MEM_STYLE          (C_MEM_STYLE           ),
     .C_POWER_OF_1ADOTS    (C_POWER_OF_1ADOTS     ),
     .C_POWER_OF_PECI      (C_POWER_OF_PECI       ),
     .C_POWER_OF_PECO      (C_POWER_OF_PECO       ),
@@ -231,10 +231,10 @@ u0_load_image(
     .I_hindex             (S_hindex[0]           ),
     .I_hcnt_odd           (S_hcnt[0]             ),
     .I_line_width_div16   (S_line_width_div16    ),
-    .I_raddr0             ( ), 
-    .I_raddr1             ( ), 
-    .O_rdata0             ( ), 
-    .O_rdata1             ( ), 
+    .I_raddr0             (S_ibuf0_addr          ), 
+    .I_raddr1             (S_ibuf1_addr          ), 
+    .O_rdata0             (S_ibuf0_rdata         ), 
+    .O_rdata1             (S_ibuf1_rdata         ), 
     .O_fimaxi_arlen       (O_fimaxi_arlen        ),
     .I_fimaxi_arready     (I_fimaxi_arready      ),   
     .O_fimaxi_arvalid     (O_fimaxi_arvalid      ),
@@ -245,8 +245,53 @@ u0_load_image(
 );
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// load_image  
+// multi_slide_windows_flatten 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+parameter C_PEPIX          = {1'b1,{C_POWER_OF_PEPIX{1'b0}}}         ;
+
+multi_slide_windows_flatten #(
+    .C_MEM_STYLE         (C_MEM_STYLE          ),
+    .C_POWER_OF_1ADOTS   (C_POWER_OF_1ADOTS    ),
+    .C_POWER_OF_PECI     (C_POWER_OF_PECI      ),
+    .C_POWER_OF_PECO     (C_POWER_OF_PECO      ),
+    .C_POWER_OF_PEPIX    (C_POWER_OF_PEPIX     ),
+    .C_POWER_OF_PECODIV  (C_POWER_OF_PECODIV   ),
+    .C_POWER_OF_RDBPIX   (C_POWER_OF_RDBPIX    ), 
+    .C_PEPIX             (C_PEPIX              ),
+    .C_DATA_WIDTH        (C_DATA_WIDTH         ),
+    .C_QIBUF_WIDTH       (C_QIBUF_WIDTH        ),
+    .C_CNV_K_WIDTH       (C_CNV_K_WIDTH        ),
+    .C_CNV_CH_WIDTH      (C_CNV_CH_WIDTH       ),
+    .C_DIM_WIDTH         (C_DIM_WIDTH          ),
+    .C_M_AXI_LEN_WIDTH   (C_M_AXI_LEN_WIDTH    ),
+    .C_M_AXI_ADDR_WIDTH  (C_M_AXI_ADDR_WIDTH   ),
+    .C_M_AXI_DATA_WIDTH  (C_M_AXI_DATA_WIDTH   ),
+    .C_RAM_ADDR_WIDTH    (C_RAM_ADDR_WIDTH     ),
+    .C_RAM_DATA_WIDTH    (C_RAM_DATA_WIDTH     ))
+u_multi_slide_windows_flatten(
+    .I_clk               (I_clk                 ),
+    .I_rst               (I_rst                 ),
+    .I_allap_start       (I_ap_start            ),
+    .I_ap_start          (S_swap_start          ),
+    .O_ap_done           (S_swap_done           ),
+    .O_ibuf0_addr        (S_ibuf0_addr          ), 
+    .O_ibuf1_addr        (S_ibuf1_addr          ), 
+    .I_ibuf0_rdata       (S_ibuf0_rdata         ), 
+    .I_ibuf1_rdata       (S_ibuf1_rdata         ), 
+    .I_raddr0            (), 
+    .I_raddr1            (), 
+    .O_rdata0            (), 
+    .O_rdata1            (), 
+    .I_ipara_height      (I_ipara_height        ),
+    .I_hindex            (S_hindex[1]           ),
+    .I_hcnt_odd          (S_hcnt[0]             ),//1,3,5,...active
+    .I_kernel_w          (I_kernel_w            ),
+    .I_stride_w          (I_stride_w            ),
+    .I_pad_w             (I_pad_w               ),
+    .I_ipara_width       (I_ipara_width         ),
+    .I_ipara_ci          (I_ipara_ci            ) 
+);
+
 
 
 // ceil_power_of_2 #(

@@ -92,7 +92,6 @@ spram #(
     .ASIZE     ( C_RAM_ADDR_WIDTH   ), 
     .DSIZE     ( C_RAM_DATA_WIDTH   ))
 u0_spram (
-    .I_rst	 (I_rst	    ),	
     .I_clk	 (I_clk	    ),
     .I_addr	 (S_waddr	),
     .I_data	 (S_wdata	),
